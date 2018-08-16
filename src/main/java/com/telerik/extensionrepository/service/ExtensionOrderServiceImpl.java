@@ -22,22 +22,22 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
     }
 
     @Override
-    public List<Extension> getFeatured() {
+    public List<Extension> getFeatured() {                                                  // sorts the extensions if they are featured == 0
         return extensionRepository.getAllExtensions().stream()
                 .filter( x -> x.getFeatured() == 0 )
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Extension> getPopular() {
+    public List<Extension> getPopular() {                                         // gets all extensions and sorts them by number of downloads
 
         List<Extension> list = extensionRepository.getAllExtensions();
 
-        Collections.sort(list, new Comparator<Extension>(){
-            public int compare(Extension o1, Extension o2){
-                if(o1.getNumberOfDownloads() == o2.getNumberOfDownloads())
+        list.sort(new Comparator<Extension>() {
+            public int compare(Extension o1, Extension o2) {
+                if (o1.getNumberOfDownloads() == o2.getNumberOfDownloads())
                     return 0;
-                return o1.getNumberOfDownloads() < o2.getNumberOfDownloads() ? 1 : -1;
+                return o1.getNumberOfDownloads() > o2.getNumberOfDownloads() ? -1 : 1;
             }
         });
 
