@@ -27,5 +27,42 @@
 <input type="text" placeholder="Search..">
     <input type="submit" value="Search" />
 </form>
+
+<h2>FEATURED EXTENSIONS:</h2>
+<table>
+<th:block th:each="String : ${featured}">
+
+    <tr>
+        <td th:text="${String}">...</td>
+
+    </tr>
+
+</th:block>
+</table>
+
+<h2>POPULAR EXTENSIONS:</h2>
+<table>
+    <th:block th:each="String : ${popular}">
+
+        <tr>
+            <td th:text="${String}">...</td>
+
+        </tr>
+
+    </th:block>
+</table>
+
+<h2>NEW EXTENSIONS:</h2>
+<table>
+    <th:block th:each="String : ${mostNew}">
+
+        <tr>
+            <td th:text="${String}">...</td>
+
+        </tr>
+
+    </th:block>
+</table>
+
 </body>
 </html>
