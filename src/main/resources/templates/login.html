@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>Login</title>
     <style>
         .error {
@@ -11,7 +12,9 @@
     </style>
 </head>
 <body>
-<h1>Extension Market Login Page</h1>
+<div class="header">
+    <h1>WELCOME TO EXTENSION MARKET</h1>
+</div>
 
 <i th:if="${param.error}" class="error">Wrong username or password</i>
 

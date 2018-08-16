@@ -3,16 +3,23 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
     <title>Title</title>
 </head>
 <body>
+<div class="header">
 <h1>WELCOME TO EXTENSION MARKET</h1>
+</div>
+
 <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a> </p>
-<p sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name" /></p>
+<p sec:authorize="isAuthenticated()">Welcome, <a th:href="@{/profile}"><span sec:authentication="name" /></a></p>
+
 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
     <input type="submit" value="Logout" />
 </form>
+
 <br>
+
 <p>Search Extensions:</p>
 
 
