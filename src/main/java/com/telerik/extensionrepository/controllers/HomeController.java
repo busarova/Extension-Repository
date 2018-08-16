@@ -1,5 +1,6 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.ExtensionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,29 +32,35 @@ public class HomeController {
     public ModelAndView showFeatured(){
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<String> featured = new ArrayList<>();
+        /*List<String> featured = new ArrayList<>();
 
         featured.add("EXTENSIONS 1");
         featured.add("EXTENSIONS 2");
-        featured.add("EXTENSIONS 3");
+        featured.add("EXTENSIONS 3");*/
+
+        List<Extension> featured = extensionOrderService.getFeatured();
 
         modelAndView.addObject("featured", featured);
 
-        List<String> popular = new ArrayList<>();
+        /*List<String> popular = new ArrayList<>();
 
         popular.add("POPULAR 1");
         popular.add("POPULAR 2");
-        popular.add("POPULAR 3");
+        popular.add("POPULAR 3");*/
+
+        List<Extension> popular = extensionOrderService.getPopular();
 
         modelAndView.addObject("popular", popular);
 
-        List<String> mostNew = new ArrayList<>();
+        /*List<String> mostNew = new ArrayList<>();
 
         mostNew.add("MOST NEW 1");
         mostNew.add("MOST NEW 2");
-        mostNew.add("MOST NEW 3");
+        mostNew.add("MOST NEW 3");*/
 
-        modelAndView.addObject("mostNew", mostNew);
+        List<Extension> newExt = extensionOrderService.getNew();
+
+        modelAndView.addObject("newExt", newExt);
 
         return modelAndView;
     }

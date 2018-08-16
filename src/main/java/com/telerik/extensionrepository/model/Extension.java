@@ -29,13 +29,13 @@ public class Extension {
     @Column(name = "tags")
     private String tags;
 
-    @OneToOne
+    /*@OneToOne
     @JoinColumn(name = "downloadFileID")
-    private DownloadFile downloadFile;
+    private DownloadFile downloadFile;*/
 
-    @OneToOne
-    @JoinColumn(name = "gitExtensionID")
-    private GitExtensionInfo gitExtensionInfo;
+    /*@OneToOne
+    @JoinColumn(name = "gitExtensionInfoID")
+    private GitExtensionInfo gitExtensionInfo;*/
 
     @Column(name = "uploadDate")
     private String uploadDate;
@@ -52,13 +52,13 @@ public class Extension {
         this.id = id;
     }
 
-    public DownloadFile getDownloadFile() {
+    /*public DownloadFile getDownloadFile() {
         return downloadFile;
     }
 
     public void setDownloadFile(DownloadFile downloadFile) {
         this.downloadFile = downloadFile;
-    }
+    }*/
 
     public String getName() {
         return name;
@@ -109,13 +109,13 @@ public class Extension {
     }
 
 
-    public GitExtensionInfo getGitExtensionInfo() {
+    /*public GitExtensionInfo getGitExtensionInfo() {
         return gitExtensionInfo;
     }
 
     public void setGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
         this.gitExtensionInfo = gitExtensionInfo;
-    }
+    }*/
 
 
     public String getUploadDate() {
