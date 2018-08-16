@@ -28,8 +28,27 @@
     <input type="submit" value="Search" />
 </form>
 
+<div>
+
+<hr>
+<br><br>
+
+<div class="inLine">
+
+
+<div class="dropdown">
+  <button class="dropbtn">Sort By</button>
+  <div class="dropdown-content">
+    <a href="#">Name</a>
+    <a href="#">Downloads</a>
+    <a href="#">Upload Date</a>
+    <a href="#">Last Commit Date</a>
+  </div>
+</div>
+
+
 <h2>FEATURED EXTENSIONS:</h2>
-<table>
+<table class="inLine">
 <th:block th:each="String : ${featured}">
 
     <tr>
@@ -40,8 +59,23 @@
 </th:block>
 </table>
 
+</div>
+
+
+<div class="inLine">
+
+<div class="dropdown">
+  <button class="dropbtn">Sort By</button>
+  <div class="dropdown-content">
+    <a href="#">Name</a>
+    <a href="#">Downloads</a>
+    <a href="#">Upload Date</a>
+    <a href="#">Last Commit Date</a>
+  </div>
+</div>
+
 <h2>POPULAR EXTENSIONS:</h2>
-<table>
+<table class="inLine">
     <th:block th:each="String : ${popular}">
 
         <tr>
@@ -51,9 +85,22 @@
 
     </th:block>
 </table>
+</div>
+
+<div class="inLine">
+
+<div class="dropdown">
+  <button class="dropbtn">Sort By</button>
+  <div class="dropdown-content">
+    <a href="#">Name</a>
+    <a href="#">Downloads</a>
+    <a href="#">Upload Date</a>
+    <a href="#">Last Commit Date</a>
+  </div>
+</div>
 
 <h2>NEW EXTENSIONS:</h2>
-<table>
+<table class="inLine">
     <th:block th:each="String : ${mostNew}">
 
         <tr>
@@ -63,6 +110,9 @@
 
     </th:block>
 </table>
+</div>
+
+</div>
 
 </body>
 </html>
