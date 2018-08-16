@@ -35,16 +35,16 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 	('pesho', 'ROLE_USER');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
--- Dumping structure for table extension_repository.downloadfile
-CREATE TABLE IF NOT EXISTS `downloadfile` (
-  `ID` int(11) NOT NULL,
+-- Dumping structure for table extension_repository.download_file
+CREATE TABLE IF NOT EXISTS `download_file` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `file` blob NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.downloadfile: ~0 rows (approximately)
-/*!40000 ALTER TABLE `downloadfile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `downloadfile` ENABLE KEYS */;
+-- Dumping data for table extension_repository.download_file: ~0 rows (approximately)
+/*!40000 ALTER TABLE `download_file` DISABLE KEYS */;
+/*!40000 ALTER TABLE `download_file` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.extensions
 CREATE TABLE IF NOT EXISTS `extensions` (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `extensions` (
   `tags` varchar(50) NOT NULL,
   `downloadLinkID` int(11) NOT NULL,
   `gitExtensionInfoID` int(11) NOT NULL,
-  `uploadDate` date NOT NULL,
+  `uploadDate` varchar(50) NOT NULL,
   `featured` tinyint(2) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -66,19 +66,19 @@ CREATE TABLE IF NOT EXISTS `extensions` (
 /*!40000 ALTER TABLE `extensions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `extensions` ENABLE KEYS */;
 
--- Dumping structure for table extension_repository.gitextensioninfo
-CREATE TABLE IF NOT EXISTS `gitextensioninfo` (
-  `ID` int(11) NOT NULL,
+-- Dumping structure for table extension_repository.git_extension_info
+CREATE TABLE IF NOT EXISTS `git_extension_info` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `openIssues` int(11) NOT NULL,
   `pullRequests` int(11) NOT NULL,
-  `lastCommitDate` datetime NOT NULL,
+  `lastCommitDate` varchar(50) NOT NULL,
   `gitRepoLink` varchar(100) NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.gitextensioninfo: ~0 rows (approximately)
-/*!40000 ALTER TABLE `gitextensioninfo` DISABLE KEYS */;
-/*!40000 ALTER TABLE `gitextensioninfo` ENABLE KEYS */;
+-- Dumping data for table extension_repository.git_extension_info: ~0 rows (approximately)
+/*!40000 ALTER TABLE `git_extension_info` DISABLE KEYS */;
+/*!40000 ALTER TABLE `git_extension_info` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.users
 CREATE TABLE IF NOT EXISTS `users` (
