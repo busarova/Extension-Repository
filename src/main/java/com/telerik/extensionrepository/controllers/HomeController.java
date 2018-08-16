@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,13 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    private ExtensionOrderService extensionOrderService;
+
+    @Autowired
+    public HomeController(ExtensionOrderService extensionOrderService){
+        this.extensionOrderService = extensionOrderService;
+    }
 
     /*@GetMapping("/")
     public String showHomePage(){
