@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `downloadfile` (
 
 -- Dumping structure for table extension_repository.extensions
 CREATE TABLE IF NOT EXISTS `extensions` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `version` varchar(50) NOT NULL,
@@ -58,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `extensions` (
   `gitExtensionInfoID` int(11) NOT NULL,
   `uploadDate` date NOT NULL,
   `featured` tinyint(2) NOT NULL,
-  PRIMARY KEY (`name`)
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table extension_repository.extensions: ~0 rows (approximately)
