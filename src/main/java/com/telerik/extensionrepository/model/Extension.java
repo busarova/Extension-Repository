@@ -8,7 +8,7 @@ public class Extension {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "extensionID")
     private int id;
 
     @Column(name = "name")
@@ -29,19 +29,20 @@ public class Extension {
     @Column(name = "tags")
     private String tags;
 
+    @OneToOne
+    @JoinColumn(name = "downloadFileID")
+    private DownloadFile downloadFile;
 
+    @OneToOne
+    @JoinColumn(name = "gitExtensionID")
     private GitExtensionInfo gitExtensionInfo;
 
-
+    @Column(name = "uploadDate")
     private String uploadDate;
 
-
+    @Column(name = "featured")
     private int featured;
-
-
-    private int downloadFileID;
-
-
+    
 
     public int getId() {
         return id;
@@ -51,12 +52,12 @@ public class Extension {
         this.id = id;
     }
 
-    public int getDownloadFileID() {
-        return downloadFileID;
+    public DownloadFile getDownloadFile() {
+        return downloadFile;
     }
 
-    public void setDownloadFileID(int downloadFileID) {
-        this.downloadFileID = downloadFileID;
+    public void setDownloadFile(DownloadFile downloadFile) {
+        this.downloadFile = downloadFile;
     }
 
     public String getName() {
@@ -107,6 +108,7 @@ public class Extension {
         this.tags = tags;
     }
 
+
     public GitExtensionInfo getGitExtensionInfo() {
         return gitExtensionInfo;
     }
@@ -114,6 +116,7 @@ public class Extension {
     public void setGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
         this.gitExtensionInfo = gitExtensionInfo;
     }
+
 
     public String getUploadDate() {
         return uploadDate;

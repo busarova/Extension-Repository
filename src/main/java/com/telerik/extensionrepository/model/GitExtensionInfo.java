@@ -8,7 +8,7 @@ public class GitExtensionInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "gitExtensionInfoID")
     private int id;
 
     @Column(name = "openIssues")

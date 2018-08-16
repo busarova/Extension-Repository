@@ -10,7 +10,7 @@ public class DownloadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
+    @Column(name = "downloadFileID")
     private int id;
 
 //    TODO

@@ -37,9 +37,9 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 
 -- Dumping structure for table extension_repository.download_file
 CREATE TABLE IF NOT EXISTS `download_file` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `downloadFileID` int(11) NOT NULL AUTO_INCREMENT,
   `file` blob NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`downloadFileID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table extension_repository.download_file: ~0 rows (approximately)
@@ -48,18 +48,18 @@ CREATE TABLE IF NOT EXISTS `download_file` (
 
 -- Dumping structure for table extension_repository.extensions
 CREATE TABLE IF NOT EXISTS `extensions` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `extensionID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` varchar(1000) NOT NULL,
   `version` varchar(50) NOT NULL,
   `owner` varchar(50) NOT NULL,
   `numberOfDownloads` int(11) NOT NULL DEFAULT 0,
   `tags` varchar(50) NOT NULL,
-  `downloadLinkID` int(11) NOT NULL,
+  `downloadFileID` int(11) NOT NULL,
   `gitExtensionInfoID` int(11) NOT NULL,
   `uploadDate` varchar(50) NOT NULL,
   `featured` tinyint(2) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`extensionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table extension_repository.extensions: ~0 rows (approximately)
@@ -68,12 +68,12 @@ CREATE TABLE IF NOT EXISTS `extensions` (
 
 -- Dumping structure for table extension_repository.git_extension_info
 CREATE TABLE IF NOT EXISTS `git_extension_info` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `gitExtensionInfoID` int(11) NOT NULL AUTO_INCREMENT,
   `openIssues` int(11) NOT NULL,
   `pullRequests` int(11) NOT NULL,
   `lastCommitDate` varchar(50) NOT NULL,
   `gitRepoLink` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (`gitExtensionInfoID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table extension_repository.git_extension_info: ~0 rows (approximately)
