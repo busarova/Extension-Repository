@@ -14,16 +14,16 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource securityDataSource;
+    /*@Autowired
+    private DataSource securityDataSource;*/
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(securityDataSource);
-        /*auth.inMemoryAuthentication()
+      //  auth.jdbcAuthentication().dataSource(securityDataSource);
+        auth.inMemoryAuthentication()
                 .withUser(User.withUsername("drago").password("{noop}123").roles("USER", "ADMIN"))
-                .withUser(User.withUsername("gosho").password("{noop}pass2").roles("USER"))
-                .withUser(User.withUsername("misho").password("{noop}pass3").roles("USER"));*/
+                .withUser(User.withUsername("rosi").password("{noop}123").roles("USER", "ADMIN"))
+                .withUser(User.withUsername("misho").password("{noop}pass3").roles("USER"));
     }
 
     @Override
