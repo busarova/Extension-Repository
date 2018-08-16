@@ -35,6 +35,50 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 	('pesho', 'ROLE_USER');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
+-- Dumping structure for table extension_repository.downloadfile
+CREATE TABLE IF NOT EXISTS `downloadfile` (
+  `ID` int(11) NOT NULL,
+  `file` blob NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table extension_repository.downloadfile: ~0 rows (approximately)
+/*!40000 ALTER TABLE `downloadfile` DISABLE KEYS */;
+/*!40000 ALTER TABLE `downloadfile` ENABLE KEYS */;
+
+-- Dumping structure for table extension_repository.extensions
+CREATE TABLE IF NOT EXISTS `extensions` (
+  `name` varchar(50) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `version` varchar(50) NOT NULL,
+  `owner` varchar(50) NOT NULL,
+  `numberOfDownloads` int(11) NOT NULL DEFAULT 0,
+  `tags` varchar(50) NOT NULL,
+  `downloadLinkID` int(11) NOT NULL,
+  `gitExtensionInfoID` int(11) NOT NULL,
+  `uploadDate` date NOT NULL,
+  `featured` tinyint(2) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table extension_repository.extensions: ~0 rows (approximately)
+/*!40000 ALTER TABLE `extensions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `extensions` ENABLE KEYS */;
+
+-- Dumping structure for table extension_repository.gitextensioninfo
+CREATE TABLE IF NOT EXISTS `gitextensioninfo` (
+  `ID` int(11) NOT NULL,
+  `openIssues` int(11) NOT NULL,
+  `pullRequests` int(11) NOT NULL,
+  `lastCommitDate` datetime NOT NULL,
+  `gitRepoLink` varchar(100) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table extension_repository.gitextensioninfo: ~0 rows (approximately)
+/*!40000 ALTER TABLE `gitextensioninfo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gitextensioninfo` ENABLE KEYS */;
+
 -- Dumping structure for table extension_repository.users
 CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) NOT NULL,
