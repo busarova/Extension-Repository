@@ -32,7 +32,9 @@ INSERT INTO `authorities` (`username`, `authority`) VALUES
 	('gosho', 'ROLE_USER'),
 	('misho', 'ROLE_USER'),
 	('pesho', 'ROLE_ADMIN'),
-	('pesho', 'ROLE_USER');
+	('pesho', 'ROLE_USER'),
+	('rosi', 'ROLE_ADMIN'),
+	('rosi', 'ROLE_USER');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.download_file
@@ -60,10 +62,21 @@ CREATE TABLE IF NOT EXISTS `extensions` (
   `uploadDate` varchar(50) NOT NULL,
   `featured` tinyint(2) NOT NULL,
   PRIMARY KEY (`extensionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table extension_repository.extensions: ~0 rows (approximately)
 /*!40000 ALTER TABLE `extensions` DISABLE KEYS */;
+INSERT INTO `extensions` (`extensionID`, `name`, `description`, `version`, `owner`, `numberOfDownloads`, `tags`, `downloadFileID`, `gitExtensionInfoID`, `uploadDate`, `featured`) VALUES
+	(1, 'appleExt', 'bla bla bla blaaaaaaah', '1.0', 'drago', 3, 'super awesome', 1, 1, '16/08/2018', 0),
+	(2, 'ibmExt', 'OLELE LELELE', '1.0', 'drago', 5, 'veryGood great', 2, 2, '16/08/2018', 0),
+	(3, 'RovenaExt', 'LULU LULI LUUUUU', '1.0', 'drago', 1, 'notGood blah', 3, 3, '12/08/2018', 1),
+	(4, 'GardnerExt', 'DJUPAMPAAAAAAAA OLE', '1.1', 'rosi', 7, 'dasdas', 4, 4, '05/08/2018', 0),
+	(5, 'PliskaExt', 'O MUDRI VOINIKO', '1.2', 'rosi', 3, 'sadasdas', 5, 5, '07/08/2018', 1),
+	(6, 'BravosExt', 'JIVOTA E RADOST I TUGA ', '1.1', 'rosi', 4, 'asdasdasd', 6, 6, '09/08/2018', 0),
+	(7, 'TestExt', 'SUS 100 KILOMETRA V CHAS', '1.5', 'drago', 7, 'ksadklasda', 7, 7, '14/08/2018', 0),
+	(8, 'SuperExt', '100 patrona ', '1.3', 'pesho', 2, 'asdasdas', 8, 8, '15/08/2018', 1),
+	(9, 'RobertoExt', 'Karai si kolata lelelel', '1.1', 'pesho', 10, 'asdasdas', 9, 9, '16/08/2018', 1),
+	(10, 'BritneyExt', 'Oops I did it again', '1.2', 'pesho', 4, 'adasdasdasd', 10, 10, '15/08/2018', 0);
 /*!40000 ALTER TABLE `extensions` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.git_extension_info
@@ -88,13 +101,14 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.users: ~4 rows (approximately)
+-- Dumping data for table extension_repository.users: ~0 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
 	('drago', '{noop}123', 1),
 	('gosho', '{noop}pass2', 1),
 	('misho', '{noop}pass3', 1),
-	('pesho', '{noop}123', 1);
+	('pesho', '{noop}123', 1),
+	('rosi', '{noop}123', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
