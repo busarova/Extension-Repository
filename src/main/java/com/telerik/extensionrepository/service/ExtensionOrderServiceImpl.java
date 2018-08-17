@@ -50,4 +50,11 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
     public List<Extension> getNew() {
         return extensionRepository.getAllExtensions();
     }
+
+    @Override
+    public List<Extension> getByUserName(String userName) {
+        return extensionRepository.getAllExtensions().stream()
+                .filter( x -> x.getOwner().equals(userName))
+                .collect(Collectors.toList());
+    }
 }

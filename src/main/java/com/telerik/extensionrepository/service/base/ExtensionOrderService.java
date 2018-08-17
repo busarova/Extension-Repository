@@ -12,4 +12,6 @@ public interface ExtensionOrderService {
 
     List<Extension> getNew();
 
+    List<Extension> getByUserName(String userName);
+
 }

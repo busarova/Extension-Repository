@@ -16,5 +16,18 @@ Name: <span sec:authentication="name" />
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<br>
+<h2>Current extensions:</h2>
+<table class="inLine">
+    <th:block th:each="Extension : ${extensions}">
+
+        <tr>
+            <td th:text="${Extension.getName()}">...</td>
+
+        </tr>
+
+    </th:block>
+</table>
+
 </body>
 </html>
