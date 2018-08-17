@@ -16,4 +16,8 @@ public interface ExtensionOrderService {
 
     Extension getExtByName(String name);
 
+    List<Extension> returnOrderedBy(String parameter);
+
+    List<Extension> sortListBy(List<Extension> list, String parameter);
+
 }

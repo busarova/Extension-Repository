@@ -7,4 +7,5 @@ import java.util.List;
 public interface SearchService {
 
     public List<Extension> getAllByParam(String param);
+
 }

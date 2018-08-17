@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 public class ExtensionController {
 
@@ -28,6 +30,42 @@ public class ExtensionController {
         System.out.println(extension.getName());
 
         modelAndView.addObject("extension", extension);
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/sortby/{name}")
+    public ModelAndView sortByParam(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("index");
+
+        List<Extension> list = extensionOrderService.returnOrderedBy(name);
+
+        String[] command = name.split(" ");
+
+        switch (command[0]){
+
+            case "popular":
+                modelAndView.addObject("popular", list);
+                modelAndView.addObject("featured", extensionOrderService.getFeatured());
+                modelAndView.addObject("newExt", extensionOrderService.getNew());
+                break;
+
+            case "new":
+
+                modelAndView.addObject("newExt", list);
+                modelAndView.addObject("featured", extensionOrderService.getFeatured());
+                modelAndView.addObject("popular", extensionOrderService.getPopular());
+                break;
+
+            case "featured":
+
+                modelAndView.addObject("featured", list);
+                modelAndView.addObject("featured", extensionOrderService.getFeatured());
+                modelAndView.addObject("newExt", extensionOrderService.getNew());
+                break;
+
+        }
 
         return modelAndView;
     }

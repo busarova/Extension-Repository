@@ -6,6 +6,7 @@ import com.telerik.extensionrepository.service.base.ExtensionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -64,5 +65,54 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
                 .filter( x -> x.getName().equals(name))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Extension> returnOrderedBy(String parameter) {
+
+        String[] commands = parameter.split(" ");
+
+        switch (commands[0]){
+
+            case "popular":
+                return sortListBy(getPopular(), commands[1]);
+
+            case "featured":
+                return sortListBy(getFeatured(), commands[1]);
+
+            case "new":
+                return sortListBy(getNew(), commands[1]);
+
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<Extension> sortListBy(List<Extension> list, String parameter) {
+
+        switch (parameter){
+
+            case "name":
+                list.sort(Comparator.comparing(Extension::getName));
+                return list;
+
+            case "downloads":
+                list.sort(Comparator.comparing(Extension::getNumberOfDownloads));
+                 return list;
+
+            case "uploadDate":
+
+                list.sort(Comparator.comparing(Extension::getUploadDate));
+                return list;
+
+            case "lastCommitDate":
+
+                list.sort(Comparator.comparing(Extension::getUploadDate));
+                return list;
+
+        }
+
+        return null;
     }
 }

@@ -12,7 +12,7 @@ public class Extension {
     private int id;
 
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "description")
     private String description;
@@ -42,7 +42,19 @@ public class Extension {
 
     @Column(name = "featured")
     private int featured;
-    
+
+    public Extension(){}
+
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured) {
+        this.name = name;
+        this.description = description;
+        this.version = version;
+        this.owner = owner;
+        this.numberOfDownloads = numberOfDownloads;
+        this.tags = tags;
+        this.uploadDate = uploadDate;
+        this.featured = featured;
+    }
 
     public int getId() {
         return id;
