@@ -7,6 +7,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <div class="header">
 <h1>WELCOME TO EXTENSION MARKET</h1>
 </div>
@@ -49,14 +50,11 @@
 
 <h2>FEATURED EXTENSIONS:</h2>
 <table class="inLine">
-<th:block th:each="Extention : ${featured}">
+   <div th:each="Extension : ${featured}">
 
-    <tr>
-        <td th:text="${Extention.getName()}">...</td>
+       <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
 
-    </tr>
-
-</th:block>
+   </div>
 </table>
 
 </div>
@@ -76,14 +74,11 @@
 
 <h2>POPULAR EXTENSIONS:</h2>
 <table class="inLine">
-    <th:block th:each="Extension : ${popular}">
+        <div th:each="Extension : ${popular}">
 
-        <tr>
-            <td th:text="${Extension.getName()}">...</td>
+        <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
 
-        </tr>
-
-    </th:block>
+        </div>
 </table>
 </div>
 
@@ -101,14 +96,11 @@
 
 <h2>NEW EXTENSIONS:</h2>
 <table class="inLine">
-    <th:block th:each="Extention : ${newExt}">
+    <div th:each="Extension : ${newExt}">
 
-        <tr>
-            <td th:text="${Extention.getName()}">...</td>
+    <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
 
-        </tr>
-
-    </th:block>
+    </div>
 </table>
 </div>
 

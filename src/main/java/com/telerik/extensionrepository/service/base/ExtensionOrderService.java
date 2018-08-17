@@ -14,4 +14,6 @@ public interface ExtensionOrderService {
 
     List<Extension> getByUserName(String userName);
 
+    Extension getExtByName(String name);
+
 }
