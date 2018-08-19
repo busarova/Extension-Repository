@@ -26,13 +26,16 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
     public List<Extension> getFeatured() {                                                  // sorts the extensions if they are featured == 0
         return extensionRepository.getAllExtensions().stream()
                 .filter( x -> x.getFeatured() == 0 )
+                .filter( x -> x.getApproved() == 0)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<Extension> getPopular() {                                         // gets all extensions and sorts them by number of downloads
 
-        List<Extension> list = extensionRepository.getAllExtensions();
+        List<Extension> list = extensionRepository.getAllExtensions().stream()
+                .filter(x -> x.getApproved() == 0)
+                .collect(Collectors.toList());
 
         list.sort(new Comparator<Extension>() {
             public int compare(Extension o1, Extension o2) {
@@ -49,13 +52,16 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
 
     @Override
     public List<Extension> getNew() {
-        return extensionRepository.getAllExtensions();
+        return extensionRepository.getAllExtensions().stream()
+                .filter( x -> x.getApproved() == 0)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Extension> getByUserName(String userName) {
         return extensionRepository.getAllExtensions().stream()
                 .filter( x -> x.getOwner().equals(userName))
+                .filter( x -> x.getApproved() == 0)
                 .collect(Collectors.toList());
     }
 

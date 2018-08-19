@@ -48,4 +48,9 @@ public class UserController {
         return modelAndView;
 
     }
+
+    @GetMapping("/user/create-extension")
+    public String showCreateExtentionPage(){
+        return "create-extension";
+    }
 }

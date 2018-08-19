@@ -39,7 +39,7 @@ public class AdminController {
 
         adminService.approveExt(Integer.parseInt(id));
 
-        modelAndView.addObject("extentions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
 
 
         return modelAndView;
