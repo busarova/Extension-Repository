@@ -61,7 +61,6 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
     public List<Extension> getByUserName(String userName) {
         return extensionRepository.getAllExtensions().stream()
                 .filter( x -> x.getOwner().equals(userName))
-                .filter( x -> x.getApproved() == 0)
                 .collect(Collectors.toList());
     }
 

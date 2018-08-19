@@ -34,8 +34,8 @@ Name: <span sec:authentication="name" />
 -->
 
 <div th:each="Extension : ${extensions}">
-
-<a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
+<br>
+<a th:href="'/extension-details/'+${Extension.getName()}"><p style="display: inline" th:text="${Extension.getName()}"></p> </a> <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
 
 </div>
 

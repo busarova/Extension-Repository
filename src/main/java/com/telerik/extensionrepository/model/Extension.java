@@ -40,6 +40,9 @@ public class Extension {
     @JoinColumn(name = "gitExtensionInfoID")
     private GitExtensionInfo gitExtensionInfo;*/
 
+    @Column(name = "gitExtensionInfoId")
+    private int gitId;
+
     @Column(name = "uploadDate")
     private String uploadDate;
 
@@ -48,7 +51,7 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured) {
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int gitId) {
         this.name = name;
         this.description = description;
         this.version = version;
@@ -57,6 +60,7 @@ public class Extension {
         this.tags = tags;
         this.uploadDate = uploadDate;
         this.featured = featured;
+        this.gitId = gitId;
     }
 
     public int getId() {
@@ -155,6 +159,14 @@ public class Extension {
 
     public void setApproved(int approved) {
         this.approved = approved;
+    }
+
+    public int getGitId() {
+        return gitId;
+    }
+
+    public void setGitId(int gitId) {
+        this.gitId = gitId;
     }
 
     public String isItApproved(){

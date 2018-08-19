@@ -14,5 +14,14 @@
 
 <h1>Create Extension:</h1>
 
+<form action="#" th:action="@{/user/create-extension}" th:object="${extension}" method="post">
+            <p>Name: <input type="text" th:field="*{name}" /></p>
+            <p>Description: <input type="text" th:field="*{description}" /></p>
+            <p>Version: <input type="text" th:field="*{version}" /></p>
+            <p>Tags: <input type="text" th:field="*{tags}" /></p>
+            <p>Github link: <input type="text" th:field="*{githubLink}" /></p>
+            <p><a href="createEmployee.html"><input type="submit" value="Submit" /></a> <input type="reset" value="Reset" /></p>
+            </form>
+
 </body>
 </html>
