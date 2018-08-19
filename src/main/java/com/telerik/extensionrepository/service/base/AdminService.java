@@ -1,12 +1,16 @@
 package com.telerik.extensionrepository.service.base;
 
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.User;
 
 import java.util.List;
 
 public interface AdminService {
 
-    public List<Extension> getUnnaprovedExt();
+    List<Extension> getUnnaprovedExt();
 
-    public void approveExt(int id);
+    void approveExt(int id);
+
+    List<User> getAllUsers();
+
 }

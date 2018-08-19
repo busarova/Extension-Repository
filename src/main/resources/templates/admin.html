@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments :: head">
 </head>
+
 <body>
 
 <div class="header">
@@ -16,9 +17,23 @@
 <h2>For Approval:</h2>
 
 
+<div class="inLine">
+
 <div th:each="Extension : ${extensions}">
 
 <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></a>  --> <a th:href="'/admin/approve/'+${Extension.getId()}">approve</a></p>
+
+</div>
+
+</div>
+
+<h2>Users: </h2>
+
+<div class="inLine">
+
+<div th:each="User : ${users}">
+
+<p style="display: inline" th:text="${User.getName()}"></p> <p style="display: inline" th:text="' status: ' + ${User.getStatus()}"></p>
 
 </div>
 

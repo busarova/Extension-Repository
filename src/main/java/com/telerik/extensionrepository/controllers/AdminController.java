@@ -28,6 +28,7 @@ public class AdminController {
         ModelAndView modelAndView = new ModelAndView("admin");
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
 
         return modelAndView;
     }
@@ -40,6 +41,7 @@ public class AdminController {
         adminService.approveExt(Integer.parseInt(id));
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
 
 
         return modelAndView;

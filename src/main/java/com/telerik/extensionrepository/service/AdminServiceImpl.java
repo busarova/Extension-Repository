@@ -3,6 +3,7 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,5 +35,10 @@ public class AdminServiceImpl implements AdminService {
 
         adminRepository.approveExtension(id);
 
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return adminRepository.getAllUsers();
     }
 }

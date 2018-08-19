@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,26 @@ public class AdminRepositorySql implements AdminRepository {
         }
 
 
+
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+
+        List<User> newList = null;
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            newList = session.createQuery("from User").list();
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return newList;
 
     }
 }

@@ -4,11 +4,11 @@ package com.telerik.extensionrepository.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
-    @Column(name = "name")
+    @Column(name = "username")
     private String name;
 
     @Column(name = "password")
@@ -39,5 +39,14 @@ public class User {
 
     public void setEnabled(int enabled) {
         this.enabled = enabled;
+    }
+
+    public String getStatus(){
+
+        if(getEnabled() == 1){
+            return "Enabled";
+        }else{
+            return "Disabled";
+        }
     }
 }
