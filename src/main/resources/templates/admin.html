@@ -13,6 +13,15 @@
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<h2>For Approval:</h2>
+
+
+<div th:each="Extension : ${extensions}">
+
+<a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></a>  --> <a th:href="'/admin/approve/'+${Extension.getId()}">approve</a></p>
+
+</div>
+
 
 </body>
 </html>

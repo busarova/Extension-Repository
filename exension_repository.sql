@@ -61,22 +61,23 @@ CREATE TABLE IF NOT EXISTS `extension` (
   `gitExtensionInfoID` int(11) NOT NULL,
   `uploadDate` varchar(50) NOT NULL,
   `featured` tinyint(2) NOT NULL,
+  `approved` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`extensionID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.extension: ~8 rows (approximately)
+-- Dumping data for table extension_repository.extension: ~10 rows (approximately)
 /*!40000 ALTER TABLE `extension` DISABLE KEYS */;
-INSERT INTO `extension` (`extensionID`, `name`, `description`, `version`, `owner`, `numberOfDownloads`, `tags`, `downloadFileID`, `gitExtensionInfoID`, `uploadDate`, `featured`) VALUES
-	(1, 'Apple Extension', 'bla bla bla blaaaaaaah', '1.0', 'drago', 3, 'super awesome', 1, 1, '16/08/2018', 0),
-	(2, 'IBM Extension', 'OLELE LELELE', '1.0', 'drago', 5, 'veryGood great', 2, 2, '16/08/2018', 0),
-	(3, 'Rovena Galactic', 'LULU LULI LUUUUU', '1.0', 'drago', 1, 'notGood blah', 3, 3, '12/08/2018', 1),
-	(4, 'Gardner Super', 'DJUPAMPAAAAAAAA OLE', '1.1', 'rosi', 7, 'dasdas', 4, 4, '05/08/2018', 0),
-	(5, 'Pliska Cosmos', 'O MUDRI VOINIKO', '1.2', 'rosi', 3, 'sadasdas', 5, 5, '07/08/2018', 1),
-	(6, 'Bravos Extension', 'JIVOTA E RADOST I TUGA ', '1.1', 'rosi', 4, 'asdasdasd', 6, 6, '09/08/2018', 0),
-	(7, 'Test SuperTest', 'SUS 100 KILOMETRA V CHAS', '1.5', 'drago', 7, 'ksadklasda', 7, 7, '14/08/2018', 0),
-	(8, 'Great Overall Extension', '100 patrona ', '1.3', 'pesho', 2, 'asdasdas', 8, 8, '15/08/2018', 1),
-	(9, 'Roberto Extension', 'Karai si kolata lelelel', '1.1', 'pesho', 10, 'asdasdas', 9, 9, '16/08/2018', 1),
-	(10, 'Britney Spears Extension', 'Oops I did it again', '1.2', 'pesho', 4, 'adasdasdasd', 10, 10, '15/08/2018', 0);
+INSERT INTO `extension` (`extensionID`, `name`, `description`, `version`, `owner`, `numberOfDownloads`, `tags`, `downloadFileID`, `gitExtensionInfoID`, `uploadDate`, `featured`, `approved`) VALUES
+	(1, 'Apple Extension', 'bla bla bla blaaaaaaah', '1.0', 'drago', 3, 'super awesome', 1, 1, '16/08/2018', 0, 0),
+	(2, 'IBM Extension', 'OLELE LELELE', '1.0', 'drago', 5, 'veryGood great', 2, 2, '16/08/2018', 0, 0),
+	(3, 'Rovena Galactic', 'LULU LULI LUUUUU', '1.0', 'drago', 1, 'notGood blah', 3, 3, '12/08/2018', 1, 0),
+	(4, 'Gardner Super', 'DJUPAMPAAAAAAAA OLE', '1.1', 'rosi', 7, 'dasdas', 4, 4, '05/08/2018', 0, 0),
+	(5, 'Pliska Cosmos', 'O MUDRI VOINIKO', '1.2', 'rosi', 3, 'sadasdas', 5, 5, '07/08/2018', 1, 0),
+	(6, 'Bravos Extension', 'JIVOTA E RADOST I TUGA ', '1.1', 'rosi', 4, 'asdasdasd', 6, 6, '09/08/2018', 0, 0),
+	(7, 'Test SuperTest', 'SUS 100 KILOMETRA V CHAS', '1.5', 'drago', 7, 'ksadklasda', 7, 7, '14/08/2018', 0, 0),
+	(8, 'Great Overall Extension', '100 patrona ', '1.3', 'pesho', 2, 'asdasdas', 8, 8, '15/08/2018', 1, 0),
+	(9, 'Roberto Extension', 'Karai si kolata lelelel', '1.1', 'pesho', 10, 'asdasdas', 9, 9, '16/08/2018', 1, 1),
+	(10, 'Britney Spears Extension', 'Oops I did it again', '1.2', 'pesho', 4, 'adasdasdasd', 10, 10, '15/08/2018', 0, 0);
 /*!40000 ALTER TABLE `extension` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.git_extension_info

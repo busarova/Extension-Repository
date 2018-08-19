@@ -61,7 +61,7 @@ public class ExtensionController {
             case "featured":
 
                 modelAndView.addObject("featured", list);
-                modelAndView.addObject("featured", extensionOrderService.getFeatured());
+                modelAndView.addObject("popular", extensionOrderService.getPopular());
                 modelAndView.addObject("newExt", extensionOrderService.getNew());
                 break;
 

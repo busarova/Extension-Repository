@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -37,10 +38,10 @@
 <div class="dropdown">
   <button class="dropbtn">Sort By</button>
   <div class="dropdown-content">
-    <a href="#">Name</a>
-    <a href="#">Downloads</a>
-    <a href="#">Upload Date</a>
-    <a href="#">Last Commit Date</a>
+    <a href="/sortby/featured name">Name</a>
+    <a href="/sortby/featured downloads">Downloads</a>
+    <a href="/sortby/featured upload">Upload Date</a>
+    <a href="/sortby/featured lastCommitDate">Last Commit Date</a>
   </div>
 </div>
 
@@ -84,10 +85,10 @@
 <div class="dropdown">
   <button class="dropbtn">Sort By</button>
   <div class="dropdown-content">
-    <a href="#">Name</a>
-    <a href="#">Downloads</a>
-    <a href="#">Upload Date</a>
-    <a href="#">Last Commit Date</a>
+    <a href="/sortby/new name">Name</a>
+    <a href="/sortby/new downloads">Downloads</a>
+    <a href="/sortby/new upload">Upload Date</a>
+    <a href="/sortby/new lastCommitDate">Last Commit Date</a>
   </div>
 </div>
 

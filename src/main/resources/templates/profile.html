@@ -13,6 +13,8 @@ Name: <span sec:authentication="name" />
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
+
 <br>
 <h2>Current extensions:</h2>
 <!--<table class="inLine">

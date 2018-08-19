@@ -9,6 +9,8 @@
 <h1>WELCOME TO EXTENSION MARKET</h1>
 </div>
 
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
+
 <h1 th:text="'EXTENSION  ' + ${extension.getName()}"></h1>
 <a th:href="@{/}">home</a>
 <hr>
@@ -16,6 +18,8 @@
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
 <p th:text="'Description:  ' + ${extension.getDescription()}"></p>
 <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
+
+<p sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Status:  ' + ${extension.isItApproved()}"></p>
 
 </body>
 </html>

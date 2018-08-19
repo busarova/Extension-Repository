@@ -29,6 +29,9 @@ public class Extension {
     @Column(name = "tags")
     private String tags;
 
+    @Column(name = "approved")
+    private int approved;
+
     /*@OneToOne
     @JoinColumn(name = "downloadFileID")
     private DownloadFile downloadFile;*/
@@ -146,5 +149,19 @@ public class Extension {
         this.featured = featured;
     }
 
+    public int getApproved() {
+        return approved;
+    }
 
+    public void setApproved(int approved) {
+        this.approved = approved;
+    }
+
+    public String isItApproved(){
+        if(getApproved() == 1){
+            return "Not Approved";
+        }else{
+            return "Approved";
+        }
+    }
 }
