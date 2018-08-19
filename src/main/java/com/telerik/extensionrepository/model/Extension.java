@@ -176,4 +176,12 @@ public class Extension {
             return "Approved";
         }
     }
+
+    public String isItFeatured(){
+        if(getFeatured() == 1){
+            return "Not Featured";
+        }else{
+            return "Featured";
+        }
+    }
 }
