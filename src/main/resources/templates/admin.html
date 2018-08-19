@@ -34,6 +34,8 @@
 <div th:each="User : ${users}">
 
 <p style="display: inline" th:text="${User.getName()}"></p> <p style="display: inline" th:text="' status: ' + ${User.getStatus()}"></p>
+<a th:if="${User.getStatus() == 'Enabled'}" th:href="'/admin/disable-user/' + ${User.getName()}">Disable</a> <a th:unless="${User.getStatus() == 'Enabled'}" th:href="'/admin/enable-user/' + ${User.getName()}">Enable</a>
+
 
 </div>
 

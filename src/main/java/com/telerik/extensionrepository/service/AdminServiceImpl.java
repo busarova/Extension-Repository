@@ -41,4 +41,14 @@ public class AdminServiceImpl implements AdminService {
     public List<User> getAllUsers() {
         return adminRepository.getAllUsers();
     }
+
+    @Override
+    public void disableUser(String name) {
+        adminRepository.disableUser(name);
+    }
+
+    @Override
+    public void enableUser(String name) {
+        adminRepository.enableUser(name);
+    }
 }

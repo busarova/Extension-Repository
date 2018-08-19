@@ -64,4 +64,44 @@ public class AdminRepositorySql implements AdminRepository {
         return newList;
 
     }
+
+    @Override
+    public void disableUser(String name) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            User user = session.get(User.class, name);
+
+            user.setEnabled(0);
+
+            session.update(user);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void enableUser(String name) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            User user = session.get(User.class, name);
+
+            user.setEnabled(1);
+
+            session.update(user);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

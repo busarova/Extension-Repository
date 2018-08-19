@@ -47,4 +47,30 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/disable-user/{name}")
+    public ModelAndView disableUser(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("admin");
+
+        adminService.disableUser(name);
+
+        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/admin/enable-user/{name}")
+    public ModelAndView enableUser(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("admin");
+
+        adminService.enableUser(name);
+
+        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
+
+        return modelAndView;
+    }
+
 }
