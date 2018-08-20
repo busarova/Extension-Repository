@@ -34,6 +34,17 @@ public class ExtensionController {
         return modelAndView;
     }
 
+    @RequestMapping("/edit-extension/{name}")
+    public ModelAndView editExtension(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("edit-extension");
+
+        modelAndView.addObject(extensionOrderService.getExtByName(name));
+
+        return modelAndView;
+    }
+
+
     @RequestMapping("/sortby/{name}")
     public ModelAndView sortByParam(@PathVariable("name") String name){
 

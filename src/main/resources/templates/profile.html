@@ -15,27 +15,16 @@ Name: <span sec:authentication="name" />
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
+<p><a th:href="@{/user/create-extension}">Create extension</a></p>
+
 <br>
 <h2>Current extensions:</h2>
-<!--<table class="inLine">
-    <th:block th:each="Extension : ${extensions}">
 
-        <tr>
-
-          <td th:text="${Extension.getName()}">...
-          <a th:href="'/extension-details/'+${Extension.getName()}">See Extension</a>
-          </td>
-
-
-        </tr>
-
-    </th:block>
-</table>
--->
 
 <div th:each="Extension : ${extensions}">
 <br>
-<a th:href="'/extension-details/'+${Extension.getName()}"><p style="display: inline" th:text="${Extension.getName()}"></p> </a> <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
+<a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p> </a>
+<p th:text="' status: ' + ${Extension.isItApproved()}"></p>
 
 </div>
 
