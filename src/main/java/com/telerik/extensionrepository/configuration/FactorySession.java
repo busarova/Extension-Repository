@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.configuration;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
 import com.telerik.extensionrepository.model.*;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -18,5 +20,10 @@ public class FactorySession {
                 .addAnnotatedClass(GitExtensionInfo.class)
                 .addAnnotatedClass(DownloadFile.class)
                 .buildSessionFactory();
+    }
+
+    @Bean
+    public Module datatypeHibernateModule() {
+        return new Hibernate4Module();
     }
 }
