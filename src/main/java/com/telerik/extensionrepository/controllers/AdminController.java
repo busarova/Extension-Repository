@@ -85,4 +85,16 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/un-feature/{Name}")
+    public ModelAndView unFeatureExtension(@PathVariable("Name") String name){
+
+        adminService.unFeatureExtension(name);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + name);
+
+
+
+        return modelAndView;
+    }
+
 }

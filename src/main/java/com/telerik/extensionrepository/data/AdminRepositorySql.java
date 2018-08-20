@@ -124,4 +124,26 @@ public class AdminRepositorySql implements AdminRepository {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public void unFeatureExtension(String name) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            List<Extension> extension = session.createQuery("from Extension where name = :name")
+                    .setParameter("name", name)
+                    .list();
+
+            extension.get(0).setFeatured(1);
+
+            session.update(extension.get(0));
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
 }

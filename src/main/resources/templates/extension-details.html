@@ -10,7 +10,10 @@
 </div>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/feature/'+${extension.getName()}"><button>Feature this Extension</button></a>
+
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getName()}">Feature this Extension</a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getName()}">Unfeature this Extension</a>
+
 
 <h1 th:text="'EXTENSION  ' + ${extension.getName()}"></h1>
 <a th:href="@{/}">home</a>

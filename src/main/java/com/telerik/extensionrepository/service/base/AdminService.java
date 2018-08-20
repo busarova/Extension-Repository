@@ -19,4 +19,6 @@ public interface AdminService {
 
     void featureExtension(String name);
 
+    void unFeatureExtension(String name);
+
 }
