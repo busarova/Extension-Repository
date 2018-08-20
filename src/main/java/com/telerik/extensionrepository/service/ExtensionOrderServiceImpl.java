@@ -23,57 +23,39 @@ public class ExtensionOrderServiceImpl implements ExtensionOrderService {
     }
 
     @Override
-    public List<Extension> getFeatured() {                                                  // sorts the extensions if they are featured == 0
-        return extensionRepository.getAllExtensions().stream()
-                .filter( x -> x.getFeatured() == 0 )
-                .filter( x -> x.getApproved() == 0)
-                .collect(Collectors.toList());
+    public List<Extension> getFeatured() {                                                  // gets all the extensions which are featured and approved
+
+        return extensionRepository.getFeaturedExtensions();
+
     }
 
     @Override
-    public List<Extension> getPopular() {                                         // gets all extensions and sorts them by number of downloads
+    public List<Extension> getPopular() {                                               // gets all extensions and sorts them by number of downloads
 
-        List<Extension> list = extensionRepository.getAllExtensions().stream()
-                .filter(x -> x.getApproved() == 0)
-                .collect(Collectors.toList());
-
-        list.sort(new Comparator<Extension>() {
-            public int compare(Extension o1, Extension o2) {
-                if (o1.getNumberOfDownloads() == o2.getNumberOfDownloads())
-                    return 0;
-                return o1.getNumberOfDownloads() > o2.getNumberOfDownloads() ? -1 : 1;
-            }
-        });
-
-
-        return list;
-
+        return extensionRepository.getPopularExtensions();
     }
 
     @Override
     public List<Extension> getNew() {
-        return extensionRepository.getAllExtensions().stream()
-                .filter( x -> x.getApproved() == 0)
-                .collect(Collectors.toList());
+        return extensionRepository.getNewExtensions();
     }
 
     @Override
     public List<Extension> getByUserName(String userName) {
-        return extensionRepository.getAllExtensions().stream()
-                .filter( x -> x.getOwner().equals(userName))
-                .collect(Collectors.toList());
+
+        return extensionRepository.getByUserName(userName);
+
     }
 
     @Override
     public Extension getExtByName(String name) {
-        return extensionRepository.getAllExtensions().stream()
-                .filter( x -> x.getName().equals(name))
-                .findFirst()
-                .orElse(null);
+
+        return extensionRepository.getExtByName(name);
+
     }
 
     @Override
-    public List<Extension> returnOrderedBy(String parameter) {
+    public List<Extension> returnOrderedBy(String parameter) {                       // sorts the list by the parameter
 
         String[] commands = parameter.split(" ");
 

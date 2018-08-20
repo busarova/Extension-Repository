@@ -13,4 +13,14 @@ public interface ExtensionRepository {
     int createGithub_info(GitExtensionInfo gitExtensionInfo);
 
     void createExtension(Extension extension);
+
+    List<Extension> getFeaturedExtensions();
+
+    List<Extension> getPopularExtensions();
+
+    List<Extension> getNewExtensions();
+
+    List<Extension> getByUserName(String userName);
+
+    Extension getExtByName(String name);
 }

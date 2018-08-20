@@ -74,5 +74,98 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
     }
 
+    @Override
+    public List<Extension> getFeaturedExtensions() {
+
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where featured = 0 and approved = 0 order by e.name").list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+
+    }
+
+    @Override
+    public List<Extension> getPopularExtensions() {
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where approved = 0 order by e.numberOfDownloads").list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
+    public List<Extension> getNewExtensions() {
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
+    public List<Extension> getByUserName(String userName) {
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where owner = :username")
+                    .setParameter("username", userName)
+                    .list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
+    public Extension getExtByName(String name) {
+
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where name = :name")
+                    .setParameter("name", name)
+                    .list();
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList.get(0);
+    }
+
 
 }
