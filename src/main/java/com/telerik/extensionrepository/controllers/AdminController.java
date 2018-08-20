@@ -73,4 +73,16 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/feature/{Name}")
+    public ModelAndView featureExtension(@PathVariable("Name") String name){
+
+        adminService.featureExtension(name);
+
+        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + name);
+
+
+
+        return modelAndView;
+    }
+
 }

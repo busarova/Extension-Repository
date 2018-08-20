@@ -10,6 +10,7 @@
 </div>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/feature/'+${extension.getName()}"><button>Feature this Extension</button></a>
 
 <h1 th:text="'EXTENSION  ' + ${extension.getName()}"></h1>
 <a th:href="@{/}">home</a>

@@ -13,4 +13,6 @@ public interface AdminRepository {
     void disableUser(String name);
 
     void enableUser(String name);
+
+    void featureExtension(String name);
 }

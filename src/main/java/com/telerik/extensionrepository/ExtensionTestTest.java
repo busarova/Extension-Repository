@@ -25,18 +25,14 @@ public class ExtensionTestTest {
 
         session.beginTransaction();
 
-        GitExtensionInfo newGitInfo = new GitExtensionInfo();
-
-        newGitInfo.setGitRepoLink("github.blabla");
-
-        session.save(newGitInfo);
+        Extension extension = session.get(Extension.class, 1);
 
         session.getTransaction().commit();
 
         session.close();
 
 
-        System.out.println(newGitInfo.getId());
+        System.out.println(extension.getName());
 
     }
 

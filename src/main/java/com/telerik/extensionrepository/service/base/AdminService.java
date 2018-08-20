@@ -17,4 +17,6 @@ public interface AdminService {
 
     void enableUser(String name);
 
+    void featureExtension(String name);
+
 }
