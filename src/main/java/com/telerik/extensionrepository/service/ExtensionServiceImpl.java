@@ -37,6 +37,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setGitId(gitId);
         newExtension.setVersion(extensionForm.getVersion());
         newExtension.setApproved(1);
+        newExtension.setFeatured(1);
         newExtension.setUploadDate("15/08/2018");
 
         extensionRepository.createExtension(newExtension);
