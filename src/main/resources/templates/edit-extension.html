@@ -12,6 +12,13 @@
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<div sec:authorize="hasRole('ROLE_USER')">
+<p th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a th:href="'/admin/delete-extension/'+${extension.getName()}"><button>Delete Extension</button></a></p>
+   <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/delete-extension/'+${extension.getName()}"><button>Delete Extension</button></a>
+   </div>
+</div>
+
 <hr>
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>

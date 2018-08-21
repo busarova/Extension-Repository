@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -145,5 +146,38 @@ public class AdminRepositorySql implements AdminRepository {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public void deleteExtension(Extension extension) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.delete(extension);
+
+            System.out.println(extension.getName() + " deleted!");
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void deleteGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.delete(gitExtensionInfo);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

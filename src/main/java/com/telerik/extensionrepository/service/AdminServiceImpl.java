@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
+import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.AdminService;
@@ -16,11 +17,13 @@ public class AdminServiceImpl implements AdminService {
 
     private ExtensionRepository extensionRepository;
     private AdminRepository adminRepository;
+    private GitExtensionInfoRepository gitExtensionInfoRepository;
 
     @Autowired
-    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository){
+    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository){
         this.extensionRepository = extensionRepository;
         this.adminRepository = adminRepository;
+        this.gitExtensionInfoRepository = gitExtensionInfoRepository;
     }
 
     @Override
@@ -60,5 +63,19 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void unFeatureExtension(String name) {
         adminRepository.unFeatureExtension(name);
+    }
+
+    @Override
+    public void deleteExtension(String name) {
+
+        Extension extension = extensionRepository.getExtByName(name);
+
+       int gitId = extension.getGitId();
+
+        System.out.println(gitId);
+
+       adminRepository.deleteExtension(extension);
+       adminRepository.deleteGitExtensionInfo(gitExtensionInfoRepository.getGitInfoById(gitId));
+
     }
 }

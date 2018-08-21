@@ -97,4 +97,13 @@ public class AdminController {
         return modelAndView;
     }
 
+    @RequestMapping("/admin/delete-extension/{Name}")
+    public String deleteExtension(@PathVariable("Name") String name){
+
+
+        adminService.deleteExtension(name);
+
+        return "redirect:/admin";
+    }
+
 }

@@ -21,4 +21,6 @@ public interface AdminService {
 
     void unFeatureExtension(String name);
 
+    void deleteExtension(String name);
+
 }
