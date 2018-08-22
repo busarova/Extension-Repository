@@ -4,8 +4,7 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
-<div class="header">
-    <h1>WELCOME TO EXTENSION MARKET</h1>
+<div th:replace="fragments :: header">
 </div>
 
 <i th:if="${param.error}" class="error">Wrong username or password</i>

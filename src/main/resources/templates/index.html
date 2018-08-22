@@ -8,8 +8,7 @@
 
 
 
-<div class="header">
-<h1>WELCOME TO EXTENSION MARKET</h1>
+<div th:replace="fragments :: header">
 </div>
 
 
@@ -21,9 +20,6 @@
     <input type="submit" value="Logout" />
 </form>
 
-<br>
-
-
 <div class="alignTextCenter">
 
 <p>Search Extensions:</p>
@@ -32,68 +28,96 @@
     <input type="submit" value="Search" />
 </form>
 </div>
-
-<div>
-
 <hr>
-<br><br>
-
-
-
-
-
+<div>
 
 <div class="container">
 
     <div class="row">
 
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div>
 
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        <div class="alignTextCenter">
+                <div class="w3-dropdown-hover">
+                                  <button class="w3-button">Sort By</button>
+                                  <div class="w3-dropdown-content w3-bar-block w3-border">
+                                    <a href="/sortby/featured name" class="w3-bar-item w3-button">Name</a>
+                                    <a href="/sortby/featured uploadDate" class="w3-bar-item w3-button">Upload Date</a>
+                                    <a href="/sortby/featured downloads" class="w3-bar-item w3-button">Downloads</a>
+                                    <a href="/sortby/featured lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
+                                  </div>
+                                </div>
+                                </div>
+
+
         <h2 class="hoverDiv">Featured</h2>
         <br>
         <hr>
 
-            <div class="hoverDiv" th:each="Extension : ${featured}">
+            <div class="alignTextCenter" th:each="Extension : ${featured}">
             <a th:href="'/extension-details/'+${Extension.getName()}">
-            <img src="/pics/icons/pic1.jpg" width="30%">
+            <img src="/pics/icons/pic1.jpg" width="15%">
             <h4 th:text="${Extension.getName()}"></h4>
             </a>
             </div>
 
         </div>
 
+
+
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+        <div class="alignTextCenter">
+                <div class="w3-dropdown-hover">
+                  <button class="w3-button">Sort By</button>
+                  <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a href="/sortby/popular name" class="w3-bar-item w3-button">Name</a>
+                    <a href="/sortby/popular uploadDate" class="w3-bar-item w3-button">Upload Date</a>
+                    <a href="/sortby/popular downloads" class="w3-bar-item w3-button">Downloads</a>
+                    <a href="/sortby/popular lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
+                  </div>
+                </div>
+                </div>
+
                 <h2 class="hoverDiv">Popular</h2>
                 <br>
                 <hr>
 
-                    <div class="hoverDiv" th:each="Extension : ${popular}">
+                    <div class="alignTextCenter" th:each="Extension : ${popular}">
                     <a th:href="'/extension-details/'+${Extension.getName()}">
-                    <img src="/pics/icons/pic1.jpg" width="30%">
+                    <img src="/pics/icons/pic1.jpg" width="15%">
                     <h4 th:text="${Extension.getName()}"></h4>
                     </a>
                     </div>
 
                 </div>
 
+
+
+
          <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+
+                                 <div class="alignTextCenter">
+                                                 <div class="w3-dropdown-hover">
+                                                   <button class="w3-button">Sort By</button>
+                                                   <div class="w3-dropdown-content w3-bar-block w3-border">
+                                                     <a href="/sortby/new name" class="w3-bar-item w3-button">Name</a>
+                                                     <a href="/sortby/new uploadDate" class="w3-bar-item w3-button">Upload Date</a>
+                                                     <a href="/sortby/new downloads" class="w3-bar-item w3-button">Downloads</a>
+                                                     <a href="/sortby/new lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
+                                                   </div>
+                                                 </div>
+                                                 </div>
+
+
                  <h2 class="hoverDiv">New</h2>
                  <br>
                  <hr>
 
-                     <div class="hoverDiv" th:each="Extension : ${newExt}">
+                     <div class="alignTextCenter" th:each="Extension : ${newExt}">
                      <a th:href="'/extension-details/'+${Extension.getName()}">
-                     <img src="/pics/icons/pic1.jpg" width="30%">
+                     <img src="/pics/icons/pic1.jpg" width="15%">
                      <h4 th:text="${Extension.getName()}"></h4>
                      </a>
                      </div>
