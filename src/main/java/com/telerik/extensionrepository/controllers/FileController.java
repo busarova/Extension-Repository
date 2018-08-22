@@ -1,25 +1,24 @@
 package com.telerik.extensionrepository.controllers;
 
-
-
 import com.telerik.extensionrepository.model.UploadFile;
-import com.telerik.extensionrepository.model.base.ExtensionForm;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.FileService;
-import org.apache.commons.fileupload.FileUpload;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.security.cert.Extension;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -79,5 +78,61 @@ public class FileController {
 
         return modelAndView;
     }
+
+
+    @RequestMapping(value = "/download/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public @ResponseBody void downloadA(HttpServletResponse response, @PathVariable("name")
+            String name) throws IOException {
+
+        int fileId = extensionInfoService.getExtByName(name).getFileId();
+
+        UploadFile uploadFile = fileService.getFile(fileId);
+
+
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(uploadFile.getData());
+
+            //   response.setContentType(APPLICATION_PDF);
+        response.setHeader("Content-Disposition", "attachment; filename=" + uploadFile.getFileName());
+            //   response.setHeader("Content-Length", String.valueOf(file.length()));
+        FileCopyUtils.copy(inputStream, response.getOutputStream());
+
+
+    }
+
+
+
+
+
+    /*@RequestMapping(value = "/download/{name}",
+            produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public String download(@PathVariable("name")
+                                   String name, HttpServletResponse response) {
+
+        int fileId = extensionInfoService.getExtByName(name).getFileId();
+
+        System.out.println("THE ID IS: " + fileId);
+
+        UploadFile file = fileService.getFile(fileId);
+
+        System.out.println(file.getFileName());
+
+        ByteArrayInputStream array = new ByteArrayInputStream(file.getData());
+
+        try {
+            response.setHeader("Content-Disposition", "inline;filename=\"" + file.getFileName()+ "\"");
+            OutputStream out = response.getOutputStream();
+         //   response.setContentType(file.getContentType());
+            IOUtils.copy(array, out);
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }*/
+
 
 }

@@ -23,16 +23,19 @@ public class ExtensionTestTest {
 
         Session session = factory.openSession();
 
-        session.beginTransaction();
+        UploadFile file = null;
 
-        Extension extension = session.get(Extension.class, 1);
 
-        session.getTransaction().commit();
+            session.beginTransaction();
+
+            file = session.get(UploadFile.class, 13);
+
+            session.getTransaction().commit();
+
 
         session.close();
 
-
-        System.out.println(extension.getName());
+        System.out.println(file.getFileName());
 
     }
 

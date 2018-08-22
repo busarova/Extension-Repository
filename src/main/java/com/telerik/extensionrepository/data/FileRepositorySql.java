@@ -31,4 +31,22 @@ public class FileRepositorySql implements FileRepository {
         }
 
     }
+
+    @Override
+    public UploadFile getFile(int id) {
+
+        UploadFile file = null;
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            file = session.get(UploadFile.class, id);
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return file;
+    }
 }

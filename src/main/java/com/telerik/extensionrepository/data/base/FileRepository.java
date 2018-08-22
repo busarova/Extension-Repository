@@ -6,4 +6,6 @@ public interface FileRepository {
 
     void saveUploadFile(UploadFile uploadFile);
 
+    UploadFile getFile(int id);
+
 }

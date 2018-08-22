@@ -9,6 +9,9 @@
 <h1>WELCOME TO EXTENSION MARKET</h1>
 </div>
 
+<p th:if="${extension.getFileId() != 0}"><a th:href="'/download/' + ${extension.getName()}"><button>Download Extension</button></a></p>
+<p th:unless="${extension.getFileId() != 0}">NO EXTENSION UPLOADED</p>
+
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getName()}">Feature this Extension</a>

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 
 @Service
 public class FileServiceImpl implements FileService {
@@ -25,5 +28,11 @@ public class FileServiceImpl implements FileService {
 
         fileRepository.saveUploadFile(uploadFile);
 
+    }
+
+    @Override
+    public UploadFile getFile(int id) {
+
+        return fileRepository.getFile(id);
     }
 }
