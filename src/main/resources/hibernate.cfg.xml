@@ -28,7 +28,7 @@
         <mapping class="com.telerik.extensionrepository.model.Extension" />
         <mapping class="com.telerik.extensionrepository.model.User" />
         <mapping class="com.telerik.extensionrepository.model.GitExtensionInfo" />
-        <mapping class="com.telerik.extensionrepository.model.DownloadFile" />
+        <mapping class="com.telerik.extensionrepository.model.UploadFile" />
 
     </session-factory>
 </hibernate-configuration>

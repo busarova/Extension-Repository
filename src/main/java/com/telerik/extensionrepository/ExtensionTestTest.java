@@ -1,6 +1,6 @@
 package com.telerik.extensionrepository;
 
-import com.telerik.extensionrepository.model.DownloadFile;
+import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.model.User;
@@ -18,7 +18,7 @@ public class ExtensionTestTest {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Extension.class)
                 .addAnnotatedClass(GitExtensionInfo.class)
-                .addAnnotatedClass(DownloadFile.class)
+                .addAnnotatedClass(UploadFile.class)
                 .buildSessionFactory();
 
         Session session = factory.openSession();

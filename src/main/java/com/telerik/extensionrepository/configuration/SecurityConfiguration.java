@@ -26,10 +26,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser(User.withUsername("misho").password("{noop}pass3").roles("USER"));*/
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
+                .antMatchers("doUpload").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/user/**").hasRole("USER")
                 .antMatchers("/edit-extension/**").hasAnyRole("ADMIN", "USER")
@@ -43,6 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout().permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/accessDenied");
+        http.csrf().disable();
 
     }
 }

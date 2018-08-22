@@ -10,6 +10,8 @@
 <h1>WELCOME TO EXTENSION MARKET</h1>
 </div>
 
+<a th:href="@{/upload-file}"><button>Upload File</button></a>
+
 <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a> </p>
 <p sec:authorize="isAuthenticated()">Welcome, <a th:href="@{/profile}"><span sec:authentication="name" /></a></p>
 <p><a th:href="@{/user/create-extension}">Create extension</a></p>

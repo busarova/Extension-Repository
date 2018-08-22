@@ -34,7 +34,7 @@ public class Extension {
 
     /*@OneToOne
     @JoinColumn(name = "downloadFileID")
-    private DownloadFile downloadFile;*/
+    private UploadFile downloadFile;*/
 
     /*@OneToOne
     @JoinColumn(name = "gitExtensionInfoID")
@@ -71,11 +71,11 @@ public class Extension {
         this.id = id;
     }
 
-    /*public DownloadFile getDownloadFile() {
+    /*public UploadFile getDownloadFile() {
         return downloadFile;
     }
 
-    public void setDownloadFile(DownloadFile downloadFile) {
+    public void setDownloadFile(UploadFile downloadFile) {
         this.downloadFile = downloadFile;
     }*/
 

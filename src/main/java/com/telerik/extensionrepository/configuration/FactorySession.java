@@ -18,7 +18,7 @@ public class FactorySession {
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Extension.class)
                 .addAnnotatedClass(GitExtensionInfo.class)
-                .addAnnotatedClass(DownloadFile.class)
+                .addAnnotatedClass(UploadFile.class)
                 .buildSessionFactory();
     }
 
