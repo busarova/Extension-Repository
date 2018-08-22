@@ -10,7 +10,7 @@
 </div>
 
 <p th:if="${extension.getFileId() != 0}"><a th:href="'/download/' + ${extension.getName()}"><button>Download Extension</button></a></p>
-<p th:unless="${extension.getFileId() != 0}">NO EXTENSION UPLOADED</p>
+<p th:unless="${extension.getFileId() != 0}">NO FILE UPLOADED</p>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
