@@ -23,4 +23,6 @@ public interface ExtensionRepository {
     List<Extension> getByUserName(String userName);
 
     Extension getExtByName(String name);
+
+    void changeFileId(Extension extension, int newId);
 }

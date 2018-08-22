@@ -15,7 +15,7 @@ public class UploadFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "downloadFileID")
-    private int getId(){
+    public int getId(){
         return id;
     }
 

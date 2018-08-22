@@ -55,5 +55,12 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     }
 
+    @Override
+    public void changeExtensionFileId(Extension extension, int id) {
+
+        extensionRepository.changeFileId(extension, id);
+
+    }
+
 
 }

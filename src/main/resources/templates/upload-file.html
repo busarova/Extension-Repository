@@ -6,8 +6,10 @@
 <body>
 
 <div align="center">
-        <h1>Spring MVC - Hibernate File Upload to Database Demo</h1>
-        <form method="post" action="/doUpload" enctype="multipart/form-data">
+        <h1>Extension added succesfuly!</h1>
+        <p>Please have in mind it will not be published untill approved by an administrator.</p>
+        <p th:text="'Please attach the file for ' + ${extensionForm.getName()} + ' extension.'"></p>
+        <form method="post" th:action="'/doUpload/' + ${extensionForm.getName()}" enctype="multipart/form-data">
             <table border="0">
                 <tr>
                     <td>Pick file #1:</td>
@@ -23,6 +25,8 @@
             </table>
         </form>
     </div>
+
+   <a th:href="@{/}"><button>Upload Later</button></a>
 
 </body>
 </html>

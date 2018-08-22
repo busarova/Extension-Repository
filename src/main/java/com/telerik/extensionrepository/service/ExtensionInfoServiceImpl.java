@@ -2,23 +2,20 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
-public class ExtensionOrderServiceImpl implements ExtensionOrderService {
+public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     private ExtensionRepository extensionRepository;
 
     @Autowired
-    public ExtensionOrderServiceImpl(ExtensionRepository extensionRepository){
+    public ExtensionInfoServiceImpl(ExtensionRepository extensionRepository){
         this.extensionRepository = extensionRepository;
     }
 

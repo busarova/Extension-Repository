@@ -4,7 +4,7 @@ import com.telerik.extensionrepository.model.Extension;
 
 import java.util.List;
 
-public interface ExtensionOrderService {
+public interface ExtensionInfoService {
 
     List<Extension> getFeatured();
 

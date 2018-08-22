@@ -2,7 +2,7 @@ package com.telerik.extensionrepository.controllers;
 
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.AdminService;
-import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -16,12 +16,12 @@ import java.util.List;
 @Controller
 public class ExtensionController {
 
-    private ExtensionOrderService extensionOrderService;
+    private ExtensionInfoService extensionInfoService;
     private AdminService adminService;
 
     @Autowired
-    public ExtensionController(ExtensionOrderService extensionOrderService, AdminService adminService){
-        this.extensionOrderService = extensionOrderService;
+    public ExtensionController(ExtensionInfoService extensionInfoService, AdminService adminService){
+        this.extensionInfoService = extensionInfoService;
         this.adminService = adminService;
     }
 
@@ -30,7 +30,7 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("extension-details");
 
-        Extension extension = extensionOrderService.getExtByName(name);
+        Extension extension = extensionInfoService.getExtByName(name);
 
         System.out.println(extension.getName());
 
@@ -44,7 +44,7 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("edit-extension");
 
-        modelAndView.addObject(extensionOrderService.getExtByName(name));
+        modelAndView.addObject(extensionInfoService.getExtByName(name));
 
         return modelAndView;
     }
@@ -55,7 +55,7 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<Extension> list = extensionOrderService.returnOrderedBy(name);
+        List<Extension> list = extensionInfoService.returnOrderedBy(name);
 
         String[] command = name.split(" ");
 
@@ -63,22 +63,22 @@ public class ExtensionController {
 
             case "popular":
                 modelAndView.addObject("popular", list);
-                modelAndView.addObject("featured", extensionOrderService.getFeatured());
-                modelAndView.addObject("newExt", extensionOrderService.getNew());
+                modelAndView.addObject("featured", extensionInfoService.getFeatured());
+                modelAndView.addObject("newExt", extensionInfoService.getNew());
                 break;
 
             case "new":
 
                 modelAndView.addObject("newExt", list);
-                modelAndView.addObject("featured", extensionOrderService.getFeatured());
-                modelAndView.addObject("popular", extensionOrderService.getPopular());
+                modelAndView.addObject("featured", extensionInfoService.getFeatured());
+                modelAndView.addObject("popular", extensionInfoService.getPopular());
                 break;
 
             case "featured":
 
                 modelAndView.addObject("featured", list);
-                modelAndView.addObject("popular", extensionOrderService.getPopular());
-                modelAndView.addObject("newExt", extensionOrderService.getNew());
+                modelAndView.addObject("popular", extensionInfoService.getPopular());
+                modelAndView.addObject("newExt", extensionInfoService.getNew());
                 break;
 
         }
@@ -92,7 +92,7 @@ public class ExtensionController {
         User user = (User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
-        Extension extension = extensionOrderService.getExtByName(name);
+        Extension extension = extensionInfoService.getExtByName(name);
 
         if(!extension.getOwner().equals(user.getUsername())){                         // checks if the logged user is the owner of the extension
             return "redirect:access-denied";

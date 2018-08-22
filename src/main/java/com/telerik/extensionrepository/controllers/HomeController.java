@@ -1,42 +1,37 @@
 package com.telerik.extensionrepository.controllers;
 
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
-    private ExtensionOrderService extensionOrderService;
+    private ExtensionInfoService extensionInfoService;
 
     @Autowired
-    public HomeController(ExtensionOrderService extensionOrderService){
-        this.extensionOrderService = extensionOrderService;
+    public HomeController(ExtensionInfoService extensionInfoService){
+        this.extensionInfoService = extensionInfoService;
     }
 
     @GetMapping("/")
     public ModelAndView showFeatured(){
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<Extension> featured = extensionOrderService.getFeatured();
+        List<Extension> featured = extensionInfoService.getFeatured();
 
         modelAndView.addObject("featured", featured);
 
-        List<Extension> popular = extensionOrderService.getPopular();
+        List<Extension> popular = extensionInfoService.getPopular();
 
         modelAndView.addObject("popular", popular);
 
-        List<Extension> newExt = extensionOrderService.getNew();
+        List<Extension> newExt = extensionInfoService.getNew();
 
         modelAndView.addObject("newExt", newExt);
 

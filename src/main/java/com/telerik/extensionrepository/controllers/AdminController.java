@@ -1,8 +1,7 @@
 package com.telerik.extensionrepository.controllers;
 
-import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.AdminService;
-import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-    private ExtensionOrderService extensionOrderService;
+    private ExtensionInfoService extensionInfoService;
     private AdminService adminService;
 
     @Autowired
-    public AdminController(ExtensionOrderService extensionOrderService, AdminService adminService){
-        this.extensionOrderService = extensionOrderService;
+    public AdminController(ExtensionInfoService extensionInfoService, AdminService adminService){
+        this.extensionInfoService = extensionInfoService;
         this.adminService = adminService;
     }
 

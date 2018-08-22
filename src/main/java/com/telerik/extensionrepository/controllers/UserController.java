@@ -1,30 +1,25 @@
 package com.telerik.extensionrepository.controllers;
 
-import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.base.ExtensionForm;
-import com.telerik.extensionrepository.service.base.ExtensionOrderService;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 public class UserController {
 
-    private ExtensionOrderService extensionOrderService;
+    private ExtensionInfoService extensionInfoService;
     private ExtensionService extensionService;
 
     @Autowired
-    public UserController(ExtensionOrderService extensionOrderService, ExtensionService extensionService){
-        this.extensionOrderService = extensionOrderService;
+    public UserController(ExtensionInfoService extensionInfoService, ExtensionService extensionService){
+        this.extensionInfoService = extensionInfoService;
         this.extensionService = extensionService;
     }
 
@@ -48,7 +43,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView("/profile");
 
-        modelAndView.addObject("extensions", extensionOrderService.getByUserName(user.getUsername()));
+        modelAndView.addObject("extensions", extensionInfoService.getByUserName(user.getUsername()));
 
         return modelAndView;
 
@@ -65,14 +60,17 @@ public class UserController {
     }
 
     @PostMapping("/user/create-extension")
-    public String createExtension(ExtensionForm extension){
+    public ModelAndView createExtension(ExtensionForm extension){
 
         System.out.println(extension.getDescription());
         System.out.println(extension.getName());
 
         extensionService.createExtension(extension);
 
-        return "index";
+        ModelAndView modelAndView = new ModelAndView("upload-file");
+        modelAndView.addObject("extensionForm", extension);
+
+        return modelAndView;
 
     }
 }

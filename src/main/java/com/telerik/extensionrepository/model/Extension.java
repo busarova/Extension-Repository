@@ -32,6 +32,9 @@ public class Extension {
     @Column(name = "approved")
     private int approved;
 
+    @Column(name = "File_Id")
+    private Integer fileId;
+
     /*@OneToOne
     @JoinColumn(name = "downloadFileID")
     private UploadFile downloadFile;*/
@@ -51,7 +54,7 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int gitId) {
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int gitId, int fileId) {
         this.name = name;
         this.description = description;
         this.version = version;
@@ -61,6 +64,7 @@ public class Extension {
         this.uploadDate = uploadDate;
         this.featured = featured;
         this.gitId = gitId;
+        this.fileId = fileId;
     }
 
     public int getId() {
@@ -167,6 +171,14 @@ public class Extension {
 
     public void setGitId(int gitId) {
         this.gitId = gitId;
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public String isItApproved(){
