@@ -11,6 +11,8 @@ public interface AdminService {
 
     void approveExt(int id);
 
+    void uNApproveExt(int id);
+
     List<User> getAllUsers();
 
     void disableUser(String name);

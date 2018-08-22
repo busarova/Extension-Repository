@@ -47,6 +47,26 @@ public class AdminRepositorySql implements AdminRepository {
     }
 
     @Override
+    public void uNApproveExtension(int id) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            Extension extension = session.get(Extension.class, id);
+
+            extension.setApproved(1);
+
+            session.update(extension);
+            session.save(extension);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
     public List<User> getAllUsers() {
 
         List<User> newList = null;

@@ -12,6 +12,8 @@
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<a th:href="'/edit-file/' + ${extension.getName()}"><button>Upload File</button></a>
+
 <div sec:authorize="hasRole('ROLE_USER')">
 <p th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a th:href="'/delete-extension/'+${extension.getName()}"><button>Delete Extension</button></a></p>
    <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">

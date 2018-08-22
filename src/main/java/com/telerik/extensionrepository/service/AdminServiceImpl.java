@@ -41,6 +41,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public void uNApproveExt(int id) {
+        adminRepository.uNApproveExtension(id);
+    }
+
+    @Override
     public List<User> getAllUsers() {
         return adminRepository.getAllUsers();
     }

@@ -10,6 +10,8 @@ public interface AdminRepository {
 
     void approveExtension(int id);
 
+    void uNApproveExtension(int id);
+
     List<User> getAllUsers();
 
     void disableUser(String name);

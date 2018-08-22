@@ -1,6 +1,8 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.UploadFile;
+import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.FileService;
@@ -27,12 +29,23 @@ public class FileController {
     private FileService fileService;
     private ExtensionService extensionService;
     private ExtensionInfoService extensionInfoService;
+    private AdminService adminService;
 
     @Autowired
-    public FileController(FileService fileService, ExtensionService extensionService, ExtensionInfoService extensionInfoService){
+    public FileController(FileService fileService, ExtensionService extensionService, ExtensionInfoService extensionInfoService, AdminService adminService){
         this.fileService = fileService;
         this.extensionService = extensionService;
         this.extensionInfoService = extensionInfoService;
+        this.adminService = adminService;
+    }
+
+    @GetMapping("/edit-file/{name}")
+    public ModelAndView editFileReroute(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("/upload-file");
+        modelAndView.addObject("extensionForm", extensionInfoService.getExtByName(name));
+
+        return modelAndView;
     }
 
     @GetMapping("/upload-file")
@@ -57,7 +70,10 @@ public class FileController {
                 uploadFile.setData(aFile.getBytes());
                 fileService.storeFile(uploadFile);
 
-                extensionService.changeExtensionFileId(extensionInfoService.getExtByName(name), uploadFile.getId());
+                Extension extension = extensionInfoService.getExtByName(name);
+
+                extensionService.changeExtensionFileId(extension, uploadFile.getId());
+                adminService.uNApproveExt(extension.getId());
             }
 
         }
