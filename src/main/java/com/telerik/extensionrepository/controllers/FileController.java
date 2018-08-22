@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.security.cert.Extension;
+import java.util.List;
 
 @Controller
 public class FileController {
@@ -43,7 +44,7 @@ public class FileController {
 
 
     @PostMapping("/doUpload/{name}")
-    public String handleFileUpload(HttpServletRequest request, @PathVariable("name") String name,
+    public ModelAndView handleFileUpload(HttpServletRequest request, @PathVariable("name") String name,
                                    @RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
 
 
@@ -62,10 +63,21 @@ public class FileController {
 
         }
 
+        ModelAndView modelAndView = new ModelAndView("index");
 
+        List<com.telerik.extensionrepository.model.Extension> featured = extensionInfoService.getFeatured();
 
+        modelAndView.addObject("featured", featured);
 
-        return "index";
+        List<com.telerik.extensionrepository.model.Extension> popular = extensionInfoService.getPopular();
+
+        modelAndView.addObject("popular", popular);
+
+        List<com.telerik.extensionrepository.model.Extension> newExt = extensionInfoService.getNew();
+
+        modelAndView.addObject("newExt", newExt);
+
+        return modelAndView;
     }
 
 }
