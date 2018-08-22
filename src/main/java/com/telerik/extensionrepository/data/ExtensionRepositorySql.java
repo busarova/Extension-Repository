@@ -3,7 +3,6 @@ package com.telerik.extensionrepository.data;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
-import com.telerik.extensionrepository.model.base.ExtensionForm;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

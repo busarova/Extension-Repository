@@ -22,6 +22,7 @@
 </div>
 
 <hr>
+<p th:text="'Name:  ' + ${extension.getName()}" ></p>
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
 <p th:text="'Description:  ' + ${extension.getDescription()}"></p>
@@ -29,6 +30,8 @@
 <p th:text="'Tags:  ' + ${extension.getTags()}"></p>
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
+
+<p class="error" th:if="${extension.getFileId()} == 0"> No File Upploaded</p>
 
 
 

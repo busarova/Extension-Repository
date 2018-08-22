@@ -183,7 +183,7 @@ public class Extension {
 
     public String isItApproved(){
         if(getApproved() == 1){
-            return "Not Approved";
+            return "Pending Approval";
         }else{
             return "Approved";
         }

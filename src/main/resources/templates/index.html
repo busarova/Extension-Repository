@@ -6,6 +6,8 @@
 </head>
 <body>
 
+
+
 <div class="header">
 <h1>WELCOME TO EXTENSION MARKET</h1>
 </div>
@@ -21,20 +23,103 @@
 
 <br>
 
+
+<div class="alignTextCenter">
+
 <p>Search Extensions:</p>
-
-
 <form th:action="@{/search}" method="post">
 <input type="text" placeholder="Search..">
     <input type="submit" value="Search" />
 </form>
+</div>
 
 <div>
 
 <hr>
 <br><br>
 
-<div class="inLine">
+
+
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <h2 class="hoverDiv">Featured</h2>
+        <br>
+        <hr>
+
+            <div class="hoverDiv" th:each="Extension : ${featured}">
+            <a th:href="'/extension-details/'+${Extension.getName()}">
+            <img src="/pics/icons/pic1.jpg" width="30%">
+            <h4 th:text="${Extension.getName()}"></h4>
+            </a>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                <h2 class="hoverDiv">Popular</h2>
+                <br>
+                <hr>
+
+                    <div class="hoverDiv" th:each="Extension : ${popular}">
+                    <a th:href="'/extension-details/'+${Extension.getName()}">
+                    <img src="/pics/icons/pic1.jpg" width="30%">
+                    <h4 th:text="${Extension.getName()}"></h4>
+                    </a>
+                    </div>
+
+                </div>
+
+         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                 <h2 class="hoverDiv">New</h2>
+                 <br>
+                 <hr>
+
+                     <div class="hoverDiv" th:each="Extension : ${newExt}">
+                     <a th:href="'/extension-details/'+${Extension.getName()}">
+                     <img src="/pics/icons/pic1.jpg" width="30%">
+                     <h4 th:text="${Extension.getName()}"></h4>
+                     </a>
+                     </div>
+
+                 </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="inLine">
 
 
 <div class="dropdown">
@@ -106,5 +191,9 @@
 
 </div>
 
+-->
+
+<div th:replace="fragments :: scripts">
+</div>
 </body>
 </html>

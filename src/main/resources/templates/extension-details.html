@@ -38,7 +38,7 @@
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
 
 
-<p sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Status:  ' + ${extension.isItApproved()}"></p>
+<p th:text="'Status:  ' + ${extension.isItApproved()}"></p>
 
 </body>
 </html>
