@@ -1,6 +1,6 @@
 # extension-repository
 
-Final Project Assignment in Teleric Academy by Tick42.
+Final Project Assignment in Telerik Academy by Tick42.
 
 Installation instructions at the bottom.
 
