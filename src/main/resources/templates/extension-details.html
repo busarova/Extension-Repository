@@ -8,25 +8,30 @@
 <div th:replace="fragments :: header">
 </div>
 
+<div class="alignTextCenter">
+
+<h1 th:text="${extension.getName()}"></h1>
+<a href=""><img src="/pics/icons/ext_default.jpg" height="120"></a>
+<br>
+
 <p th:if="${extension.getFileId() != 0}"><a th:href="'/download/' + ${extension.getName()}"><button>Download Extension</button></a></p>
 <p th:unless="${extension.getFileId() != 0}">NO FILE UPLOADED</p>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getName()}">Feature this Extension</a>
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getName()}">Unfeature this Extension</a>
-
 <div sec:authorize="hasRole('ROLE_USER')">
-<p th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a></p>
+<a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a></a>
    <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getName()}"><button>EDIT EXTENSION</button></a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a>
    </div>
 </div>
 
-<img src="/pics/icons/pic1.jpg" height="120">
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getName()}">Feature this Extension<br></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getName()}">Unfeature this Extension<br></a>
 
-<h1 th:text="${extension.getName()}"></h1>
 <a th:href="@{/}">home</a>
+
+
 <hr>
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
@@ -38,6 +43,9 @@
 
 
 <p th:text="'Status:  ' + ${extension.isItApproved()}"></p>
+
+
+</div>
 
 </body>
 </html>
