@@ -62,5 +62,11 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     }
 
+    @Override
+    public void registerDownload(Extension extension) {
+
+        extensionRepository.registerDownload(extension);
+    }
+
 
 }

@@ -100,7 +100,9 @@ public class FileController {
     public @ResponseBody void downloadA(HttpServletResponse response, @PathVariable("name")
             String name) throws IOException {
 
-        int fileId = extensionInfoService.getExtByName(name).getFileId();
+        Extension extension = extensionInfoService.getExtByName(name);
+
+        int fileId = extension.getFileId();
 
         UploadFile uploadFile = fileService.getFile(fileId);
 
@@ -111,6 +113,8 @@ public class FileController {
         response.setHeader("Content-Disposition", "attachment; filename=" + uploadFile.getFileName());
             //   response.setHeader("Content-Length", String.valueOf(file.length()));
         FileCopyUtils.copy(inputStream, response.getOutputStream());
+
+        extensionService.registerDownload(extension);
 
 
     }

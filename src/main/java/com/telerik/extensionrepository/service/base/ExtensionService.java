@@ -11,5 +11,7 @@ public interface ExtensionService {
 
     void changeExtensionFileId(Extension extension, int id);
 
+    void registerDownload(Extension extension);
+
 
 }

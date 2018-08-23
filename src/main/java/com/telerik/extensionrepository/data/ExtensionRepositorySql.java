@@ -186,5 +186,28 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
     }
 
+    @Override
+    public void registerDownload(Extension extension) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            Extension selected = session.get(Extension.class, extension.getId());
+
+            long download = selected.getNumberOfDownloads();
+            download++;
+
+            selected.setNumberOfDownloads(download);
+
+            session.update(selected);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 
 }

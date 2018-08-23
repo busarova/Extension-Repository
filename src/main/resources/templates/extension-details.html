@@ -23,9 +23,9 @@
    </div>
 </div>
 
+<img src="/pics/icons/pic1.jpg" height="120">
 
-
-<h1 th:text="'EXTENSION  ' + ${extension.getName()}"></h1>
+<h1 th:text="${extension.getName()}"></h1>
 <a th:href="@{/}">home</a>
 <hr>
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
