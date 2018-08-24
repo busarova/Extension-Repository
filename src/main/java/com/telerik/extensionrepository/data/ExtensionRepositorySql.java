@@ -167,6 +167,25 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
+    public Extension getExtById(int id) {
+
+        Extension extension = null;
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            extension = session.get(Extension.class, id);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return extension;
+    }
+
+    @Override
     public void changeFileId(Extension extension, int newId) {
 
         try(Session session = factory.openSession()){

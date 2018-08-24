@@ -1,7 +1,7 @@
 package com.telerik.extensionrepository.service.base;
 
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.model.dto.ExtensionForm;
+import com.telerik.extensionrepository.dto.ExtensionForm;
 
 public interface ExtensionService {
 

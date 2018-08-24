@@ -11,7 +11,7 @@ public interface AdminService {
 
     void approveExt(int id);
 
-    void uNApproveExt(int id);
+    void removeApproval(int id);
 
     List<User> getAllUsers();
 
@@ -23,6 +23,6 @@ public interface AdminService {
 
     void unFeatureExtension(String name);
 
-    void deleteExtension(String name);
+    void deleteExtension(int id);
 
 }

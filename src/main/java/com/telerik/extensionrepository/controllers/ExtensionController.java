@@ -3,6 +3,7 @@ package com.telerik.extensionrepository.controllers;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
+import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -18,11 +19,13 @@ public class ExtensionController {
 
     private ExtensionInfoService extensionInfoService;
     private AdminService adminService;
+    private ExtensionService extensionService;
 
     @Autowired
-    public ExtensionController(ExtensionInfoService extensionInfoService, AdminService adminService){
+    public ExtensionController(ExtensionInfoService extensionInfoService, AdminService adminService, ExtensionService extensionService){
         this.extensionInfoService = extensionInfoService;
         this.adminService = adminService;
+        this.extensionService = extensionService;
     }
 
     @RequestMapping("/extension-details/{name}")
@@ -86,19 +89,19 @@ public class ExtensionController {
         return modelAndView;
     }
 
-    @RequestMapping("/delete-extension/{Name}")
-    public String deleteExtension(@PathVariable("Name") String name){
+    @RequestMapping("/delete-extension/{id}")
+    public String deleteExtension(@PathVariable("id") String id){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
-        Extension extension = extensionInfoService.getExtByName(name);
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
         if(!extension.getOwner().equals(user.getUsername())){                         // checks if the logged user is the owner of the extension
             return "redirect:access-denied";
         }
 
-        adminService.deleteExtension(name);
+        adminService.deleteExtension(extension.getId());
 
         return "redirect:/profile";
     }

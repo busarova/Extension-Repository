@@ -6,10 +6,7 @@ import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.FileService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -20,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
@@ -73,7 +69,7 @@ public class FileController {
                 Extension extension = extensionInfoService.getExtByName(name);
 
                 extensionService.changeExtensionFileId(extension, uploadFile.getId());
-                adminService.uNApproveExt(extension.getId());
+                adminService.removeApproval(extension.getId());
             }
 
         }

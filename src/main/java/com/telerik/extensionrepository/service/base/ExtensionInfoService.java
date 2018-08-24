@@ -14,6 +14,8 @@ public interface ExtensionInfoService {
 
     List<Extension> getByUserName(String userName);
 
+    Extension getById(int id);
+
     Extension getExtByName(String name);
 
     List<Extension> returnOrderedBy(String parameter);

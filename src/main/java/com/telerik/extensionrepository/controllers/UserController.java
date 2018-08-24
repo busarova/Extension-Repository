@@ -1,6 +1,6 @@
 package com.telerik.extensionrepository.controllers;
 
-import com.telerik.extensionrepository.model.dto.ExtensionForm;
+import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -10,7 +10,7 @@ public interface AdminRepository {
 
     void approveExtension(int id);
 
-    void uNApproveExtension(int id);
+    void removeApproval(int id);
 
     List<User> getAllUsers();
 
@@ -25,4 +25,6 @@ public interface AdminRepository {
     void deleteExtension(Extension extension);
 
     void deleteGitExtensionInfo(GitExtensionInfo gitExtensionInfo);
+
+    void deleteFile(int id);
 }

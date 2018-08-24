@@ -3,6 +3,7 @@ package com.telerik.extensionrepository.data;
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
+import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -47,7 +48,7 @@ public class AdminRepositorySql implements AdminRepository {
     }
 
     @Override
-    public void uNApproveExtension(int id) {
+    public void removeApproval(int id) {
 
         try(Session session = factory.openSession()){
             session.beginTransaction();
@@ -199,5 +200,23 @@ public class AdminRepositorySql implements AdminRepository {
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public void deleteFile(int id) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+           UploadFile uploadFile = session.get(UploadFile.class, id);
+
+            session.delete(uploadFile);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }

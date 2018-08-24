@@ -41,8 +41,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void uNApproveExt(int id) {
-        adminRepository.uNApproveExtension(id);
+    public void removeApproval(int id) {
+        adminRepository.removeApproval(id);
     }
 
     @Override
@@ -71,16 +71,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void deleteExtension(String name) {
+    public void deleteExtension(int id) {
 
-        Extension extension = extensionRepository.getExtByName(name);
+        Extension extension = extensionRepository.getExtById(id);
 
        int gitId = extension.getGitId();
 
-        System.out.println(gitId);
-
        adminRepository.deleteExtension(extension);
        adminRepository.deleteGitExtensionInfo(gitExtensionInfoRepository.getGitInfoById(gitId));
+       adminRepository.deleteFile(extension.getFileId());
+
 
     }
 }

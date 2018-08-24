@@ -45,6 +45,11 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     }
 
     @Override
+    public Extension getById(int id) {
+        return extensionRepository.getExtById(id);
+    }
+
+    @Override
     public Extension getExtByName(String name) {
 
         return extensionRepository.getExtByName(name);

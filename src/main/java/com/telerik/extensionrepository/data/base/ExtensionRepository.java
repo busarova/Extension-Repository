@@ -23,6 +23,8 @@ public interface ExtensionRepository {
 
     Extension getExtByName(String name);
 
+    Extension getExtById(int id);
+
     void changeFileId(Extension extension, int newId);
 
     void registerDownload(Extension extension);

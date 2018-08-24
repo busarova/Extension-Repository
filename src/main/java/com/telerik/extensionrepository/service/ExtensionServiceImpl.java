@@ -3,7 +3,7 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
-import com.telerik.extensionrepository.model.dto.ExtensionForm;
+import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -20,7 +20,7 @@
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
 <div sec:authorize="hasRole('ROLE_USER')">
-<a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a></a>
+<a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a>
    <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a>
    </div>

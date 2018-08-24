@@ -1,4 +1,4 @@
-package com.telerik.extensionrepository.model.dto;
+package com.telerik.extensionrepository.dto;
 
 public class ExtensionForm {
 
