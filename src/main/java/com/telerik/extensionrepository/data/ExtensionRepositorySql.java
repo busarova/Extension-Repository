@@ -39,6 +39,23 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
+    public List<Extension> getAllApproved() {
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension where approved = 1").list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
     public int createGithub_info(GitExtensionInfo gitExtensionInfo) {
 
 

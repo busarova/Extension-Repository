@@ -20,6 +20,16 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     }
 
     @Override
+    public List<Extension> getAll() {
+        return extensionRepository.getAllExtensions();
+    }
+
+    @Override
+    public List<Extension> getAllApproved() {
+        return extensionRepository.getAllApproved();
+    }
+
+    @Override
     public List<Extension> getFeatured() {                                                  // gets all the extensions which are featured and approved
 
         return extensionRepository.getFeaturedExtensions();

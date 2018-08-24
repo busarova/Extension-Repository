@@ -35,6 +35,8 @@ public class HomeController {
 
         modelAndView.addObject("newExt", newExt);
 
+        modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
+
         return modelAndView;
     }
 

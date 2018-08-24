@@ -6,6 +6,10 @@ import java.util.List;
 
 public interface ExtensionInfoService {
 
+    List<Extension> getAll();
+
+    List<Extension> getAllApproved();
+
     List<Extension> getFeatured();
 
     List<Extension> getPopular();
