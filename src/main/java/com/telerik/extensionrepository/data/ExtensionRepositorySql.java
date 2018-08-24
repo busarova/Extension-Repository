@@ -37,6 +37,24 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         return theList;
     }
+    @Override
+    public List<Extension> getAllByParam(String param) {
+        List<Extension> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where e.name like :param")
+                    .setParameter("param", "%" + param + "%")
+                    .list();
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
 
     @Override
     public List<Extension> getAllApproved() {

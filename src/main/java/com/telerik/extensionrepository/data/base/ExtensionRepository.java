@@ -9,6 +9,8 @@ public interface ExtensionRepository {
 
     List<Extension> getAllExtensions();
 
+    List<Extension> getAllByParam(String param);
+
     List<Extension> getAllApproved();
 
     int createGithub_info(GitExtensionInfo gitExtensionInfo);
