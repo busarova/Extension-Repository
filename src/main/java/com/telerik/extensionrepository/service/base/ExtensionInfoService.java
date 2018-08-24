@@ -24,6 +24,8 @@ public interface ExtensionInfoService {
 
     List<Extension> returnOrderedBy(String parameter);
 
+    List<Extension> returnAllOrderedBy(String parameter);
+
     List<Extension> sortListBy(List<Extension> list, String parameter);
 
 }

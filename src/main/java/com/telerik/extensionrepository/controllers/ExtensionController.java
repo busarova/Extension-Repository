@@ -59,9 +59,11 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<Extension> list = extensionInfoService.returnOrderedBy(name);
+       // List<Extension> list = extensionInfoService.returnOrderedBy(name);
 
-        String[] command = name.split(" ");
+        List<Extension> list = extensionInfoService.returnAllOrderedBy(name);
+
+        /*String[] command = name.split(" ");
 
         switch (command[0]){
 
@@ -85,7 +87,9 @@ public class ExtensionController {
                 modelAndView.addObject("newExt", extensionInfoService.getNew());
                 break;
 
-        }
+        }*/
+
+        modelAndView.addObject("allApproved", list);
 
         return modelAndView;
     }

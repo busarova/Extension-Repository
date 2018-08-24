@@ -88,6 +88,27 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     }
 
     @Override
+    public List<Extension> returnAllOrderedBy(String parameter) {
+
+        String[] commands = parameter.split(" ");
+
+        switch (commands[0]){
+
+            case "popular":
+                return sortListBy(getAll(), commands[1]);
+
+            case "featured":
+                return sortListBy(getAll(), commands[1]);
+
+            case "new":
+                return sortListBy(getAll(), commands[1]);
+
+        }
+
+        return null;
+    }
+
+    @Override
     public List<Extension> sortListBy(List<Extension> list, String parameter) {
 
         switch (parameter){

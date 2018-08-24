@@ -32,7 +32,7 @@
 
 <div class="container">
 
-    <div class="row">
+   <!-- <div class="row">
 
 
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -128,93 +128,51 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="inLine">
-
-
-<div class="dropdown">
-  <button class="dropbtn">Sort By</button>
-  <div class="dropdown-content">
-    <a href="/sortby/featured name">Name</a>
-    <a href="/sortby/featured downloads">Downloads</a>
-    <a href="/sortby/featured uploadDate">Upload Date</a>
-    <a href="/sortby/featured lastCommitDate">Last Commit Date</a>
-  </div>
-</div>
-
-
-<h2>FEATURED EXTENSIONS:</h2>
-<table class="inLine">
-   <div th:each="Extension : ${featured}">
-
-       <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
-
-   </div>
-</table>
-
-</div>
-
-
-<div class="inLine">
-
-<div class="dropdown">
-  <button class="dropbtn">Sort By</button>
-  <div class="dropdown-content">
-    <a href="/sortby/popular name">Name</a>
-    <a href="/sortby/popular downloads">Downloads</a>
-    <a href="/sortby/popular uploadDate">Upload Date</a>
-    <a href="/sortby/popular lastCommitDate">Last Commit Date</a>
-  </div>
-</div>
-
-<h2>POPULAR EXTENSIONS:</h2>
-<table class="inLine">
-        <div th:each="Extension : ${popular}">
-
-        <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
-
-        </div>
-</table>
-</div>
-
-<div class="inLine">
-
-<div class="dropdown">
-  <button class="dropbtn">Sort By</button>
-  <div class="dropdown-content">
-    <a href="/sortby/new name">Name</a>
-    <a href="/sortby/new downloads">Downloads</a>
-    <a href="/sortby/new uploadDate">Upload Date</a>
-    <a href="/sortby/new lastCommitDate">Last Commit Date</a>
-  </div>
-</div>
-
-<h2>NEW EXTENSIONS:</h2>
-<table class="inLine">
-    <div th:each="Extension : ${newExt}">
-
-    <a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p></a>
-
-    </div>
-</table>
-</div>
-
-</div>
-
 -->
+
+</div>
+
+<div class="alignTextCenter">
+                <div class="w3-dropdown-hover">
+                  <button class="w3-button">Sort By</button>
+                  <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a href="/sortby/popular name" class="w3-bar-item w3-button">Name</a>
+                    <a href="/sortby/popular uploadDate" class="w3-bar-item w3-button">Upload Date</a>
+                    <a href="/sortby/popular downloads" class="w3-bar-item w3-button">Downloads</a>
+                    <a href="/sortby/popular lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
+                  </div>
+                </div>
+
+
+                <a href="/featured"><button class="w3-button">Show Featured</button></a>
+
+
+</div>
+
+<br><br>
+
+<div class="alignTextCenter">
+
+
+
+<div th:each="Extension : ${allApproved}" class="col-lg-4 col-sm-4">
+
+            <div class="circular">
+                <a th:href="'/extension-details/'+${Extension.getId()}">
+                                     <img src="/pics/icons/ext_default.jpg" width="25%">
+                                     <h4 th:text="${Extension.getName()}"></h4>
+                                     </a>
+
+            </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
 
 <div th:replace="fragments :: scripts">
 </div>

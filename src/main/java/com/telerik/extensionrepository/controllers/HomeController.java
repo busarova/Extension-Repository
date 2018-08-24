@@ -20,10 +20,10 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView showFeatured(){
+    public ModelAndView showAll(){
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<Extension> featured = extensionInfoService.getFeatured();
+        /*List<Extension> featured = extensionInfoService.getFeatured();
 
         modelAndView.addObject("featured", featured);
 
@@ -33,9 +33,21 @@ public class HomeController {
 
         List<Extension> newExt = extensionInfoService.getNew();
 
-        modelAndView.addObject("newExt", newExt);
+        modelAndView.addObject("newExt", newExt);*/
 
         modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
+
+        System.out.println(extensionInfoService.getAllApproved().size());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/featured")
+    public ModelAndView showFeatured(){
+
+        ModelAndView modelAndView = new ModelAndView("index");
+
+        modelAndView.addObject("allApproved", extensionInfoService.getFeatured());
 
         return modelAndView;
     }
