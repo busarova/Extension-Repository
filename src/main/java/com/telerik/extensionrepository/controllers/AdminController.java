@@ -72,24 +72,24 @@ public class AdminController {
         return modelAndView;
     }
 
-    @RequestMapping("/admin/feature/{Name}")
-    public ModelAndView featureExtension(@PathVariable("Name") String name){
+    @RequestMapping("/admin/feature/{id}")
+    public ModelAndView featureExtension(@PathVariable("id") String id){
 
-        adminService.featureExtension(name);
+        adminService.featureExtension(Integer.parseInt(id));
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + name);
+        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + id);
 
 
 
         return modelAndView;
     }
 
-    @RequestMapping("/admin/un-feature/{Name}")
-    public ModelAndView unFeatureExtension(@PathVariable("Name") String name){
+    @RequestMapping("/admin/un-feature/{id}")
+    public ModelAndView unFeatureExtension(@PathVariable("id") String id){
 
-        adminService.unFeatureExtension(name);
+        adminService.unFeatureExtension(Integer.parseInt(id));
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + name);
+        ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + id);
 
         return modelAndView;
     }

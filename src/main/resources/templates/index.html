@@ -55,7 +55,7 @@
         <hr>
 
             <div class="alignTextCenter" th:each="Extension : ${featured}">
-            <a th:href="'/extension-details/'+${Extension.getName()}">
+            <a th:href="'/extension-details/'+${Extension.getId()}">
             <img src="/pics/icons/ext_default.jpg" width="15%">
             <h4 th:text="${Extension.getName()}"></h4>
             </a>
@@ -84,7 +84,7 @@
                 <hr>
 
                     <div class="alignTextCenter" th:each="Extension : ${popular}">
-                    <a th:href="'/extension-details/'+${Extension.getName()}">
+                    <a th:href="'/extension-details/'+${Extension.getId()}">
                     <img src="/pics/icons/ext_default.jpg" width="15%">
                     <h4 th:text="${Extension.getName()}"></h4>
                     </a>
@@ -115,7 +115,7 @@
                  <hr>
 
                      <div class="alignTextCenter" th:each="Extension : ${newExt}">
-                     <a th:href="'/extension-details/'+${Extension.getName()}">
+                     <a th:href="'/extension-details/'+${Extension.getId()}">
                      <img src="/pics/icons/ext_default.jpg" width="15%">
                      <h4 th:text="${Extension.getName()}"></h4>
                      </a>

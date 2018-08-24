@@ -128,17 +128,15 @@ public class AdminRepositorySql implements AdminRepository {
     }
 
     @Override
-    public void featureExtension(String name) {
+    public void featureExtension(int id) {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            List<Extension> extension = session.createQuery("from Extension where name = :name")
-                    .setParameter("name", name)
-                    .list();
+            Extension extension = session.get(Extension.class, id);
 
-            extension.get(0).setFeatured(0);
+            extension.setFeatured(0);
 
-            session.update(extension.get(0));
+            session.update(extension);
 
             session.getTransaction().commit();
 
@@ -148,18 +146,16 @@ public class AdminRepositorySql implements AdminRepository {
     }
 
     @Override
-    public void unFeatureExtension(String name) {
+    public void unFeatureExtension(int id) {
 
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            List<Extension> extension = session.createQuery("from Extension where name = :name")
-                    .setParameter("name", name)
-                    .list();
+            Extension extension = session.get(Extension.class, id);
 
-            extension.get(0).setFeatured(1);
+            extension.setFeatured(1);
 
-            session.update(extension.get(0));
+            session.update(extension);
 
             session.getTransaction().commit();
 

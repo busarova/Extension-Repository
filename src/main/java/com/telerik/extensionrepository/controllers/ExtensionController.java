@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 @Controller
@@ -28,26 +29,26 @@ public class ExtensionController {
         this.extensionService = extensionService;
     }
 
-    @RequestMapping("/extension-details/{name}")
-    public ModelAndView getById(@PathVariable("name") String name){
+    @RequestMapping("/extension-details/{id}")
+    public ModelAndView getById(@PathVariable("id") String id){
 
         ModelAndView modelAndView = new ModelAndView("extension-details");
 
-        Extension extension = extensionInfoService.getExtByName(name);
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        System.out.println(extension.getName());
+        System.out.println("currently reviewing: " + extension.getName());
 
         modelAndView.addObject("extension", extension);
 
         return modelAndView;
     }
 
-    @RequestMapping("/edit-extension/{name}")
-    public ModelAndView editExtension(@PathVariable("name") String name){
+    @RequestMapping("/edit-extension/{id}")
+    public ModelAndView editExtension(@PathVariable("id") String id){
 
         ModelAndView modelAndView = new ModelAndView("edit-extension");
 
-        modelAndView.addObject(extensionInfoService.getExtByName(name));
+        modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
 
         return modelAndView;
     }

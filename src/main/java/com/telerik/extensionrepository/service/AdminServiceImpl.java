@@ -61,13 +61,13 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void featureExtension(String name) {
-        adminRepository.featureExtension(name);
+    public void featureExtension(int id) {
+        adminRepository.featureExtension(id);
     }
 
     @Override
-    public void unFeatureExtension(String name) {
-        adminRepository.unFeatureExtension(name);
+    public void unFeatureExtension(int id) {
+        adminRepository.unFeatureExtension(id);
     }
 
     @Override

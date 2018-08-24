@@ -14,20 +14,20 @@
 <a href=""><img src="/pics/icons/ext_default.jpg" height="120"></a>
 <br>
 
-<p th:if="${extension.getFileId() != 0}"><a th:href="'/download/' + ${extension.getName()}"><button>Download Extension</button></a></p>
+<p th:if="${extension.getFileId() != 0}"><a th:href="'/download/' + ${extension.getId()}"><button>Download Extension</button></a></p>
 <p th:unless="${extension.getFileId() != 0}">NO FILE UPLOADED</p>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 
 <div sec:authorize="hasRole('ROLE_USER')">
-<a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a>
+<a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getId()}"><button>Edit Extension</button></a>
    <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getName()}"><button>Edit Extension</button></a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getId()}"><button>Edit Extension</button></a>
    </div>
 </div>
 
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getName()}">Feature this Extension<br></a>
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getName()}">Unfeature this Extension<br></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getId()}">Feature this Extension<br></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getId()}">Unfeature this Extension<br></a>
 
 <a th:href="@{/}">home</a>
 

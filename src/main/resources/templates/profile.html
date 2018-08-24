@@ -30,7 +30,7 @@ Name: <span sec:authentication="name" />
 
 <div th:each="Extension : ${extensions}">
 <br>
-<a th:href="'/extension-details/'+${Extension.getName()}"><p th:text="${Extension.getName()}"></p> </a>
+<a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></p> </a>
 <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
 
 </div>

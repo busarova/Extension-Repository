@@ -92,11 +92,11 @@ public class FileController {
     }
 
 
-    @RequestMapping(value = "/download/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public @ResponseBody void downloadA(HttpServletResponse response, @PathVariable("name")
-            String name) throws IOException {
+    @RequestMapping(value = "/download/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    public @ResponseBody void downloadA(HttpServletResponse response, @PathVariable("id")
+            String id) throws IOException {
 
-        Extension extension = extensionInfoService.getExtByName(name);
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
         int fileId = extension.getFileId();
 

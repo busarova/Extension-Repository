@@ -23,7 +23,7 @@ public class UploadFile {
         this.id = id;
     }
 
-    @Column(name = "File_Name")
+    @Column(name = "fileName")
     public String getFileName() {
         return fileName;
     }
@@ -33,7 +33,7 @@ public class UploadFile {
     }
 
 
-    @Column(name = "File_Data")
+    @Column(name = "fileData")
     public byte[] getData() {
         return data;
     }
