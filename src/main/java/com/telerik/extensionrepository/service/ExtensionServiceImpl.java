@@ -23,22 +23,27 @@ public class ExtensionServiceImpl implements ExtensionService {
     @Override
     public void createExtension(ExtensionForm extensionForm) {
 
-        int gitId = createGitExtentionInfo(extensionForm);
+      //  int gitId = createGitExtentionInfo(extensionForm);
 
         Extension newExtension = new Extension();
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
+        GitExtensionInfo gitExtensionInfo = new GitExtensionInfo();
+
+        gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
+
+
         newExtension.setName(extensionForm.getName());
         newExtension.setDescription(extensionForm.getDescription());
         newExtension.setOwner(user.getUsername());
         newExtension.setTags(extensionForm.getTags());
-        newExtension.setGitId(gitId);
         newExtension.setVersion(extensionForm.getVersion());
         newExtension.setApproved(1);
         newExtension.setFeatured(1);
         newExtension.setUploadDate("15/08/2018");
+        newExtension.setGitExtensionInfo(gitExtensionInfo);
 
         extensionRepository.createExtension(newExtension);
 

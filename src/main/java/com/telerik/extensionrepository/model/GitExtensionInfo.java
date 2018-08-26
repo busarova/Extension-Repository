@@ -8,7 +8,7 @@ public class GitExtensionInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "gitExtensionInfoID")
+    @Column(name = "git_id")
     private int id;
 
     @Column(name = "openIssues")
@@ -22,6 +22,10 @@ public class GitExtensionInfo {
 
     @Column(name = "gitRepoLink")
     private String gitRepoLink;
+
+    @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Extension extension;
+
 
     public int getId() {
         return id;
@@ -61,5 +65,13 @@ public class GitExtensionInfo {
 
     public void setGitRepoLink(String gitRepoLink) {
         this.gitRepoLink = gitRepoLink;
+    }
+
+    public Extension getExtension() {
+        return extension;
+    }
+
+    public void setExtension(Extension extension) {
+        this.extension = extension;
     }
 }

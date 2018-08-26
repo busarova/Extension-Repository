@@ -75,10 +75,10 @@ public class AdminServiceImpl implements AdminService {
 
         Extension extension = extensionRepository.getExtById(id);
 
-       int gitId = extension.getGitId();
+      // int gitId = extension.getGitId();
 
        adminRepository.deleteExtension(extension);
-       adminRepository.deleteGitExtensionInfo(gitExtensionInfoRepository.getGitInfoById(gitId));
+     //  adminRepository.deleteGitExtensionInfo(gitExtensionInfoRepository.getGitInfoById(gitId));
        adminRepository.deleteFile(extension.getFileId());
 
 

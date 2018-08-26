@@ -35,16 +35,9 @@ public class Extension {
     @Column(name = "File_Id")
     private Integer fileId;
 
-    /*@OneToOne
-    @JoinColumn(name = "downloadFileID")
-    private UploadFile downloadFile;*/
-
-    /*@OneToOne
-    @JoinColumn(name = "gitExtensionInfoID")
-    private GitExtensionInfo gitExtensionInfo;*/
-
-    @Column(name = "gitExtensionInfoId")
-    private int gitId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "git_id")
+    private GitExtensionInfo gitExtensionInfo;
 
     @Column(name = "uploadDate")
     private String uploadDate;
@@ -54,7 +47,7 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int gitId, int fileId) {
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int fileId) {
         this.name = name;
         this.description = description;
         this.version = version;
@@ -63,7 +56,6 @@ public class Extension {
         this.tags = tags;
         this.uploadDate = uploadDate;
         this.featured = featured;
-        this.gitId = gitId;
         this.fileId = fileId;
     }
 
@@ -75,13 +67,13 @@ public class Extension {
         this.id = id;
     }
 
-    /*public UploadFile getDownloadFile() {
-        return downloadFile;
+    public GitExtensionInfo getGitExtensionInfo() {
+        return gitExtensionInfo;
     }
 
-    public void setDownloadFile(UploadFile downloadFile) {
-        this.downloadFile = downloadFile;
-    }*/
+    public void setGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
+        this.gitExtensionInfo = gitExtensionInfo;
+    }
 
     public String getName() {
         return name;
@@ -163,14 +155,6 @@ public class Extension {
 
     public void setApproved(int approved) {
         this.approved = approved;
-    }
-
-    public int getGitId() {
-        return gitId;
-    }
-
-    public void setGitId(int gitId) {
-        this.gitId = gitId;
     }
 
     public int getFileId() {
