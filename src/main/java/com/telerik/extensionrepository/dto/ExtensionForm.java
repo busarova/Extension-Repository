@@ -20,7 +20,6 @@ public class ExtensionForm {
     private String description;
     private String version;
     private String tags;
-    private byte[] data;
     private CommonsMultipartFile commonsMultipartFile;
 
     @NotNull
@@ -29,13 +28,12 @@ public class ExtensionForm {
 
     public ExtensionForm(){}
 
-    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, @NotNull @NotEmpty String githubLink, byte[] data, CommonsMultipartFile commonsMultipartFile) {
+    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, @NotNull @NotEmpty String githubLink, CommonsMultipartFile commonsMultipartFile) {
         this.name = name;
         this.description = description;
         this.version = version;
         this.tags = tags;
         this.githubLink = githubLink;
-        this.data = data;
         this.commonsMultipartFile = commonsMultipartFile;
     }
 
@@ -79,10 +77,6 @@ public class ExtensionForm {
         this.githubLink = githubLink;
     }
 
-    public byte[] getData() {
-        return data;
-    }
-
     public CommonsMultipartFile getCommonsMultipartFile() {
         return commonsMultipartFile;
     }
@@ -91,7 +85,4 @@ public class ExtensionForm {
         this.commonsMultipartFile = commonsMultipartFile;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
-    }
 }
