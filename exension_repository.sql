@@ -47,32 +47,19 @@ CREATE TABLE IF NOT EXISTS `extension` (
   `numberOfDownloads` int(11) NOT NULL DEFAULT 0,
   `tags` varchar(50) NOT NULL,
   `file_id` int(11) unsigned DEFAULT 0,
-  `gitExtensionInfoID` int(11) unsigned NOT NULL,
+  `git_id` int(11) NOT NULL,
   `uploadDate` varchar(50) NOT NULL DEFAULT '0',
   `featured` tinyint(2) NOT NULL DEFAULT 1,
   `approved` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`extensionID`),
-  KEY `gitExtensionInfoID` (`gitExtensionInfoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+  KEY `gitExtensionInfoID` (`git_id`),
+  CONSTRAINT `FK_extension_git_extension_info` FOREIGN KEY (`git_id`) REFERENCES `git_extension_info` (`git_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.extension: ~15 rows (approximately)
+-- Dumping data for table extension_repository.extension: ~0 rows (approximately)
 /*!40000 ALTER TABLE `extension` DISABLE KEYS */;
-INSERT INTO `extension` (`extensionID`, `name`, `description`, `version`, `owner`, `numberOfDownloads`, `tags`, `file_id`, `gitExtensionInfoID`, `uploadDate`, `featured`, `approved`) VALUES
-	(1, 'Apple Extension', 'bla bla bla blaaaaaaah', '1.0', 'drago', 5, 'super awesome', 19, 1, '16/08/2018', 0, 0),
-	(2, 'IBM Extension', 'OLELE LELELE', '1.0', 'drago', 6, 'veryGood great', 0, 2, '16/08/2018', 0, 0),
-	(3, 'Rovena Galactic', 'LULU LULI LUUUUU', '1.0', 'drago', 1, 'notGood blah', 0, 3, '12/08/2018', 0, 0),
-	(4, 'Gardner Super', 'DJUPAMPAAAAAAAA OLE', '1.1', 'rosi', 7, 'dasdas', 0, 4, '05/08/2018', 0, 0),
-	(5, 'Pliska Cosmos', 'O MUDRI VOINIKO', '1.2', 'rosi', 3, 'sadasdas', 0, 5, '07/08/2018', 1, 0),
-	(6, 'Bravos Extension', 'JIVOTA E RADOST I TUGA ', '1.1', 'rosi', 4, 'asdasdasd', 0, 6, '09/08/2018', 0, 0),
-	(7, 'Test SuperTest', 'SUS 100 KILOMETRA V CHAS', '1.5', 'drago', 7, 'ksadklasda', 0, 7, '14/08/2018', 0, 0),
-	(8, 'Great Overall Extension', '100 patrona ', '1.3', 'pesho', 2, 'asdasdas', 0, 8, '15/08/2018', 1, 0),
-	(9, 'Roberto Extension', 'Karai si kolata lelelel', '1.1', 'pesho', 10, 'asdasdas', 0, 9, '16/08/2018', 0, 0),
-	(10, 'Britney Spears Extension', 'Oops I did it again', '1.2', 'pesho', 4, 'adasdasdasd', 0, 10, '15/08/2018', 0, 0),
-	(13, 'Gosho Extension', 'great overall ext', '1.0', 'gosho', 0, 'wow great theBest', 0, 11, '15/08/2018', 0, 0),
-	(14, 'Sony Extension', 'New Tech Ext', '1.0', 'gosho', 0, 'sonyExt newExt', 0, 12, '15/08/2018', 0, 0),
-	(18, 'Misho Extension', 'My first extension yayyyy', '1.0', 'misho', 0, 'great firstExtension', 0, 16, '15/08/2018', 1, 1),
-	(25, 'Manually Created Ext', 'First Manually Created Ext with file', '1.0', 'drago', 0, 'first great', 0, 23, '15/08/2018', 0, 0),
-	(26, 'Burning Extension', 'Burning...', '1.0', 'drago', 0, 'burning yes', 0, 25, '15/08/2018', 1, 0);
+INSERT INTO `extension` (`extensionID`, `name`, `description`, `version`, `owner`, `numberOfDownloads`, `tags`, `file_id`, `git_id`, `uploadDate`, `featured`, `approved`) VALUES
+	(1, 'aaa', 'a', 'a', 'drago', 0, 'a', NULL, 2, '15/08/2018', 1, 1);
 /*!40000 ALTER TABLE `extension` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.files
@@ -91,28 +78,49 @@ INSERT INTO `files` (`id`, `fileName`, `fileData`) VALUES
 
 -- Dumping structure for table extension_repository.git_extension_info
 CREATE TABLE IF NOT EXISTS `git_extension_info` (
-  `gitExtensionInfoID` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `git_id` int(11) NOT NULL AUTO_INCREMENT,
   `openIssues` int(11) DEFAULT NULL,
   `pullRequests` int(11) DEFAULT NULL,
   `lastCommitDate` varchar(50) DEFAULT NULL,
   `gitRepoLink` varchar(100) NOT NULL,
-  PRIMARY KEY (`gitExtensionInfoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`git_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table extension_repository.git_extension_info: ~10 rows (approximately)
+-- Dumping data for table extension_repository.git_extension_info: ~0 rows (approximately)
 /*!40000 ALTER TABLE `git_extension_info` DISABLE KEYS */;
-INSERT INTO `git_extension_info` (`gitExtensionInfoID`, `openIssues`, `pullRequests`, `lastCommitDate`, `gitRepoLink`) VALUES
-	(11, 0, 0, NULL, 'www.tctc.com'),
-	(12, 0, 0, NULL, 'www.sony.com'),
-	(16, 0, 0, NULL, 'wow.com'),
-	(21, 0, 0, NULL, 'asdas'),
-	(22, 0, 0, NULL, 'asdas'),
-	(23, 0, 0, NULL, 'www.wow.com'),
-	(24, 0, 0, NULL, 'www.burning.com'),
-	(25, 0, 0, NULL, 'www.burning.com'),
-	(29, 0, 0, NULL, 'a'),
-	(30, 0, 0, NULL, 'a');
+INSERT INTO `git_extension_info` (`git_id`, `openIssues`, `pullRequests`, `lastCommitDate`, `gitRepoLink`) VALUES
+	(2, 0, 0, NULL, 'adasas');
 /*!40000 ALTER TABLE `git_extension_info` ENABLE KEYS */;
+
+-- Dumping structure for table extension_repository.test_extension
+CREATE TABLE IF NOT EXISTS `test_extension` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gitId` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `githubInfo` (`gitId`),
+  CONSTRAINT `FK_test_extension_test_git_info` FOREIGN KEY (`gitId`) REFERENCES `test_git_info` (`gitId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table extension_repository.test_extension: ~2 rows (approximately)
+/*!40000 ALTER TABLE `test_extension` DISABLE KEYS */;
+INSERT INTO `test_extension` (`id`, `gitId`) VALUES
+	(1, 1),
+	(2, 2);
+/*!40000 ALTER TABLE `test_extension` ENABLE KEYS */;
+
+-- Dumping structure for table extension_repository.test_git_info
+CREATE TABLE IF NOT EXISTS `test_git_info` (
+  `gitId` int(11) NOT NULL AUTO_INCREMENT,
+  `info` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`gitId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table extension_repository.test_git_info: ~2 rows (approximately)
+/*!40000 ALTER TABLE `test_git_info` DISABLE KEYS */;
+INSERT INTO `test_git_info` (`gitId`, `info`) VALUES
+	(1, 'BLA BLA BLAAAAA'),
+	(2, 'BLA BLA BLAAAAA');
+/*!40000 ALTER TABLE `test_git_info` ENABLE KEYS */;
 
 -- Dumping structure for table extension_repository.users
 CREATE TABLE IF NOT EXISTS `users` (
