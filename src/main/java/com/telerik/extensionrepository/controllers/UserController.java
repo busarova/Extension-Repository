@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.controllers;
 
 import com.telerik.extensionrepository.dto.ExtensionForm;
+import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,13 +9,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -80,9 +80,27 @@ public class UserController {
         extensionService.createExtension(extension);
 
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
         modelAndView.addObject("extensionForm", extension);
 
         return modelAndView;
 
+    }
+
+    @RequestMapping("/user/sortby/{sortType}")
+    public ModelAndView sortByParam(@PathVariable("sortType") String sortType){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        ModelAndView modelAndView = new ModelAndView("/profile");
+
+        List<Extension> list = extensionInfoService.getByUserName(user.getUsername());
+
+        extensionInfoService.sortListBy(list, sortType);
+
+        modelAndView.addObject("extensions", list);
+
+        return modelAndView;
     }
 }

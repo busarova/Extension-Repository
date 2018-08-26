@@ -23,18 +23,6 @@ public class HomeController {
     public ModelAndView showAll(){
         ModelAndView modelAndView = new ModelAndView("index");
 
-        /*List<Extension> featured = extensionInfoService.getFeatured();
-
-        modelAndView.addObject("featured", featured);
-
-        List<Extension> popular = extensionInfoService.getPopular();
-
-        modelAndView.addObject("popular", popular);
-
-        List<Extension> newExt = extensionInfoService.getNew();
-
-        modelAndView.addObject("newExt", newExt);*/
-
         modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
 
         System.out.println(extensionInfoService.getAllApproved().size());

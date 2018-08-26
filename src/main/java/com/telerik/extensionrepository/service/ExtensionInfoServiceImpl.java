@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ExtensionInfoServiceImpl implements ExtensionInfoService {
@@ -92,20 +93,8 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
         String[] commands = parameter.split(" ");
 
-        switch (commands[0]){
+        return sortListBy(getAll(), commands[1]);
 
-            case "popular":
-                return sortListBy(getAll(), commands[1]);
-
-            case "featured":
-                return sortListBy(getAll(), commands[1]);
-
-            case "new":
-                return sortListBy(getAll(), commands[1]);
-
-        }
-
-        return null;
     }
 
     @Override
@@ -131,6 +120,11 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
                 list.sort(Comparator.comparing(Extension::getUploadDate));
                 return list;
 
+            case "featured":
+
+               return list.stream()
+                        .filter(x -> x.getFeatured() == 0)
+                        .collect(Collectors.toList());
         }
 
         return null;

@@ -15,7 +15,7 @@
 <br>
 
 <p th:if="${extension.getUploadFile() != null}"><a th:href="'/download/' + ${extension.getId()}"><button>Download Extension</button></a></p>
-<p th:unless="${extension.getUploadFile() == null}">NO FILE UPLOADED</p>
+<p th:unless="${extension.getUploadFile() != null}">NO FILE UPLOADED</p>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
 

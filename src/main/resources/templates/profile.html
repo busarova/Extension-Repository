@@ -28,12 +28,51 @@ Name: <span sec:authentication="name" />
 <h2>Current extensions:</h2>
 
 
-<div th:each="Extension : ${extensions}">
+<!-- <div th:each="Extension : ${extensions}">
 <br>
 <a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></p> </a>
 <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
+</div>
+-->
+
+
+<div class="alignTextCenter">
+                <div class="w3-dropdown-hover">
+                  <button class="w3-button">Sort By</button>
+                  <div class="w3-dropdown-content w3-bar-block w3-border">
+                    <a href="/user/sortby/name" class="w3-bar-item w3-button">Name</a>
+                    <a href="/user/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>
+                    <a href="/user/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>
+                    <a href="/user/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
+                  </div>
+                </div>
+
+
+                <a href="/user/sortby/featured"><button class="w3-button">Show Featured</button></a>
+
 
 </div>
+
+<hr>
+
+
+
+
+<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">
+
+            <div class="circular">
+                <a th:href="'/extension-details/'+${Extension.getId()}">
+                                     <img src="/pics/icons/ext_default.jpg" width="25%">
+                                     <h4 th:text="${Extension.getName()}"></h4>
+                                     <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
+                                     </a>
+
+            </div>
+
+</div>
+
+
+
 
 </div>
 
