@@ -7,7 +7,7 @@ public interface ExtensionService {
 
     void createExtension(ExtensionForm extensionForm);
 
-    int createGitExtentionInfo(ExtensionForm extensionForm);
+    void updateExtension(Extension extension);
 
     void changeExtensionFileId(Extension extension, int id);
 

@@ -14,16 +14,19 @@ public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "file_id")
     public int getId(){
         return id;
     }
+
+    @OneToOne(mappedBy = "uploadFile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Extension extension;
 
     public void setId(int id){
         this.id = id;
     }
 
-    @Column(name = "fileName")
+    @Column(name = "file_name")
     public String getFileName() {
         return fileName;
     }
@@ -33,7 +36,7 @@ public class UploadFile {
     }
 
 
-    @Column(name = "fileData")
+    @Column(name = "file_data")
     public byte[] getData() {
         return data;
     }

@@ -75,13 +75,12 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
-    public int createGithub_info(GitExtensionInfo gitExtensionInfo) {
-
+    public void updateExtension(Extension extension) {
 
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            session.save(gitExtensionInfo);
+            session.update(extension);
 
             session.getTransaction().commit();
 
@@ -89,9 +88,8 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             System.out.println(e.getMessage());
         }
 
-        return gitExtensionInfo.getId();
-
     }
+
 
     @Override
     public void createExtension(Extension extension) {
@@ -229,7 +227,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             Extension selected = session.get(Extension.class, extension.getId());
 
-            selected.setFileId(newId);
+          //  selected.setFileId(newId);
 
             session.update(selected);
 

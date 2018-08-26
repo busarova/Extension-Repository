@@ -13,7 +13,7 @@ public interface ExtensionRepository {
 
     List<Extension> getAllApproved();
 
-    int createGithub_info(GitExtensionInfo gitExtensionInfo);
+    void updateExtension(Extension extension);
 
     void createExtension(Extension extension);
 

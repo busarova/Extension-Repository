@@ -36,7 +36,7 @@
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
 
-<p class="error" th:if="${extension.getFileId()} == 0"> No File Upploaded</p>
+<p class="error" th:if="${extension.getUploadFile()} == null"> No File Upploaded</p>
 
 </div>
 

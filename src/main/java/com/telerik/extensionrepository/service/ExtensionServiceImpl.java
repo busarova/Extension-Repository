@@ -4,6 +4,7 @@ import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.dto.ExtensionForm;
+import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,6 +35,9 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
 
+        UploadFile uploadFile = new UploadFile();
+
+
 
         newExtension.setName(extensionForm.getName());
         newExtension.setDescription(extensionForm.getDescription());
@@ -44,21 +48,17 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setFeatured(1);
         newExtension.setUploadDate("15/08/2018");
         newExtension.setGitExtensionInfo(gitExtensionInfo);
+        newExtension.setUploadFile(uploadFile);
 
         extensionRepository.createExtension(newExtension);
 
     }
 
     @Override
-    public int createGitExtentionInfo(ExtensionForm extensionForm) {
-
-        GitExtensionInfo gitExtensionInfo = new GitExtensionInfo();
-
-        gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
-
-        return extensionRepository.createGithub_info(gitExtensionInfo);
-
+    public void updateExtension(Extension extension) {
+        extensionRepository.updateExtension(extension);
     }
+
 
     @Override
     public void changeExtensionFileId(Extension extension, int id) {

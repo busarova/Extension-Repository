@@ -11,16 +11,16 @@ public class GitExtensionInfo {
     @Column(name = "git_id")
     private int id;
 
-    @Column(name = "openIssues")
+    @Column(name = "open_issues")
     private int openIssues;
 
-    @Column(name = "pullRequests")
+    @Column(name = "pull_requests")
     private int pullRequests;
 
-    @Column(name = "lastCommitDate")
+    @Column(name = "last_commit_date")
     private String lastCommitDate;
 
-    @Column(name = "gitRepoLink")
+    @Column(name = "git_repo_link")
     private String gitRepoLink;
 
     @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)

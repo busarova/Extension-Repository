@@ -183,36 +183,5 @@ public class AdminRepositorySql implements AdminRepository {
 
     }
 
-    @Override
-    public void deleteGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
 
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            session.delete(gitExtensionInfo);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void deleteFile(int id) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-           UploadFile uploadFile = session.get(UploadFile.class, id);
-
-            session.delete(uploadFile);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-    }
 }

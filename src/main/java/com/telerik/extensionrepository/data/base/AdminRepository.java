@@ -24,7 +24,4 @@ public interface AdminRepository {
 
     void deleteExtension(Extension extension);
 
-    void deleteGitExtensionInfo(GitExtensionInfo gitExtensionInfo);
-
-    void deleteFile(int id);
 }

@@ -61,14 +61,18 @@ public class FileController {
 
                 System.out.println("Saving file: " + aFile.getOriginalFilename());
 
-                UploadFile uploadFile = new UploadFile();
+                Extension extension = extensionInfoService.getExtByName(name);
+
+                UploadFile uploadFile = extension.getUploadFile();
                 uploadFile.setFileName(aFile.getOriginalFilename());
                 uploadFile.setData(aFile.getBytes());
                 fileService.storeFile(uploadFile);
 
-                Extension extension = extensionInfoService.getExtByName(name);
 
-                extensionService.changeExtensionFileId(extension, uploadFile.getId());
+             //   extensionService.changeExtensionFileId(extension, uploadFile.getId());
+
+                extensionService.updateExtension(extension);
+
                 adminService.removeApproval(extension.getId());
             }
 
@@ -98,7 +102,7 @@ public class FileController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        int fileId = extension.getFileId();
+        int fileId = extension.getUploadFile().getId();
 
         UploadFile uploadFile = fileService.getFile(fileId);
 

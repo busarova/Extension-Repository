@@ -8,7 +8,7 @@ public class Extension {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "extensionID")
+    @Column(name = "extension_id")
     private int id;
 
     @Column(name = "name")
@@ -23,7 +23,7 @@ public class Extension {
     @Column(name = "owner")
     private String owner;
 
-    @Column(name = "numberOfDownloads")
+    @Column(name = "number_of_downloads")
     private long numberOfDownloads;
 
     @Column(name = "tags")
@@ -32,14 +32,15 @@ public class Extension {
     @Column(name = "approved")
     private int approved;
 
-    @Column(name = "File_Id")
-    private Integer fileId;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "git_id")
     private GitExtensionInfo gitExtensionInfo;
 
-    @Column(name = "uploadDate")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "file_id")
+    private UploadFile uploadFile;
+
+    @Column(name = "upload_date")
     private String uploadDate;
 
     @Column(name = "featured")
@@ -47,7 +48,7 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured, int fileId) {
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured) {
         this.name = name;
         this.description = description;
         this.version = version;
@@ -56,7 +57,6 @@ public class Extension {
         this.tags = tags;
         this.uploadDate = uploadDate;
         this.featured = featured;
-        this.fileId = fileId;
     }
 
     public int getId() {
@@ -73,6 +73,14 @@ public class Extension {
 
     public void setGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
         this.gitExtensionInfo = gitExtensionInfo;
+    }
+
+    public UploadFile getUploadFile() {
+        return uploadFile;
+    }
+
+    public void setUploadFile(UploadFile uploadFile) {
+        this.uploadFile = uploadFile;
     }
 
     public String getName() {
@@ -155,14 +163,6 @@ public class Extension {
 
     public void setApproved(int approved) {
         this.approved = approved;
-    }
-
-    public int getFileId() {
-        return fileId;
-    }
-
-    public void setFileId(int fileId) {
-        this.fileId = fileId;
     }
 
     public String isItApproved(){
