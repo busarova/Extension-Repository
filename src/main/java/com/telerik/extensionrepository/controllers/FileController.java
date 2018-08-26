@@ -69,7 +69,7 @@ public class FileController {
                 fileService.storeFile(uploadFile);
 
 
-             //   extensionService.changeExtensionFileId(extension, uploadFile.getId());
+
 
                 extensionService.updateExtension(extension);
 

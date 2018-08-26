@@ -32,12 +32,20 @@ public class ExtensionServiceImpl implements ExtensionService {
                 .getPrincipal();
 
         GitExtensionInfo gitExtensionInfo = new GitExtensionInfo();
-
         gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
 
         UploadFile uploadFile = new UploadFile();
-        uploadFile.setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
-        uploadFile.setData(extensionForm.getCommonsMultipartFile().getBytes());
+
+        // Checks if there is no file or if it is an empty string
+        //If there is a file will set it properties
+        //Otherwise will leave it null so that thymeleaf will show "No file" in page
+
+        if(extensionForm.getCommonsMultipartFile() != null &&extensionForm.getCommonsMultipartFile().getSize() > 0) {
+
+            uploadFile.setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+            uploadFile.setData(extensionForm.getCommonsMultipartFile().getBytes());
+
+        }
 
         newExtension.setName(extensionForm.getName());
         newExtension.setDescription(extensionForm.getDescription());
