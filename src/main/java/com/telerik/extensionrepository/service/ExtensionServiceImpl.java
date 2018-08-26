@@ -21,10 +21,10 @@ public class ExtensionServiceImpl implements ExtensionService {
         this.extensionRepository = extensionRepository;
     }
 
+    // Creates extension from the dto information given at input
+
     @Override
     public void createExtension(ExtensionForm extensionForm) {
-
-      //  int gitId = createGitExtentionInfo(extensionForm);
 
         Extension newExtension = new Extension();
 
