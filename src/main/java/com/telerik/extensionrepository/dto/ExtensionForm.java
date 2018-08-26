@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.dto;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,6 +20,8 @@ public class ExtensionForm {
     private String description;
     private String version;
     private String tags;
+    private byte[] data;
+    private CommonsMultipartFile commonsMultipartFile;
 
     @NotNull
     @NotEmpty(message = FIELD_REQUIRED)
@@ -25,12 +29,14 @@ public class ExtensionForm {
 
     public ExtensionForm(){}
 
-    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, @NotNull @NotEmpty String githubLink) {
+    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, @NotNull @NotEmpty String githubLink, byte[] data, CommonsMultipartFile commonsMultipartFile) {
         this.name = name;
         this.description = description;
         this.version = version;
         this.tags = tags;
         this.githubLink = githubLink;
+        this.data = data;
+        this.commonsMultipartFile = commonsMultipartFile;
     }
 
     public String getName() {
@@ -71,5 +77,21 @@ public class ExtensionForm {
 
     public void setGithubLink(String githubLink) {
         this.githubLink = githubLink;
+    }
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public CommonsMultipartFile getCommonsMultipartFile() {
+        return commonsMultipartFile;
+    }
+
+    public void setCommonsMultipartFile(CommonsMultipartFile commonsMultipartFile) {
+        this.commonsMultipartFile = commonsMultipartFile;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }

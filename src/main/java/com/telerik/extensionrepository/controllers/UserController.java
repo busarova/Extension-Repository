@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -75,12 +76,10 @@ public class UserController {
 
         }
 
-        System.out.println(extension.getDescription());
-        System.out.println(extension.getName());
 
         extensionService.createExtension(extension);
 
-        ModelAndView modelAndView = new ModelAndView("upload-file");
+        ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("extensionForm", extension);
 
         return modelAndView;

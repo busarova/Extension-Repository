@@ -9,8 +9,9 @@
 </div>
 
 <div align="center">
-        <h1>Extension added succesfuly!</h1>
-        <p>Please have in mind it will not be published untill approved by an administrator.</p>
+
+        <h1>File Upload</h1>
+        <p>Please have in mind, the extension will not be published untill approved by an administrator.</p>
         <p th:text="'Please attach the file for ' + ${extensionForm.getName()} + ' extension.'"></p>
         <form method="post" th:action="'/doUpload/' + ${extensionForm.getName()}" enctype="multipart/form-data">
             <table border="0">

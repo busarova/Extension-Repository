@@ -13,7 +13,7 @@
 <div class="alignTextCenter">
 <h1>Create Extension:</h1>
 
-<form action="#" th:action="@{/user/create-extension}" th:object="${extensionForm}" method="post">
+<form action="#" th:action="@{/user/create-extension}" th:object="${extensionForm}" method="post" enctype="multipart/form-data">
             <p>Name: <input type="text" th:field="*{name}" /></p>
             <p class="error" th:each="error : ${#fields.errors('name')}"
                            th:text="${error}">Validation error
@@ -31,7 +31,10 @@
                                        th:text="${error}">Validation error
                                 </p>
 
+            <p>Attach File: <input  type="file" th:field="*{commonsMultipartFile}" name="file"/></p>
+
             <p><input type="submit" value="Submit" /><input type="reset" value="Reset" /></p>
+
             </form>
 
 </div>

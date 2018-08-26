@@ -36,8 +36,8 @@ public class ExtensionServiceImpl implements ExtensionService {
         gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
 
         UploadFile uploadFile = new UploadFile();
-
-
+        uploadFile.setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+        uploadFile.setData(extensionForm.getCommonsMultipartFile().getBytes());
 
         newExtension.setName(extensionForm.getName());
         newExtension.setDescription(extensionForm.getDescription());
