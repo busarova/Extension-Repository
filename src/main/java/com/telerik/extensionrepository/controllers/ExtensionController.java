@@ -63,31 +63,6 @@ public class ExtensionController {
 
         List<Extension> list = extensionInfoService.returnAllOrderedBy(name);
 
-        /*String[] command = name.split(" ");
-
-        switch (command[0]){
-
-            case "popular":
-                modelAndView.addObject("popular", list);
-                modelAndView.addObject("featured", extensionInfoService.getFeatured());
-                modelAndView.addObject("newExt", extensionInfoService.getNew());
-                break;
-
-            case "new":
-
-                modelAndView.addObject("newExt", list);
-                modelAndView.addObject("featured", extensionInfoService.getFeatured());
-                modelAndView.addObject("popular", extensionInfoService.getPopular());
-                break;
-
-            case "featured":
-
-                modelAndView.addObject("featured", list);
-                modelAndView.addObject("popular", extensionInfoService.getPopular());
-                modelAndView.addObject("newExt", extensionInfoService.getNew());
-                break;
-
-        }*/
 
         modelAndView.addObject("allApproved", list);
 

@@ -24,6 +24,16 @@
             dev_user
         </property>
 
+        <property name="show_sql">
+            true
+        </property>
+        <property name="format_sql">
+            true
+        </property>
+        <property name="use_sql_comments">
+            true
+        </property>
+
 
         <mapping class="com.telerik.extensionrepository.model.Extension" />
         <mapping class="com.telerik.extensionrepository.model.User" />

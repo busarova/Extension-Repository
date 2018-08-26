@@ -47,5 +47,6 @@ public class AppConfiguration {
         multipartResolver.setMaxInMemorySize(1048576);  // 1MB
         return multipartResolver;
     }
+
 }
 

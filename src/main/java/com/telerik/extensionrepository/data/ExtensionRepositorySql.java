@@ -37,6 +37,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         return theList;
     }
+
     @Override
     public List<Extension> getAllByParam(String param) {
         List<Extension> theList = new ArrayList<>();
