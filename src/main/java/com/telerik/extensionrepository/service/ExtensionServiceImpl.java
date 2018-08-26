@@ -59,13 +59,15 @@ public class ExtensionServiceImpl implements ExtensionService {
         extensionRepository.updateExtension(extension);
     }
 
-
     @Override
-    public void changeExtensionFileId(Extension extension, int id) {
+    public void changeExtensionName(Extension extension, String newName) {
 
-        extensionRepository.changeFileId(extension, id);
+        extension.setName(newName);
+
+        extensionRepository.updateExtension(extension);
 
     }
+
 
     @Override
     public void registerDownload(Extension extension) {

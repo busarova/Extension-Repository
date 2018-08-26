@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -27,12 +28,22 @@
 
 
 <hr>
-<p th:text="'Name:  ' + ${extension.getName()}" ></p>
+<span th:text="'Name:  ' + ${extension.getName()}" ></span>  <a class="editExtension" th:href="'/user/edit-extension/name/'+${extension.getId()}">
+<span th:if="${name} == 0"> <strong>Edit</strong></span></a>
+<span th:unless="${name} == 0"><form th:action="'/user/edit-extension/name/change/' + ${extension.getId()}" method="post">
+                               <input type="text" name="name" placeholder="New Name">
+                                   <input type="submit" value="Submit" />
+                               </form></span>
+
+<br>
+
+
+
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
-<p th:text="'Description:  ' + ${extension.getDescription()}"></p>
+<span th:text="'Description:  ' + ${extension.getDescription()}"></span>   <a class="editExtension" href="'/user/edit-extension/description/'+${extension.getId()}"><strong>Edit</strong></a><br>
 <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
-<p th:text="'Tags:  ' + ${extension.getTags()}"></p>
+<span th:text="'Tags:  ' + ${extension.getTags()}"></span>                     <a class="editExtension" href="'/user/edit-extension/tags/'+${extension.getId()}"><strong>Edit</strong></a><br>
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
 

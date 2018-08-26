@@ -9,7 +9,7 @@ public interface ExtensionService {
 
     void updateExtension(Extension extension);
 
-    void changeExtensionFileId(Extension extension, int id);
+    void changeExtensionName(Extension extension, String newName);
 
     void registerDownload(Extension extension);
 

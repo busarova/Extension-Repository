@@ -9,7 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -49,6 +51,46 @@ public class ExtensionController {
         ModelAndView modelAndView = new ModelAndView("edit-extension");
 
         modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
+
+        modelAndView.addObject("name", 0);
+        modelAndView.addObject("description", 0);
+        modelAndView.addObject("tags", 0);
+
+        return modelAndView;
+    }
+
+    // Method reloads page with name parameter "on", so that html will show change name text form
+
+    @RequestMapping("/user/edit-extension/name/{id}")
+    public ModelAndView editExtensionName(@PathVariable("id") String id){
+
+        ModelAndView modelAndView = new ModelAndView("edit-extension");
+
+        modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
+
+        modelAndView.addObject("name", 1);
+        modelAndView.addObject("description", 0);
+        modelAndView.addObject("tags", 0);
+
+        return modelAndView;
+    }
+
+    //Method changes the name of the Extension
+
+    @PostMapping("/user/edit-extension/name/change/{id}")
+    public ModelAndView editExtensionNameChange(@RequestParam String name, @PathVariable("id") String id){
+
+        ModelAndView modelAndView = new ModelAndView("edit-extension");
+
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
+
+        extensionService.changeExtensionName(extension, name);
+
+        modelAndView.addObject(extension);
+
+        modelAndView.addObject("name", 0);
+        modelAndView.addObject("description", 0);
+        modelAndView.addObject("tags", 0);
 
         return modelAndView;
     }
