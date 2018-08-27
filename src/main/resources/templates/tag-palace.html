@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+
+
+<div th:replace="fragments :: header">
+</div>
+
+<h1 class="alignTextCenter">Tag Palace</h1>
+<a th:href="@{/}">home</a>
+<div class="alignTextCenter">
+
+<p>Search for Tags:</p>
+<form th:action="@{/search}" method="post">
+<input type="text" name="params" placeholder="Search..">
+    <input type="submit" value="Search" />
+</form>
+</div>
+
+<p class="tag-name"></p>
+<p class="tag-owner"></p>
+<hr>
+
+<div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
+
+            <div class="circular">
+                <a th:href="'/tag/search/'+${Tags.getId()}">
+                                     <p th:text="'#'+${Tags.getName()}"></p>
+
+                                     </a>
+
+            </div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="hello.js"></script>
+</body>
+</html>

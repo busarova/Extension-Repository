@@ -18,6 +18,7 @@
 
 </div>
 <p><a th:href="@{/user/create-extension}">Create extension</a></p>
+<p><a th:href="@{/tags}">Tag Palace</a></p>
 
 <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
     <input type="submit" value="Logout" />

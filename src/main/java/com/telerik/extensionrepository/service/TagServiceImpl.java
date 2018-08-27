@@ -6,6 +6,8 @@ import com.telerik.extensionrepository.model.Tags;
 import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TagServiceImpl implements TagService {
 
@@ -52,5 +54,10 @@ public class TagServiceImpl implements TagService {
             }
 
         }
+    }
+
+    @Override
+    public List<Tags> getAllTags() {
+        return tagRepository.getAll();
     }
 }
