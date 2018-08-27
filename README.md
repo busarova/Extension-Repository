@@ -6,7 +6,7 @@ Installation instructions at the bottom.
 
 *Used Technologies: Java, Spring MVC, Hibernate, MariaDB, Thymeleaf, Bootstrap, CSS, HTML*
 
-## Funcionalities:
+## Functionalities:
 
 - Public/User/Admin part
 - Register/Login 
@@ -33,7 +33,7 @@ Installation instructions at the bottom.
 
 ## Admin:
 
-- All user funcionalities
+- All user functionalities
 - Approve extensions (once approved extensions are published)
 - Edit all extensions (edit, delete, update)
 - See all users
