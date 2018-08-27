@@ -76,6 +76,7 @@ public class ExtensionController {
     }
 
     //Method changes the name of the Extension
+    //Removes the approval so that admin can review the name
 
     @PostMapping("/user/edit-extension/name/change/{id}")
     public ModelAndView editExtensionNameChange(@RequestParam String name, @PathVariable("id") String id){
@@ -85,6 +86,8 @@ public class ExtensionController {
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
         extensionService.changeExtensionName(extension, name);
+
+        adminService.removeApproval(extension.getId());
 
         modelAndView.addObject(extension);
 

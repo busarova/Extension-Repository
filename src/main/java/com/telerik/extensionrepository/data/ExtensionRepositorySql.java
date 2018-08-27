@@ -64,7 +64,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension where approved = 0").list();
+            theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
 
             session.getTransaction().commit();
         }catch (Exception e){

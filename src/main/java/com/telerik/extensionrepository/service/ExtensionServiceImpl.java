@@ -6,6 +6,7 @@ import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.service.base.ExtensionService;
+import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -15,10 +16,12 @@ import org.springframework.stereotype.Service;
 public class ExtensionServiceImpl implements ExtensionService {
 
     private ExtensionRepository extensionRepository;
+    private TagService tagService;
 
     @Autowired
-    public ExtensionServiceImpl(ExtensionRepository extensionRepository){
+    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService){
         this.extensionRepository = extensionRepository;
+        this.tagService = tagService;
     }
 
     // Creates extension from the dto information given at input
@@ -57,8 +60,9 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setGitExtensionInfo(gitExtensionInfo);
         newExtension.setUploadFile(uploadFile);
 
-
         extensionRepository.createExtension(newExtension);
+
+        tagService.loadNewTags(newExtension);
 
     }
 
