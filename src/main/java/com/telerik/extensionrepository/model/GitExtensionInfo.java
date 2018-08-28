@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "git_extension_info")
@@ -11,6 +12,9 @@ public class GitExtensionInfo {
     @Column(name = "git_id")
     private int id;
 
+    @Column(name = "git_repo_link")
+    private String gitRepoLink;
+
     @Column(name = "open_issues")
     private int openIssues;
 
@@ -18,13 +22,11 @@ public class GitExtensionInfo {
     private int pullRequests;
 
     @Column(name = "last_commit_date")
-    private String lastCommitDate;
-
-    @Column(name = "git_repo_link")
-    private String gitRepoLink;
+    private Date lastCommitDate;
 
     @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Extension extension;
+
 
 
     public int getId() {
@@ -34,6 +36,7 @@ public class GitExtensionInfo {
     public void setId(int id) {
         this.id = id;
     }
+
 
     public int getOpenIssues() {
         return openIssues;
@@ -51,11 +54,11 @@ public class GitExtensionInfo {
         this.pullRequests = pullRequests;
     }
 
-    public String getLastCommitDate() {
+    public Date getLastCommitDate() {
         return lastCommitDate;
     }
 
-    public void setLastCommitDate(String lastCommitDate) {
+    public void setLastCommitDate(Date lastCommitDate) {
         this.lastCommitDate = lastCommitDate;
     }
 

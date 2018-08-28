@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.configuration;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.kohsuke.github.GitHub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.io.IOException;
 
 @Configuration
 @PropertySource("classpath:application.properties")
@@ -56,6 +58,36 @@ public class AppConfiguration {
         multipartResolver.setMaxUploadSize(20971520);   // 20MB
         multipartResolver.setMaxInMemorySize(1048576);  // 1MB
         return multipartResolver;
+    }
+
+
+    private String user;
+    private String token;
+
+    @Bean
+    public GitHub createGitHub() {
+        try {
+            return GitHub.connect(this.user, this.token);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }
