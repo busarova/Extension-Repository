@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public class TagServiceImpl implements TagService {
 
+    private TagManipulations tagManipulations = new TagManipulations();
     private TagRepository tagRepository;
     private ExtensionInfoService extensionInfoService;
 
@@ -63,6 +64,14 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tags> getAllTags() {
         return tagRepository.getAll();
+    }
+
+    // Gets all tags by that name but first checks if the input string has # in the beginning of every word
+    //every tag is split by " " and checks all of them for #
+
+    @Override
+    public List<Tags> getAllTagsByName(String name) {
+        return tagRepository.getAllByName(tagManipulations.checkForHashTag(name));
     }
 
     //Returns List of Extensions that are marked with the current tag

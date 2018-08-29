@@ -2,9 +2,13 @@ package com.telerik.extensionrepository.service;
 
 public class TagManipulations {
 
-    public String checkForHashTag(String tag){
+    //Splits the input string tags by " "
+    //Checks for every String (tag) of them if first character is #
+    //If not puts # at char(0)
 
-        String[] parsedTags = tag.split(" ");
+    public String checkForHashTag(String tags){
+
+        String[] parsedTags = tags.split(" ");
 
         StringBuilder builder = new StringBuilder();
 

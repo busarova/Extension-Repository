@@ -16,4 +16,6 @@ public interface TagRepository {
 
     List<Tags> getAll();
 
+    List<Tags> getAllByName(String name);
+
 }

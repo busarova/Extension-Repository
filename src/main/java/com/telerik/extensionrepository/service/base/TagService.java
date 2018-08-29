@@ -11,7 +11,10 @@ public interface TagService {
 
     List<Tags> getAllTags();
 
+    List<Tags> getAllTagsByName(String name);
+
     List<Extension> getExtensionsByTag(int tagId);
 
     Tags getTagById(int tagId);
+
 }

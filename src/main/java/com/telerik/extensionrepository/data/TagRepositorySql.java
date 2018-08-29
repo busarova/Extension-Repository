@@ -112,4 +112,24 @@ public class TagRepositorySql implements TagRepository {
 
         return all;
     }
+
+    @Override
+    public List<Tags> getAllByName(String param) {
+        List<Tags> theList = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            theList = session.createQuery("from Tags t where t.name like :param")
+                    .setParameter("param", param)
+                    .list();
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
 }

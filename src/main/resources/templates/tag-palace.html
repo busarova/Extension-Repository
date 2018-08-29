@@ -16,10 +16,11 @@
 <div class="alignTextCenter">
 
 <p>Search for Tags:</p>
-<form th:action="@{/search}" method="post">
-<input type="text" name="params" placeholder="Search..">
+<form th:action="@{/tags/search}" method="post">
+<input type="text" name="name" placeholder="Search..">
     <input type="submit" value="Search" />
 </form>
+<p><a th:href="@{/tags}">show all</a></p>
 </div>
 
 <p class="tag-name"></p>
@@ -29,7 +30,7 @@
 <div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
 
             <div class="circular">
-                <a th:href="'/tags/search/'+${Tags.getId()}">
+                <a th:href="'/tags/searchById/'+${Tags.getId()}">
                                      <p th:text="${Tags.getName()}"></p>
 
                                      </a>
