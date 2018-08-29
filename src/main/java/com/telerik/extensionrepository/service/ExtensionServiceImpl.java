@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExtensionServiceImpl implements ExtensionService {
 
+    private TagManipulations tagManipulations = new TagManipulations();
     private ExtensionRepository extensionRepository;
     private TagService tagService;
 
@@ -53,7 +54,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setName(extensionForm.getName());
         newExtension.setDescription(extensionForm.getDescription());
         newExtension.setOwner(user.getUsername());
-        newExtension.setTags(extensionForm.getTags());
+        newExtension.setTags(tagManipulations.checkForHashTag(extensionForm.getTags()));
         newExtension.setVersion(extensionForm.getVersion());
         newExtension.setApproved(1);
         newExtension.setFeatured(1);

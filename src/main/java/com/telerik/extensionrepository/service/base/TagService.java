@@ -10,4 +10,8 @@ public interface TagService {
     void loadNewTags(Extension extension);
 
     List<Tags> getAllTags();
+
+    List<Extension> getExtensionsByTag(int tagId);
+
+    Tags getTagById(int tagId);
 }

@@ -26,15 +26,22 @@
 <p class="tag-owner"></p>
 <hr>
 
-<div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
+<div class="alignTextCenter">
+
+<h2 th:text="'Extensions marked by ' + ${Tag.getName()}">Extensions marked by</h2>
+
+<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">
 
             <div class="circular">
-                <a th:href="'/tags/search/'+${Tags.getId()}">
-                                     <p th:text="${Tags.getName()}"></p>
-
+                <a th:href="'/extension-details/'+${Extension.getId()}">
+                                     <img src="/pics/icons/ext_default.jpg" width="25%">
+                                     <h4 th:text="${Extension.getName()}"></h4>
                                      </a>
 
             </div>
+
+</div>
+
 
 </div>
 
