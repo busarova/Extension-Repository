@@ -29,4 +29,12 @@ public class TagForm {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getNameNoHashTag(){
+        if(getName().charAt(0) == '#'){
+            return getName().substring(1, getName().length());
+        }
+
+        return getName();
+    }
 }

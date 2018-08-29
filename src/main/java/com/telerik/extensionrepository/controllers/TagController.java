@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.model.Tags;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +17,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class TagController {
 
     private TagService tagService;
+    private ExtensionInfoService extensionInfoService;
 
     @Autowired
-    public TagController(TagService tagService){
+    public TagController(TagService tagService, ExtensionInfoService extensionInfoService){
+
         this.tagService = tagService;
+        this.extensionInfoService = extensionInfoService;
+
     }
 
     @GetMapping("/tags")
@@ -48,12 +54,24 @@ public class TagController {
 
         ModelAndView modelAndView = new ModelAndView("tag-palace-show");
 
-        modelAndView.addObject("extensions", tagService.getAllTagsByName(name));
-        modelAndView.addObject("Tag", tagService.getTagByName(name));
+        System.out.println(name);
+
+        Tags tag = tagService.getTagByName(name);
+
+        if(tag == null){
+            modelAndView.addObject("extensions", null);
+            modelAndView.addObject("Tag", new Tags(name));
+
+            return modelAndView;
+        }
+
+        modelAndView.addObject("extensions", tagService.getExtensionsByTag(tag.getId()));
+        modelAndView.addObject("Tag", tag);
 
         return modelAndView;
 
     }
+
 
     @PostMapping("/tags/search")
     public ModelAndView showTagsByName(@RequestParam String name){

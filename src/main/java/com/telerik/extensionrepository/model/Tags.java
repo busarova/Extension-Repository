@@ -21,6 +21,11 @@ public class Tags {
 
     public Tags(){}
 
+    public Tags(String name){
+        this.name = name;
+        this.owners_id_list = owners_id_list;
+    }
+
     public int getId() {
         return id;
     }
@@ -43,5 +48,13 @@ public class Tags {
 
     public void setOwners_id_list(String owners_id_list) {
         this.owners_id_list = owners_id_list;
+    }
+
+    public String getNameNoHashTag(){
+        if(getName().charAt(0) == '#'){
+            return getName().substring(1, getName().length());
+        }
+
+        return getName();
     }
 }

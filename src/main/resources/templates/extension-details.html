@@ -38,7 +38,7 @@
 <p th:text="'Description:  ' + ${extension.getDescription()}"></p>
 <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
 <!-- <p th:text="'Tags:  ' + ${extension.getTags()}"></p> -->
-<p th:each="TagForm : ${tags}" class="inLine"> <a th:text="${TagForm.getName()}" th:href="'/tags/searchByName/'+${TagForm.getName()}"></a> </p>
+<p th:each="TagForm : ${tags}" class="inLine"> <a th:text="${TagForm.getName()}" th:href="'/tags/searchByName/'+${TagForm.getNameNoHashTag()}"></a> </p>
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
 
