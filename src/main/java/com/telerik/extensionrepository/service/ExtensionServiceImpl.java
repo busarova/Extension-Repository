@@ -63,12 +63,20 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setVersion(extensionForm.getVersion());
         newExtension.setApproved(1);
         newExtension.setFeatured(1);
-        newExtension.setGitExtensionInfo(gitExtensionInfo);
+        newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
         newExtension.setUploadFile(uploadFile);
+
+
+
+      //  String repoLink = extensionForm.getGithubLink();
 
         extensionRepository.createExtension(newExtension);
 
-        gitExtensionInfoRepository.updateGitInfo(gitService.getGitDetails(newExtension.getGitExtensionInfo().getGitRepoLink()));
+        /*GitExtensionInfo gitExtensionInfo1 = gitService.getGitDetails(repoLink);
+
+        System.out.println("LAAAAAAAST COMMIT" + gitExtensionInfo1.getLastCommitDate());
+
+        gitExtensionInfoRepository.updateGitInfo(gitExtensionInfo1);*/
 
 
         tagService.loadNewTags(newExtension);

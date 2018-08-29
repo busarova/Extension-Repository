@@ -39,13 +39,16 @@ public class GitServiceImpl implements GitService {
             List<GHCommit> commits = repo.listCommits().asList();
             String lastCommitDate = commits.get(0).getCommitDate().toString();
 
-            System.out.println("--------------------------------asdsdasdas-da-sd-sa");
+            /*System.out.println("--------------------------------asdsdasdas-da-sd-sa");
             System.out.println("PULL: " + pullRequests);
             System.out.println("OPEN ISSUES: " + openIssues);
             System.out.println("number of commits: " + commits.size());
-            System.out.println("last one: " + lastCommitDate);
+            System.out.println("last one: " + lastCommitDate);*/
+            GitExtensionInfo newGit = new GitExtensionInfo(openIssues, pullRequests, lastCommitDate);
 
-            return new GitExtensionInfo(openIssues, pullRequests, lastCommitDate);
+            newGit.setGitRepoLink(gitLink);
+
+            return newGit;
 
         } catch (IOException e) {
             e.printStackTrace();
