@@ -22,12 +22,18 @@ public class GitExtensionInfo {
     private int pullRequests;
 
     @Column(name = "last_commit_date")
-    private Date lastCommitDate;
+    private String lastCommitDate;
 
     @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Extension extension;
 
+    public GitExtensionInfo(){}
 
+    public GitExtensionInfo(int openIssues, int pullRequests, String lastCommitDate) {
+        this.openIssues = openIssues;
+        this.pullRequests = pullRequests;
+        this.lastCommitDate = lastCommitDate;
+    }
 
     public int getId() {
         return id;
@@ -54,11 +60,11 @@ public class GitExtensionInfo {
         this.pullRequests = pullRequests;
     }
 
-    public Date getLastCommitDate() {
+    public String getLastCommitDate() {
         return lastCommitDate;
     }
 
-    public void setLastCommitDate(Date lastCommitDate) {
+    public void setLastCommitDate(String lastCommitDate) {
         this.lastCommitDate = lastCommitDate;
     }
 

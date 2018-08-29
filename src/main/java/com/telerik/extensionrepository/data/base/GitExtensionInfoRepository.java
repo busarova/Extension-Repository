@@ -5,4 +5,6 @@ import com.telerik.extensionrepository.model.GitExtensionInfo;
 public interface GitExtensionInfoRepository {
 
     GitExtensionInfo getGitInfoById(int id);
+
+    void updateGitInfo(GitExtensionInfo gitExtensionInfo);
 }

@@ -30,14 +30,22 @@ public class GitServiceImpl implements GitService {
     public GitExtensionInfo getGitDetails(String gitLink) {
 
         String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
-        String gitUserRepo = link[0] + link[1];
+        String gitUserRepo = link[0] + "/" + link[1];
+
         try {
             GHRepository repo = gitHub.getRepository(gitUserRepo);
             int pullRequests = repo.getPullRequests(GHIssueState.OPEN).size();
             int openIssues = repo.getIssues(GHIssueState.ALL).size();
             List<GHCommit> commits = repo.listCommits().asList();
-            Date lastCommitDate = commits.get(0).getCommitDate();
+            String lastCommitDate = commits.get(0).getCommitDate().toString();
 
+            System.out.println("--------------------------------asdsdasdas-da-sd-sa");
+            System.out.println("PULL: " + pullRequests);
+            System.out.println("OPEN ISSUES: " + openIssues);
+            System.out.println("number of commits: " + commits.size());
+            System.out.println("last one: " + lastCommitDate);
+
+            return new GitExtensionInfo(openIssues, pullRequests, lastCommitDate);
 
         } catch (IOException e) {
             e.printStackTrace();
