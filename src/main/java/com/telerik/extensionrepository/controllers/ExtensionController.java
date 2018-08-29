@@ -4,6 +4,7 @@ import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
+import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -23,12 +24,14 @@ public class ExtensionController {
     private ExtensionInfoService extensionInfoService;
     private AdminService adminService;
     private ExtensionService extensionService;
+    private TagService tagService;
 
     @Autowired
-    public ExtensionController(ExtensionInfoService extensionInfoService, AdminService adminService, ExtensionService extensionService){
+    public ExtensionController(ExtensionInfoService extensionInfoService, AdminService adminService, ExtensionService extensionService, TagService tagService){
         this.extensionInfoService = extensionInfoService;
         this.adminService = adminService;
         this.extensionService = extensionService;
+        this.tagService = tagService;
     }
 
     @RequestMapping("/extension-details/{id}")
@@ -41,6 +44,8 @@ public class ExtensionController {
         System.out.println("currently reviewing: " + extension.getName());
 
         modelAndView.addObject("extension", extension);
+
+        modelAndView.addObject("tags", tagService.extractTagsFromExtension(extension));
 
         return modelAndView;
     }

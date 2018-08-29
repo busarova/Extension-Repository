@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.TagRepository;
+import com.telerik.extensionrepository.dto.TagForm;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.Tags;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
@@ -99,6 +100,23 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tags getTagById(int tagId) {
         return tagRepository.getById(tagId);
+    }
+
+
+    // To finish
+    @Override
+    public Tags getTagByName(String name) {
+
+
+        return tagRepository.getAll().stream()
+                .filter( x -> x.getName().equals(tagManipulations.checkForHashTag(name)))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public List<TagForm> extractTagsFromExtension(Extension extension) {
+        return tagManipulations.extractTagsFromExtension(extension);
     }
 
 

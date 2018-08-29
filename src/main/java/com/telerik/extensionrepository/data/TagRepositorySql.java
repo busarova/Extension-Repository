@@ -86,6 +86,7 @@ public class TagRepositorySql implements TagRepository {
                 System.out.println(e.getMessage());
             }
 
+
             if(list == null || list.size() == 0){
                 return null;
             }else {

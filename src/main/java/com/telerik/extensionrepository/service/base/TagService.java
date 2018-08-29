@@ -1,5 +1,6 @@
 package com.telerik.extensionrepository.service.base;
 
+import com.telerik.extensionrepository.dto.TagForm;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.Tags;
 
@@ -16,5 +17,9 @@ public interface TagService {
     List<Extension> getExtensionsByTag(int tagId);
 
     Tags getTagById(int tagId);
+
+    Tags getTagByName(String name);
+
+    List<TagForm> extractTagsFromExtension(Extension extension);
 
 }

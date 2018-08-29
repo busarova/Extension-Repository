@@ -43,6 +43,18 @@ public class TagController {
 
     }
 
+    @GetMapping("/tags/searchByName/{name}")
+    public ModelAndView showExtensionsByTagName(@PathVariable("name") String name){
+
+        ModelAndView modelAndView = new ModelAndView("tag-palace-show");
+
+        modelAndView.addObject("extensions", tagService.getAllTagsByName(name));
+        modelAndView.addObject("Tag", tagService.getTagByName(name));
+
+        return modelAndView;
+
+    }
+
     @PostMapping("/tags/search")
     public ModelAndView showTagsByName(@RequestParam String name){
 
