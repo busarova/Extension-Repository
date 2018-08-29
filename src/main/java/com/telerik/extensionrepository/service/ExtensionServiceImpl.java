@@ -1,11 +1,13 @@
 package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
+import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.service.base.ExtensionService;
+import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,12 +19,16 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     private TagManipulations tagManipulations = new TagManipulations();
     private ExtensionRepository extensionRepository;
+    private GitExtensionInfoRepository gitExtensionInfoRepository;
     private TagService tagService;
+    private GitService gitService;
 
     @Autowired
-    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService){
+    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService, GitService gitService, GitExtensionInfoRepository gitExtensionInfoRepository){
         this.extensionRepository = extensionRepository;
         this.tagService = tagService;
+        this.gitService = gitService;
+        this.gitExtensionInfoRepository = gitExtensionInfoRepository;
     }
 
     // Creates extension from the dto information given at input
@@ -58,9 +64,10 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setVersion(extensionForm.getVersion());
         newExtension.setApproved(1);
         newExtension.setFeatured(1);
-        newExtension.setGitExtensionInfo(gitExtensionInfo);
+        newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
         newExtension.setUploadFile(uploadFile);
 
+        
         extensionRepository.createExtension(newExtension);
 
         tagService.loadNewTags(newExtension);

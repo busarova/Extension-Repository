@@ -41,4 +41,21 @@ public class GitExtensionInfoRepositorySql implements GitExtensionInfoRepository
 
     }
 
+    @Override
+    public void updateGitInfo(GitExtensionInfo gitExtensionInfo) {
+
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.update(gitExtensionInfo);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 }

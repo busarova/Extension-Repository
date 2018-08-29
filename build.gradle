@@ -48,4 +48,6 @@ dependencies {
     compile group: 'com.googlecode.log4jdbc', name: 'log4jdbc', version: '1.2'
     compile "org.springframework.boot:spring-boot-configuration-processor"
 
+    compile group: 'org.kohsuke', name: 'github-api', version: '1.93'
+
 }
