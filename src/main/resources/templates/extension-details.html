@@ -38,9 +38,14 @@
 <p th:text="'Description:  ' + ${extension.getDescription()}"></p>
 <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
 <!-- <p th:text="'Tags:  ' + ${extension.getTags()}"></p> -->
-<p th:each="TagForm : ${tags}" class="inLine"> <a th:text="${TagForm.getName()}" th:href="'/tags/searchByName/'+${TagForm.getNameNoHashTag()}"></a> </p>
+Tags: <a th:each="TagForm : ${tags}"> <a th:text="${TagForm.getName()}" th:href="'/tags/searchByName/'+${TagForm.getNameNoHashTag()}"></a> </a>
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
+<hr>
+<p><strong>GitHub Info: </strong></p>
+<p th:text="'Open Issues: ' + ${extension.getGitExtensionInfo().getOpenIssues()}"></p>
+<p th:text="'Pull Requests: ' + ${extension.getGitExtensionInfo().getPullRequests()}"></p>
+<p th:text="'Last Commit Date: ' + ${extension.getGitExtensionInfo().getLastCommitDate()}"></p>
 
 
 <p th:text="'Status:  ' + ${extension.isItApproved()}"></p>
