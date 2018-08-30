@@ -36,7 +36,7 @@ public class AdminServiceTests {
 
 
     @Test
-    public void approveExtension_whenApproved_returnExtensionIsApproved() {
+    public void approveExtension_whenApproved_returnExtensionApproved() {
 
         Extension extension = new Extension();
         extension.setId(10);
@@ -106,7 +106,7 @@ public class AdminServiceTests {
 //        return adminRepository.getUserByName(name);
 
     @Test
-    public void getUserByName_whenMatch_returnsUserWithRequestedName(){
+    public void getUserByName_whenMatch_returnsUserWithRequestedName() {
 
 
         User user = new User();
@@ -122,14 +122,41 @@ public class AdminServiceTests {
 
     }
 
+    @Test
+    public void disableUser_whenDisabled_returnsUserDisabled() {
 
-//    public void disableUser(String name) {
-//        adminRepository.disableUser(name);
 
+        User user = new User();
+        user.setName("test username 1");
 
-//    public void enableUser(String name) {
+        when(adminRepository.getUserByName(user.getName())).thenReturn(user);
+
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+
+        User resultUser = service.disableUser("test username 1");
+
+        Assert.assertEquals("Disabled", resultUser.getStatus());
+
+    }
+
+    //    public void enableUser(String name) {
 //        adminRepository.enableUser(name);
+    @Test
+    public void enableUser_whenEnabled_returnsUserEnabled() {
 
+
+        User user = new User();
+        user.setName("test username 1");
+
+        when(adminRepository.getUserByName(user.getName())).thenReturn(user);
+
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+
+        User resultUser = service.enableUser("test username 1");
+
+        Assert.assertEquals("Enabled", resultUser.getStatus());
+
+    }
 
 //    public void featureExtension(int id) {
 //        adminRepository.featureExtension(id);
