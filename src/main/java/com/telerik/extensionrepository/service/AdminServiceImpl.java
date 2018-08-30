@@ -41,8 +41,10 @@ public class AdminServiceImpl implements AdminService {
 
         for (GitExtensionInfo gitInfo:
              allGitInfo) {
-           gitInfo =  gitService.getGitDetails(gitInfo.getGitRepoLink());
+            String gitLink = gitInfo.getGitRepoLink();
+            gitInfo =  gitService.getGitDetails(gitLink);
             gitExtensionInfoRepository.updateGitInfo(gitInfo);
+            System.out.println("GIT INFO: " + gitInfo.getId() + "UPDATED");
         }
 
         adminRepository.updateLastSuccessfulSync(new Date());
