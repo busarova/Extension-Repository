@@ -4,7 +4,7 @@ Final Project Assignment in Telerik Academy by Tick42.
 
 Installation instructions at the bottom.
 
-*Used Technologies: Java, Spring MVC, Hibernate, MariaDB, Thymeleaf, Bootstrap, CSS, HTML*
+*Used Technologies: Java, Spring MVC, Hibernate, MariaDB, Thymeleaf, Bootstrap, Javascript, CSS, HTML*
 
 ## Functionalities:
 
@@ -13,6 +13,9 @@ Installation instructions at the bottom.
 - Search
 - Approve func (extensions must be approved by admin before published)
 - Upload/Download extension file (stored in database)
+- User Page (profile pic, owned extensions etc.)
+- Search by tags
+- Connects with GitHub API and takes data (last commit date, pull requests, open issues)
 
 ## Public:
 
@@ -21,6 +24,7 @@ Installation instructions at the bottom.
 - Inspect Repository Details
 - Search by name
 - Download Extension File
+- Tag palace (showing all tags, search by tags etc.)
 
 ## User:
 
@@ -38,6 +42,8 @@ Installation instructions at the bottom.
 - Edit all extensions (edit, delete, update)
 - See all users
 - Disable/Enable Users (cannot login until enabled)
+- Could refresh synchronisation for all extensions with github
+- Displaying last successful sync
 
 
 ## Installation
