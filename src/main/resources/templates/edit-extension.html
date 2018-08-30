@@ -28,12 +28,11 @@
 
 
 <hr>
-<span th:text="'Name:  ' + ${extension.getName()}" ></span>  <a class="editExtension" th:href="'/user/edit-extension/name/'+${extension.getId()}">
-<span th:if="${name} == 0"> <strong>Edit</strong></span></a>
-<span th:unless="${name} == 0"><form th:action="'/user/edit-extension/name/change/' + ${extension.getId()}" method="post">
+<span th:text="'Name:  ' + ${extension.getName()}" ></span>  <a class="editExtension" id="showEditName" href="#">Edit</a>
+<form id="editNameForm" th:action="'/user/edit-extension/name/change/' + ${extension.getId()}" method="post">
                                <input type="text" name="name" placeholder="New Name">
                                    <input type="submit" value="Submit" />
-                               </form></span>
+                               </form>
 
 <br>
 
@@ -41,9 +40,21 @@
 
 <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
 <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
-<span th:text="'Description:  ' + ${extension.getDescription()}"></span>   <a class="editExtension" href="'/user/edit-extension/description/'+${extension.getId()}"><strong>Edit</strong></a><br>
+
+
+<span th:text="'Description:  ' + ${extension.getDescription()}"></span>   <a class="editExtension" href="#" id="showEditDescription"><strong>Edit</strong></a><br>
+                               <form id="editDescriptionForm" th:action="'/user/edit-extension/descr/change/' + ${extension.getId()}" method="post">
+                                   <textarea type="text" placeholder="Type in new description..." name="content" rows="5" cols="40"></textarea>
+                                   <input type="submit" value="Submit" />
+                               </form>
+
 <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
-<span th:text="'Tags:  ' + ${extension.getTags()}"></span>                     <a class="editExtension" href="'/user/edit-extension/tags/'+${extension.getId()}"><strong>Edit</strong></a><br>
+<span th:text="'Tags:  ' + ${extension.getTags()}"></span>                     <a class="editExtension" href="#" id="showEditTags"><strong>Edit</strong></a><br>
+                                      <form id="editTagsForm" th:action="'/user/edit-extension/tag/change/' + ${extension.getId()}" method="post">
+                                      <input type="text" name="content" placeholder="Type your tags with space...">
+                                      <input type="submit" value="Submit" />
+                                                                     </form>
+
 <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
 <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
 
@@ -52,4 +63,5 @@
 </div>
 
 </body>
+<div th:replace="fragments :: scripts"></div>
 </html>

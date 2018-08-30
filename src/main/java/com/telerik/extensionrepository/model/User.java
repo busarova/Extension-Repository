@@ -26,6 +26,7 @@ public class User {
     @Column(name = "profile_pic")
     private byte[] data;
 
+
     public byte[] getData() {
         return data;
     }

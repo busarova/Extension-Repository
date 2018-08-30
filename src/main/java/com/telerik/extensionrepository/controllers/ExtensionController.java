@@ -96,9 +96,37 @@ public class ExtensionController {
 
         modelAndView.addObject(extension);
 
-        modelAndView.addObject("name", 0);
-        modelAndView.addObject("description", 0);
-        modelAndView.addObject("tags", 0);
+        return modelAndView;
+    }
+
+    @PostMapping("/user/edit-extension/descr/change/{id}")
+    public ModelAndView editExtensionDescription(@RequestParam String content, @PathVariable("id") String id){
+
+        ModelAndView modelAndView = new ModelAndView("edit-extension");
+
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
+
+        extensionService.changeExtensionDescription(extension, content);
+
+        adminService.removeApproval(extension.getId());
+
+        modelAndView.addObject(extension);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/user/edit-extension/tag/change/{id}")
+    public ModelAndView editExtensionTag(@RequestParam String content, @PathVariable("id") String id){
+
+        ModelAndView modelAndView = new ModelAndView("edit-extension");
+
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
+
+        extensionService.addExtensionTag(extension, content);
+
+        adminService.removeApproval(extension.getId());
+
+        modelAndView.addObject(extension);
 
         return modelAndView;
     }

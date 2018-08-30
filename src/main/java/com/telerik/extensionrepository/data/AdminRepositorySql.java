@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,59 +21,15 @@ public class AdminRepositorySql implements AdminRepository {
         this.factory = factory;
     }
 
-//    @Override
-//    public Extension approveExtension(int id) {
-//
-//        Extension extension = null;
-//        try(Session session = factory.openSession()){
-//            session.beginTransaction();
-//
-//            extension = session.get(Extension.class, extension.getId());
-//
-//            extension.setApproved(1);
-//
-//            session.update(extension);
-//            session.save(extension);
-//
-//            session.getTransaction().commit();
-//
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return extension;
-//
-//    }
-
-//    @Override
-//    public void removeApproval(int id) {
-//
-//        try(Session session = factory.openSession()){
-//            session.beginTransaction();
-//
-//            Extension extension = session.get(Extension.class, id);
-//
-//            extension.setApproved(0);
-//
-//            session.update(extension);
-//            session.save(extension);
-//
-//            session.getTransaction().commit();
-//
-//        }catch (Exception e){
-//            System.out.println(e.getMessage());
-//        }
-//    }
-
     @Override
     public List<User> getAllUsers() {
 
-        List<User> newList = null;
+        List<User> users = new ArrayList<>();
 
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            newList = session.createQuery("from User").list();
+            users = session.createQuery("from User").list();
 
             session.getTransaction().commit();
 
@@ -80,19 +37,15 @@ public class AdminRepositorySql implements AdminRepository {
             System.out.println(e.getMessage());
         }
 
-        return newList;
+        return users;
 
     }
 
     @Override
-    public void disableUser(String name) {
+    public User updateUser(User user) {
 
         try(Session session = factory.openSession()){
             session.beginTransaction();
-
-            User user = session.get(User.class, name);
-
-            user.setEnabled(0);
 
             session.update(user);
 
@@ -102,27 +55,28 @@ public class AdminRepositorySql implements AdminRepository {
             System.out.println(e.getMessage());
         }
 
+        return user;
     }
 
-    @Override
-    public void enableUser(String name) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            User user = session.get(User.class, name);
-
-            user.setEnabled(1);
-
-            session.update(user);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-    }
+//    @Override
+//    public void enableUser(String name) {
+//
+//        try(Session session = factory.openSession()){
+//            session.beginTransaction();
+//
+//            User user = session.get(User.class, name);
+//
+//            user.setEnabled(1);
+//
+//            session.update(user);
+//
+//            session.getTransaction().commit();
+//
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//
+//    }
 
     @Override
     public void featureExtension(int id) {

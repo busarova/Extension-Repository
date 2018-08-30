@@ -13,5 +13,9 @@ public interface ExtensionService {
 
     void registerDownload(Extension extension);
 
+    void changeExtensionDescription(Extension extension, String newDescription);
+
+    void addExtensionTag(Extension extension, String newTags);
+
 
 }

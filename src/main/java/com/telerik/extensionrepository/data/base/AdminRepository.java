@@ -16,9 +16,9 @@ public interface AdminRepository {
 
     List<User> getAllUsers();
 
-    void disableUser(String name);
-
-    void enableUser(String name);
+    User updateUser(User user);
+//
+//    void enableUser(String name);
 
     void featureExtension(int id);
 

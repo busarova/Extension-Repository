@@ -20,9 +20,9 @@ public interface AdminService {
 
     User getUser(String name);
 
-    void disableUser(String name);
+    User disableUser(String name);
 
-    void enableUser(String name);
+    User enableUser(String name);
 
     void featureExtension(int id);
 

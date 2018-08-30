@@ -72,7 +72,8 @@ public class AdminServiceImpl implements AdminService {
         Extension extension = extensionRepository.getExtById(id);
         extension.setApproved(0);
         extensionRepository.updateExtension(extension);
-        return extension;    }
+        return extension;
+    }
 
     @Override
     public List<User> getAllUsers() {
@@ -85,13 +86,19 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void disableUser(String name) {
-        adminRepository.disableUser(name);
+    public User disableUser(String name) {
+        User user = adminRepository.getUserByName(name);
+        user.setEnabled(0);
+        adminRepository.updateUser(user);
+        return user;
     }
 
     @Override
-    public void enableUser(String name) {
-        adminRepository.enableUser(name);
+    public User enableUser(String name) {
+        User user = adminRepository.getUserByName(name);
+        user.setEnabled(1);
+        adminRepository.updateUser(user);
+        return user;
     }
 
     @Override
