@@ -45,6 +45,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     @Override
     public List<Extension> getNew() {
+
         return extensionRepository.getNewExtensions();
     }
 
@@ -112,7 +113,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
             case "uploadDate":
 
-                list.sort(Comparator.comparing(Extension::getUploadDate));
+                list.sort(Comparator.comparing(Extension::getId).reversed());
                 return list;
 
             case "lastCommitDate":

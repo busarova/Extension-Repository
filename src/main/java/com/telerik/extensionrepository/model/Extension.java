@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "extension")
@@ -41,14 +42,14 @@ public class Extension {
     private UploadFile uploadFile;
 
     @Column(name = "upload_date")
-    private String uploadDate;
+    private Date uploadDate;
 
     @Column(name = "featured")
     private int featured;
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, String uploadDate, int featured) {
+    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, Date uploadDate, int featured) {
         this.name = name;
         this.description = description;
         this.version = version;
@@ -131,11 +132,11 @@ public class Extension {
         this.tags = tags;
     }
 
-    public String getUploadDate() {
+    public Date getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(Date uploadDate) {
         this.uploadDate = uploadDate;
     }
 

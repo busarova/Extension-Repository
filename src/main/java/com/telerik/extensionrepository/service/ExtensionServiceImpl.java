@@ -23,7 +23,7 @@ public class ExtensionServiceImpl implements ExtensionService {
     private GitService gitService;
 
     @Autowired
-    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService, GitService gitService, GitExtensionInfoRepository gitExtensionInfoRepository){
+    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService, GitService gitService){
         this.extensionRepository = extensionRepository;
         this.tagService = tagService;
         this.gitService = gitService;

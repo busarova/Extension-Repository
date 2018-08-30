@@ -78,8 +78,61 @@ public class ExtensionInfoServiceTests {
     }
 //
 //    List<Extension> getFeatured();
+@Test
+public void getFeaturedExtensions_whenMatch_returnListOfFeaturedExtensions() {
+
+    List<Extension> extensions = new ArrayList<>();
+
+    for (int i = 1; i < 5; i++) {
+
+        Extension extension = new Extension();
+        extension.setFeatured(1);
+        extensions.add(extension);
+    }
+
+    when(extensionRepository.getFeaturedExtensions())
+            .thenReturn(extensions);
+
+    ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+    List<Extension> resultExtensions = service.getFeatured();
+
+    Assert.assertEquals(resultExtensions.size(), 4);
+
+    Assert.assertEquals("Featured", resultExtensions.get(0).isItFeatured());
+    Assert.assertEquals("Featured", resultExtensions.get(1).isItFeatured());
+    Assert.assertEquals("Featured", resultExtensions.get(2).isItFeatured());
+    Assert.assertEquals("Featured", resultExtensions.get(3).isItFeatured());
+}
 //
 //    List<Extension> getPopular();
+@Test
+public void getPopularExtensions_whenMatch_returnListOfPopularExtensions() {
+
+    List<Extension> extensions = new ArrayList<>();
+
+    for (int i = 1; i < 5; i++) {
+
+        Extension extension = new Extension();
+        extension.setName("test extension " + i);
+        extensions.add(extension);
+    }
+
+    when(extensionRepository.getPopularExtensions())
+            .thenReturn(extensions);
+
+    ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+    List<Extension> resultExtensions = service.getPopular();
+
+    Assert.assertEquals(resultExtensions.size(), 4);
+
+    Assert.assertEquals("test extension 1", resultExtensions.get(0).getName());
+    Assert.assertEquals("test extension 2", resultExtensions.get(1).getName());
+    Assert.assertEquals("test extension 3", resultExtensions.get(2).getName());
+    Assert.assertEquals("test extension 4", resultExtensions.get(3).getName());
+}
+
 //
 //    List<Extension> getNew();
 //
