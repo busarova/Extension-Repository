@@ -58,16 +58,21 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void approveExt(int id) {
+    public Extension approveExt(int id) {
 
-        adminRepository.approveExtension(id);
+        Extension extension = extensionRepository.getExtById(id);
+        extension.setApproved(1);
+        extensionRepository.updateExtension(extension);
+        return extension;
 
     }
 
     @Override
-    public void removeApproval(int id) {
-        adminRepository.removeApproval(id);
-    }
+    public Extension removeApproval(int id) {
+        Extension extension = extensionRepository.getExtById(id);
+        extension.setApproved(0);
+        extensionRepository.updateExtension(extension);
+        return extension;    }
 
     @Override
     public List<User> getAllUsers() {

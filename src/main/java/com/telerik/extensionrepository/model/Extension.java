@@ -1,10 +1,6 @@
 package com.telerik.extensionrepository.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "extension")
@@ -134,16 +130,6 @@ public class Extension {
     public void setTags(String tags) {
         this.tags = tags;
     }
-
-
-    /*public GitExtensionInfo getGitExtensionInfo() {
-        return gitExtensionInfo;
-    }
-
-    public void setGitExtensionInfo(GitExtensionInfo gitExtensionInfo) {
-        this.gitExtensionInfo = gitExtensionInfo;
-    }*/
-
 
     public String getUploadDate() {
         return uploadDate;

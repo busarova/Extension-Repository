@@ -1,6 +1,5 @@
 package com.telerik.extensionrepository.service;
 
-import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.service.base.GitService;
 import org.kohsuke.github.GHCommit;
@@ -17,12 +16,10 @@ import java.util.List;
 @Service
 public class GitServiceImpl implements GitService {
 
-    private GitExtensionInfoRepository gitRepository;
     private GitHub gitHub;
 
     @Autowired
-    public GitServiceImpl(GitExtensionInfoRepository gitRepository, GitHub gitHub) {
-        this.gitRepository = gitRepository;
+    public GitServiceImpl(GitHub gitHub) {
         this.gitHub = gitHub;
     }
 
@@ -53,6 +50,6 @@ public class GitServiceImpl implements GitService {
             e.printStackTrace();
         }
 
-        return new GitExtensionInfo();
+        return null;
     }
 }

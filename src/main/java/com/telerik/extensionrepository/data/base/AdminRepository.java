@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface AdminRepository {
 
-    void approveExtension(int id);
+//    Extension approveExtension(int id);
 
-    void removeApproval(int id);
+//    void removeApproval(int id);
 
     List<User> getAllUsers();
 

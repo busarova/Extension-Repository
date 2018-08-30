@@ -12,9 +12,9 @@ public interface AdminService {
 
     List<Extension> getUnnaprovedExt();
 
-    void approveExt(int id);
+    Extension approveExt(int id);
 
-    void removeApproval(int id);
+    Extension removeApproval(int id);
 
     List<User> getAllUsers();
 

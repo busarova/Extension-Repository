@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,49 +20,49 @@ public class AdminRepositorySql implements AdminRepository {
         this.factory = factory;
     }
 
-    @Override
-    public void approveExtension(int id) {
+//    @Override
+//    public Extension approveExtension(int id) {
+//
+//        Extension extension = null;
+//        try(Session session = factory.openSession()){
+//            session.beginTransaction();
+//
+//            extension = session.get(Extension.class, extension.getId());
+//
+//            extension.setApproved(1);
+//
+//            session.update(extension);
+//            session.save(extension);
+//
+//            session.getTransaction().commit();
+//
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return extension;
+//
+//    }
 
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            Extension extension = session.get(Extension.class, id);
-
-            extension.setApproved(1);
-
-            session.update(extension);
-            session.save(extension);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-
-
-    }
-
-    @Override
-    public void removeApproval(int id) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            Extension extension = session.get(Extension.class, id);
-
-            extension.setApproved(0);
-
-            session.update(extension);
-            session.save(extension);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
+//    @Override
+//    public void removeApproval(int id) {
+//
+//        try(Session session = factory.openSession()){
+//            session.beginTransaction();
+//
+//            Extension extension = session.get(Extension.class, id);
+//
+//            extension.setApproved(0);
+//
+//            session.update(extension);
+//            session.save(extension);
+//
+//            session.getTransaction().commit();
+//
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//    }
 
     @Override
     public List<User> getAllUsers() {
