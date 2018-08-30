@@ -27,8 +27,8 @@ public class AdminServiceTests {
     private ExtensionRepository extensionRepository = mock(ExtensionRepository.class);
     @Mock
     private GitExtensionInfoRepository gitExtensionInfoRepository = mock(GitExtensionInfoRepository.class);
-    @Mock
-    private GitService gitService = mock(GitService.class);
+
+    private GitService gitService;
 
     // TODO
     // public int refreshAllGitHubInfo

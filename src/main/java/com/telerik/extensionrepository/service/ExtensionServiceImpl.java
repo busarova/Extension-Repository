@@ -23,7 +23,7 @@ public class ExtensionServiceImpl implements ExtensionService {
     private GitService gitService;
 
     @Autowired
-    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService, GitService gitService){
+    public ExtensionServiceImpl(ExtensionRepository extensionRepository, TagService tagService, GitService gitService) {
         this.extensionRepository = extensionRepository;
         this.tagService = tagService;
         this.gitService = gitService;
@@ -48,7 +48,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         //If there is a file will set it properties
         //Otherwise will leave it null so that thymeleaf will show "No file" in page
 
-        if(extensionForm.getCommonsMultipartFile() != null &&extensionForm.getCommonsMultipartFile().getSize() > 0) {
+        if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
 
             uploadFile.setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
             uploadFile.setData(extensionForm.getCommonsMultipartFile().getBytes());
@@ -65,7 +65,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
         newExtension.setUploadFile(uploadFile);
 
-        
+
         extensionRepository.createExtension(newExtension);
 
         tagService.loadNewTags(newExtension);
