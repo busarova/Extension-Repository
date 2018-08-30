@@ -95,5 +95,25 @@ public class ExtensionServiceImpl implements ExtensionService {
         extensionRepository.registerDownload(extension);
     }
 
+    @Override
+    public void changeExtensionDescription(Extension extension, String newDescription) {
+
+        extension.setDescription(newDescription);
+
+        extensionRepository.updateExtension(extension);
+    }
+
+    @Override
+    public void addExtensionTag(Extension extension, String newTags) {
+
+        newTags = tagManipulations.checkForHashTag(newTags);
+
+        extension.setTags(extension.getTags() + " " + newTags);
+
+        extensionRepository.updateExtension(extension);
+
+        tagService.loadNewTags(extension);
+    }
+
 
 }

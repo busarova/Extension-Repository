@@ -26,6 +26,10 @@ public class GitServiceImpl implements GitService {
         this.gitHub = gitHub;
     }
 
+    //If the link is different than null or empty string
+    //Then connect with Git Api and get the data then return the GitExtensionInfo object full
+    //Otherwise return empty
+
     @Override
     public GitExtensionInfo getGitDetails(String gitLink) {
 

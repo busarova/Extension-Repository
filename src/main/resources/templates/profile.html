@@ -11,7 +11,7 @@
 
 <h1>USER PAGE</h1>
 
-<a th:if="${image == null}" id="profilePic"> <img src="/pics/icons/user_default.png" height="120"> </a>
+<a th:if="${image == null}" class="profilePic"> <img src="/pics/icons/user_default.png" height="120"> </a>
 <a th:unless="${image == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+image}" alt="" height="120"></a>
 
 <div class="alignTextCenter">
@@ -32,7 +32,7 @@ Name: <span sec:authentication="name" />
 <br>
 
 <p><a th:href="@{/user/create-extension}">Create extension</a></p>
-<p><a href="#" id="profilePic">Change pic</a></p>
+<p><a href="#" class="profilePic">Change pic</a></p>
 
 <br>
 <h2>Current extensions:</h2>
