@@ -24,11 +24,11 @@ public interface AdminService {
 
     User enableUser(String name);
 
-    void featureExtension(int id);
+    Extension featureExtension(int id);
 
-    void unFeatureExtension(int id);
+    Extension unFeatureExtension(int id);
 
-    void deleteExtension(int id);
+    Extension deleteExtension(int id);
 
     Admin getAdminInfo();
 

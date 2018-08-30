@@ -17,7 +17,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     private SessionFactory factory;
 
     @Autowired
-    public ExtensionRepositorySql(SessionFactory factory){
+    public ExtensionRepositorySql(SessionFactory factory) {
         this.factory = factory;
     }
 
@@ -25,13 +25,13 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getAllExtensions() {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension").list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -42,7 +42,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getAllByParam(String param) {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where e.name like :param")
@@ -50,7 +50,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
                     .list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -61,13 +61,13 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getAllApproved() {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -75,33 +75,34 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
-    public void updateExtension(Extension extension) {
+    public Extension updateExtension(Extension extension) {
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             session.update(extension);
 
             session.getTransaction().commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
+        return extension;
     }
 
 
     @Override
     public void createExtension(Extension extension) {
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             session.save(extension);
 
             session.getTransaction().commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -112,13 +113,13 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where featured = 1 and approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -130,13 +131,13 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getPopularExtensions() {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where approved = 1 order by e.numberOfDownloads").list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -147,13 +148,13 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getNewExtensions() {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -164,7 +165,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public List<Extension> getByUserName(String userName) {
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where owner = :username")
@@ -172,7 +173,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
                     .list();
 
             session.getTransaction().commit();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -184,7 +185,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         List<Extension> theList = new ArrayList<>();
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             theList = session.createQuery("from Extension e where name = :name")
@@ -193,7 +194,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -205,14 +206,14 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         Extension extension = null;
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             extension = session.get(Extension.class, id);
 
             session.getTransaction().commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -223,7 +224,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     @Override
     public void registerDownload(Extension extension) {
 
-        try(Session session = factory.openSession()){
+        try (Session session = factory.openSession()) {
             session.beginTransaction();
 
             Extension selected = session.get(Extension.class, extension.getId());
@@ -237,11 +238,27 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
 
+    @Override
+    public Extension deleteExtension(Extension extension) {
 
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            session.delete(extension);
+
+            System.out.println(extension.getName() + " deleted!");
+
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return extension;
+    }
 }

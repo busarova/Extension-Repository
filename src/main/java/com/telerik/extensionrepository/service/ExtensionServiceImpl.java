@@ -19,7 +19,6 @@ public class ExtensionServiceImpl implements ExtensionService {
 
     private TagManipulations tagManipulations = new TagManipulations();
     private ExtensionRepository extensionRepository;
-    private GitExtensionInfoRepository gitExtensionInfoRepository;
     private TagService tagService;
     private GitService gitService;
 
@@ -28,7 +27,6 @@ public class ExtensionServiceImpl implements ExtensionService {
         this.extensionRepository = extensionRepository;
         this.tagService = tagService;
         this.gitService = gitService;
-        this.gitExtensionInfoRepository = gitExtensionInfoRepository;
     }
 
     // Creates extension from the dto information given at input

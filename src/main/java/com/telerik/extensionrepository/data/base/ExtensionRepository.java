@@ -13,7 +13,7 @@ public interface ExtensionRepository {
 
     List<Extension> getAllApproved();
 
-    void updateExtension(Extension extension);
+    Extension updateExtension(Extension extension);
 
     void createExtension(Extension extension);
 
@@ -30,4 +30,6 @@ public interface ExtensionRepository {
     Extension getExtById(int id);
 
     void registerDownload(Extension extension);
+
+    Extension deleteExtension(Extension extension);
 }

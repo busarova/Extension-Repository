@@ -25,7 +25,7 @@ public class AdminServiceImpl implements AdminService {
     private GitExtensionInfoRepository gitExtensionInfoRepository;
 
     @Autowired
-    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository, GitService gitService){
+    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository, GitService gitService) {
         this.extensionRepository = extensionRepository;
         this.adminRepository = adminRepository;
         this.gitExtensionInfoRepository = gitExtensionInfoRepository;
@@ -35,14 +35,14 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int refreshAllGitHubInfo() {
 
-        List<GitExtensionInfo> allGitInfo =  gitExtensionInfoRepository.getAllGitInfo();
+        List<GitExtensionInfo> allGitInfo = gitExtensionInfoRepository.getAllGitInfo();
 
         int errors = 0;
 
-        for (GitExtensionInfo gitInfo:
-             allGitInfo) {
+        for (GitExtensionInfo gitInfo :
+                allGitInfo) {
             String gitLink = gitInfo.getGitRepoLink();
-            gitInfo =  gitService.getGitDetails(gitLink);
+            gitInfo = gitService.getGitDetails(gitLink);
             gitExtensionInfoRepository.updateGitInfo(gitInfo);
             System.out.println("GIT INFO: " + gitInfo.getId() + "UPDATED");
         }
@@ -55,7 +55,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<Extension> getUnnaprovedExt() {
         return extensionRepository.getAllExtensions().stream()
-                .filter( x-> x.getApproved() == 0)
+                .filter(x -> x.getApproved() == 0)
                 .collect(Collectors.toList());
     }
 
@@ -104,27 +104,26 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void featureExtension(int id) {
-        adminRepository.featureExtension(id);
+    public Extension featureExtension(int id) {
+        Extension extension = extensionRepository.getExtById(id);
+        extension.setFeatured(1);
+        extensionRepository.updateExtension(extension);
+        return extension;
     }
 
     @Override
-    public void unFeatureExtension(int id) {
-        adminRepository.unFeatureExtension(id);
+    public Extension unFeatureExtension(int id) {
+        Extension extension = extensionRepository.getExtById(id);
+        extension.setFeatured(0);
+        extensionRepository.updateExtension(extension);
+        return extension;
     }
 
     @Override
-    public void deleteExtension(int id) {
+    public Extension deleteExtension(int id) {
 
         Extension extension = extensionRepository.getExtById(id);
-
-      // int gitId = extension.getGitId();
-
-       adminRepository.deleteExtension(extension);
-     //  adminRepository.deleteGitExtensionInfo(gitExtensionInfoRepository.getGitInfoById(gitId));
-     //  adminRepository.deleteFile(extension.getFileId());
-
-
+        return extensionRepository.deleteExtension(extension);
     }
 
     @Override

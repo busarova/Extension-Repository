@@ -11,7 +11,6 @@ import com.telerik.extensionrepository.service.base.GitService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,10 +100,6 @@ public class AdminServiceTests {
         Assert.assertEquals("test user 4", resultUsers.get(3).getName());
     }
 
-
-//    public User getUser(String name) {
-//        return adminRepository.getUserByName(name);
-
     @Test
     public void getUserByName_whenMatch_returnsUserWithRequestedName() {
 
@@ -139,8 +134,6 @@ public class AdminServiceTests {
 
     }
 
-    //    public void enableUser(String name) {
-//        adminRepository.enableUser(name);
     @Test
     public void enableUser_whenEnabled_returnsUserEnabled() {
 
@@ -158,22 +151,59 @@ public class AdminServiceTests {
 
     }
 
-//    public void featureExtension(int id) {
-//        adminRepository.featureExtension(id);
+    @Test
+    public void featureExtension_whenFeatured_returnExtensionFeatured() {
 
+        Extension extension = new Extension();
+        extension.setId(10);
 
-//    public void unFeatureExtension(int id) {
-//        adminRepository.unFeatureExtension(id);
+        when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
 
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
 
+        Extension resultExt = service.featureExtension(10);
+
+        Assert.assertEquals(10, resultExt.getId());
+        Assert.assertEquals("Featured", resultExt.isItFeatured());
+
+    }
+
+    @Test
+    public void removeExtensionFromFeatured_whenRemoved_returnExtensionNotFeatured() {
+
+        Extension extension = new Extension();
+        extension.setId(10);
+
+        when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
+
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+
+        Extension resultExt = service.unFeatureExtension(10);
+
+        Assert.assertEquals(10, resultExt.getId());
+        Assert.assertEquals("Not Featured", resultExt.isItFeatured());
+
+    }
+
+//    TODO
 //    public void deleteExtension(int id) {
 //
-//        Extension extension = extensionRepository.getExtById(id);
+//    @Test
+//    public void deleteExtension_whenDeleted_returnNull() {
 //
-//        adminRepository.deleteExtension(extension);
+//        Extension extension = new Extension();
+//        extension.setId(10);
+//
+//        when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
+//
+//        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+//
+//
+//    }
 
 
 //    public Admin getAdminInfo() {
 //        return adminRepository.getAdminInfo();
+
 
 }

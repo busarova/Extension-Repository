@@ -20,11 +20,11 @@ public interface AdminRepository {
 //
 //    void enableUser(String name);
 
-    void featureExtension(int id);
+//    void featureExtension(int id);
+//
+//    void unFeatureExtension(int id);
 
-    void unFeatureExtension(int id);
-
-    void deleteExtension(Extension extension);
+//    void deleteExtension(Extension extension);
 
     void updateLastSuccessfulSync(Date date);
 
