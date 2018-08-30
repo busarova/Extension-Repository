@@ -137,10 +137,43 @@ public void getPopularExtensions_whenMatch_returnListOfPopularExtensions() {
 //    List<Extension> getNew();
 //
 //    List<Extension> getByUserName(String userName);
+
 //
 //    Extension getById(int id);
+@Test
+public void getExtensionById_whenMatch_returnsExtensionWithRequestedId() {
+
+
+    Extension extension = new Extension();
+    extension.setId(11);
+
+    when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
+
+    ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+    Extension resultExtension = service.getById(11);
+
+    Assert.assertEquals(11, resultExtension.getId());
+
+}
 //
 //    Extension getExtByName(String name);
+@Test
+public void getExtensionByName_whenMatch_returnsExtensionWithRequestedName() {
+
+
+    Extension extension = new Extension();
+    extension.setName("extension test 1");
+
+    when(extensionRepository.getExtByName(extension.getName())).thenReturn(extension);
+
+    ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+    Extension resultExtension = service.getExtByName("extension test 1");
+
+    Assert.assertEquals("extension test 1", resultExtension.getName());
+
+}
 //
 //    List<Extension> returnOrderedBy(String parameter);
 //
