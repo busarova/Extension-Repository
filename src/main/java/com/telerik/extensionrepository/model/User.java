@@ -23,6 +23,17 @@ public class User {
     @Column(name = "enabled")
     private int enabled;
 
+    @Column(name = "profile_pic")
+    private byte[] data;
+
+    public byte[] getData() {
+        return data;
+    }
+
+    public void setData(byte[] data) {
+        this.data = data;
+    }
+
     public String getName() {
         return name;
     }

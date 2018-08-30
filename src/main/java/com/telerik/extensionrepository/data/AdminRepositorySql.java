@@ -220,5 +220,25 @@ public class AdminRepositorySql implements AdminRepository {
         return admin;
     }
 
+    @Override
+    public User getUserByName(String name) {
+
+        User user = null;
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            user = session.get(User.class, name);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return user;
+
+    }
+
 
 }

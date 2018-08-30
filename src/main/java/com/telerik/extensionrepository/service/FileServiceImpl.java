@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.FileRepository;
 import com.telerik.extensionrepository.model.UploadFile;
+import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.FileService;
 import org.apache.tomcat.jni.File;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class FileServiceImpl implements FileService {
 
         fileRepository.saveUploadFile(uploadFile);
 
+    }
+
+    @Override
+    public void storeProfilePic(User user) {
+        fileRepository.saveProfilePic(user);
     }
 
     @Override

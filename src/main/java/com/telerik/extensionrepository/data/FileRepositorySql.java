@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.FileRepository;
 import com.telerik.extensionrepository.model.UploadFile;
+import com.telerik.extensionrepository.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,20 @@ public class FileRepositorySql implements FileRepository {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public void saveProfilePic(User user) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.update(user);
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override

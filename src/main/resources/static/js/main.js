@@ -10,3 +10,15 @@ $(document).ready(function() {
 
 
 $('#tags').html('ASDAdas');*/
+
+hide();
+
+function hide(){
+    $("#profilePicForm").toggle();
+}
+
+$('#profilePic').click(function(){
+
+    $('#profilePicForm').toggle();
+
+});

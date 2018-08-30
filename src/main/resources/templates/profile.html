@@ -11,7 +11,15 @@
 
 <h1>USER PAGE</h1>
 
-<a href=""><img src="/pics/icons/user_default.png" height="120"></a>
+<a href="#" id="profilePic"><img src="/pics/icons/user_default.png" height="120"></a>
+
+<div class="alignTextCenter">
+           <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
+               <p >Attach File: <input type="file" name="fileUpload" size="50" /></p>
+               <input type="submit" value="Submit" />
+           </form>
+</div>
+
 <br>
 
 Name: <span sec:authentication="name" />
@@ -77,4 +85,5 @@ Name: <span sec:authentication="name" />
 </div>
 
 </body>
+<div th:replace="fragments :: scripts"></div>
 </html>

@@ -30,4 +30,6 @@ public interface AdminRepository {
 
     Admin getAdminInfo();
 
+    User getUserByName(String name);
+
 }

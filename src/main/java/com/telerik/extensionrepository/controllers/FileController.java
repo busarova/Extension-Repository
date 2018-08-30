@@ -2,12 +2,14 @@ package com.telerik.extensionrepository.controllers;
 
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.UploadFile;
+import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -120,6 +122,34 @@ public class FileController {
     }
 
 
+    @PostMapping("/user/changePic")
+    public ModelAndView uploadProfilePic(HttpServletRequest request,@RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
+
+        ModelAndView modelAndView = new ModelAndView("profile");
+
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        if (fileUpload != null && fileUpload.length > 0) {
+            for (CommonsMultipartFile aFile : fileUpload) {
+
+                //   Extension extension = extensionInfoService.getExtByName(name);
+
+                User currentUser = adminService.getUser(user.getUsername());
+
+                currentUser.setData(aFile.getBytes());
+
+                fileService.storeProfilePic(currentUser);
+
+            }
+
+        }
+
+        modelAndView.addObject("extensions", extensionInfoService.getByUserName(user.getUsername()));
+
+        return modelAndView;
+
+    }
 
 
 

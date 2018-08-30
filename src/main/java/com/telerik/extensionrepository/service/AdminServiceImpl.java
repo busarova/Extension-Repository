@@ -75,6 +75,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
+    public User getUser(String name) {
+        return adminRepository.getUserByName(name);
+    }
+
+    @Override
     public void disableUser(String name) {
         adminRepository.disableUser(name);
     }

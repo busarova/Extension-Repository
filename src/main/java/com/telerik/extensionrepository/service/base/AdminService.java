@@ -18,6 +18,8 @@ public interface AdminService {
 
     List<User> getAllUsers();
 
+    User getUser(String name);
+
     void disableUser(String name);
 
     void enableUser(String name);
