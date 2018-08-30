@@ -26,7 +26,7 @@ public class AdminController {
 
         ModelAndView modelAndView = new ModelAndView("admin");
 
-        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
         modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
@@ -40,7 +40,7 @@ public class AdminController {
 
         adminService.refreshAllGitHubInfo();
 
-        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
         modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
@@ -54,7 +54,7 @@ public class AdminController {
 
         adminService.approveExt(Integer.parseInt(id));
 
-        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
         modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
@@ -69,7 +69,7 @@ public class AdminController {
 
         adminService.disableUser(name);
 
-        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
         modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
@@ -83,7 +83,7 @@ public class AdminController {
 
         adminService.enableUser(name);
 
-        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
         modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 

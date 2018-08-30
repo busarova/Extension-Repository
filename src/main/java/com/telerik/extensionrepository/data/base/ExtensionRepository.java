@@ -13,6 +13,8 @@ public interface ExtensionRepository {
 
     List<Extension> getAllApproved();
 
+    public List<Extension> getAllNotApproved();
+
     Extension updateExtension(Extension extension);
 
     void createExtension(Extension extension);

@@ -10,7 +10,7 @@ public interface AdminService {
 
     int refreshAllGitHubInfo();
 
-    List<Extension> getUnnaprovedExt();
+    List<Extension> getNotApprovedExt();
 
     Extension approveExt(int id);
 

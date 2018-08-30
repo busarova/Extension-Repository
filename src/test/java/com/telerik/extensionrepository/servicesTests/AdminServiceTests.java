@@ -185,6 +185,36 @@ public class AdminServiceTests {
 
     }
 
+    @Test
+    public void getAllNotApprovedExtensions_whenMatch_returnListOfExtensions() {
+
+        List<Extension> extensions = new ArrayList<>();
+
+        for (int i = 1; i < 5; i++) {
+
+            Extension extension = new Extension();
+            extension.setApproved(1);
+            extensions.add(extension);
+        }
+
+        when(extensionRepository.getAllNotApproved())
+                .thenReturn(extensions);
+
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+
+
+        List<Extension> resultExtensions = service.getNotApprovedExt();
+
+        Assert.assertEquals(resultExtensions.size(), 4);
+
+        Assert.assertEquals("Approved", resultExtensions.get(0).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(1).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(2).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(3).isItApproved());
+    }
+//    public List<Extension> getNotApprovedExt()
+
+
 //    TODO
 //    public void deleteExtension(int id) {
 //

@@ -73,6 +73,22 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         return theList;
     }
+    @Override
+    public List<Extension> getAllNotApproved() {
+        List<Extension> theList = new ArrayList<>();
+
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
 
     @Override
     public Extension updateExtension(Extension extension) {

@@ -53,10 +53,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public List<Extension> getUnnaprovedExt() {
-        return extensionRepository.getAllExtensions().stream()
-                .filter(x -> x.getApproved() == 0)
-                .collect(Collectors.toList());
+    public List<Extension> getNotApprovedExt() {
+        return extensionRepository.getAllNotApproved();
     }
 
     @Override
