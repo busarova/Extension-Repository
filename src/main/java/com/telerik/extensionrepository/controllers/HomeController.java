@@ -33,24 +33,6 @@ public class HomeController {
 
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
-
-        if(!SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
-
-            User user = (User) SecurityContextHolder.getContext().getAuthentication()
-                    .getPrincipal();
-
-            com.telerik.extensionrepository.model.User userModel = adminService.getUser(user.getUsername());
-
-            if (userModel.getData() == null) {
-                modelAndView.addObject("image", null);
-                return modelAndView;
-            }
-
-            modelAndView.addObject("image", Base64.getEncoder().encodeToString(userModel.getData()));
-
-        }
-
-
         modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
 
 

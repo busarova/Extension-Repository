@@ -54,14 +54,7 @@ public class UserController {
 
         modelAndView.addObject("extensions", extensionInfoService.getByUserName(user.getUsername()));
 
-        com.telerik.extensionrepository.model.User userModel = adminService.getUser(user.getUsername());
-
-        if(userModel.getData() == null){
-            modelAndView.addObject("image", null);
-            return modelAndView;
-        }
-
-        modelAndView.addObject("image", Base64.getEncoder().encodeToString(userModel.getData()));
+        modelAndView.addObject("image", getProfilePicAsString());
 
         return modelAndView;
 
@@ -89,12 +82,17 @@ public class UserController {
 
         }
 
+        User user = (User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
 
         extensionService.createExtension(extension);
 
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
-        modelAndView.addObject("extensionForm", extension);
+        ModelAndView modelAndView = new ModelAndView("profile");
+        modelAndView.addObject("image", getProfilePicAsString());
+        modelAndView.addObject("extensions", extensionInfoService.getByUserName(user.getUsername()));
+        /*modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
+        modelAndView.addObject("extensionForm", extension);*/
 
 
 
@@ -116,6 +114,26 @@ public class UserController {
 
         modelAndView.addObject("extensions", list);
 
+        modelAndView.addObject("image", getProfilePicAsString());
+
         return modelAndView;
+    }
+
+    //Gets to users pic and if it is null returns null
+    //If not it returns the pic as String so it can be passed to modelandview
+
+    private String getProfilePicAsString(){
+
+        User user = (User) SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        com.telerik.extensionrepository.model.User userModel = adminService.getUser(user.getUsername());
+
+        if(userModel.getData() == null){
+            return null;
+        }
+
+        return Base64.getEncoder().encodeToString(userModel.getData());
+
     }
 }

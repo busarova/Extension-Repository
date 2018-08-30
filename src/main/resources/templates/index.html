@@ -13,8 +13,10 @@
 
 <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a> </p>
 <div sec:authorize="isAuthenticated()">
+<!--
 <a th:if="${image == null}" th:href="@{/profile}">  <img class="userPic" src="/pics/icons/user_default.png" height="60"></a>
 <a th:unless="${image == null}" th:href="@{/profile}">  <img class="userPic" th:src="*{'data:image/png;base64,'+image}" height="60"></a>
+-->
 
 <p>Welcome, <a th:href="@{/profile}"><span sec:authentication="name" /></a></p>
 
