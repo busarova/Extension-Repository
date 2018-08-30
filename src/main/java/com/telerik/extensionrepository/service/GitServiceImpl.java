@@ -29,6 +29,10 @@ public class GitServiceImpl implements GitService {
     @Override
     public GitExtensionInfo getGitDetails(String gitLink) {
 
+        if(gitLink == null || gitLink.equals("")){
+            return new GitExtensionInfo();
+        }
+
         String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
         String gitUserRepo = link[0] + "/" + link[1];
 

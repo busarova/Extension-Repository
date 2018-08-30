@@ -22,13 +22,11 @@ public class ExtensionForm {
     private String tags;
     private CommonsMultipartFile commonsMultipartFile;
 
-    @NotNull
-    @NotEmpty(message = FIELD_REQUIRED)
     private String githubLink;
 
     public ExtensionForm(){}
 
-    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, @NotNull @NotEmpty String githubLink, CommonsMultipartFile commonsMultipartFile) {
+    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, String githubLink, CommonsMultipartFile commonsMultipartFile) {
         this.name = name;
         this.description = description;
         this.version = version;
