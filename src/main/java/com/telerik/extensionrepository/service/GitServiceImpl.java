@@ -38,6 +38,7 @@ public class GitServiceImpl implements GitService {
         String gitUserRepo = link[0] + "/" + link[1];
 
         try {
+
             GHRepository repo = gitHub.getRepository(gitUserRepo);
             int pullRequests = repo.getPullRequests(GHIssueState.OPEN).size();
             int openIssues = repo.getIssues(GHIssueState.ALL).size();
