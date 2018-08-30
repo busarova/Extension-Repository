@@ -1,0 +1,97 @@
+package com.telerik.extensionrepository.servicesTests;
+
+import com.telerik.extensionrepository.data.base.ExtensionRepository;
+import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.service.ExtensionInfoServiceImpl;
+import com.telerik.extensionrepository.service.base.ExtensionInfoService;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mock;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class ExtensionInfoServiceTests {
+
+    @Mock
+    private ExtensionRepository extensionRepository = mock(ExtensionRepository.class);
+
+    //    List<Extension> getAll();
+    @Test
+    public void getAllExtensions_whenMatch_returnListOfExtensions() {
+
+        List<Extension> extensions = new ArrayList<>();
+
+        for (int i = 1; i < 5; i++) {
+
+            Extension extension = new Extension();
+            extension.setName("test extension " + i);
+            extensions.add(extension);
+        }
+
+        when(extensionRepository.getAllExtensions())
+                .thenReturn(extensions);
+
+        ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+
+        List<Extension> resultExtensions = service.getAll();
+
+        Assert.assertEquals(resultExtensions.size(), 4);
+
+        Assert.assertEquals("test extension 1", resultExtensions.get(0).getName());
+        Assert.assertEquals("test extension 2", resultExtensions.get(1).getName());
+        Assert.assertEquals("test extension 3", resultExtensions.get(2).getName());
+        Assert.assertEquals("test extension 4", resultExtensions.get(3).getName());
+    }
+
+    //
+//    List<Extension> getAllApproved();
+    @Test
+    public void getApprovedExtensions_whenMatch_returnListOfApprovedExtensions() {
+
+        List<Extension> extensions = new ArrayList<>();
+
+        for (int i = 1; i < 5; i++) {
+
+            Extension extension = new Extension();
+            extension.setApproved(1);
+            extensions.add(extension);
+        }
+
+        when(extensionRepository.getAllApproved())
+                .thenReturn(extensions);
+
+        ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+        List<Extension> resultExtensions = service.getAllApproved();
+
+        Assert.assertEquals(resultExtensions.size(), 4);
+
+        Assert.assertEquals("Approved", resultExtensions.get(0).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(1).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(2).isItApproved());
+        Assert.assertEquals("Approved", resultExtensions.get(3).isItApproved());
+    }
+//
+//    List<Extension> getFeatured();
+//
+//    List<Extension> getPopular();
+//
+//    List<Extension> getNew();
+//
+//    List<Extension> getByUserName(String userName);
+//
+//    Extension getById(int id);
+//
+//    Extension getExtByName(String name);
+//
+//    List<Extension> returnOrderedBy(String parameter);
+//
+//    List<Extension> returnAllOrderedBy(String parameter);
+//
+//    List<Extension> sortListBy(List<Extension> list, String parameter);
+}
