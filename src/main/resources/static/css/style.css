@@ -5,6 +5,10 @@
     font-family: Centaur;
 }
 
+img{
+    border-radius: 20%;
+}
+
 
 .hoverDiv{
     text-align: center;

@@ -62,8 +62,8 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setOwner(user.getUsername());
         newExtension.setTags(tagManipulations.checkForHashTag(extensionForm.getTags()));
         newExtension.setVersion(extensionForm.getVersion());
-        newExtension.setApproved(1);
-        newExtension.setFeatured(1);
+        newExtension.setApproved(0);
+        newExtension.setFeatured(0);
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
         newExtension.setUploadFile(uploadFile);
 

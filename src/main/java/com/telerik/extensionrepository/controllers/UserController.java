@@ -96,6 +96,8 @@ public class UserController {
         modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
         modelAndView.addObject("extensionForm", extension);
 
+
+
         return modelAndView;
 
     }
