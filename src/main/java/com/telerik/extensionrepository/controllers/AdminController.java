@@ -28,6 +28,21 @@ public class AdminController {
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/admin/refreshGit")
+    public ModelAndView refreshGitInfo(){
+
+        ModelAndView modelAndView = new ModelAndView("admin");
+
+        adminService.refreshAllGitHubInfo();
+
+        modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
         return modelAndView;
     }
@@ -41,6 +56,7 @@ public class AdminController {
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
 
         return modelAndView;
@@ -55,6 +71,7 @@ public class AdminController {
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
         return modelAndView;
     }
@@ -68,6 +85,7 @@ public class AdminController {
 
         modelAndView.addObject("extensions", adminService.getUnnaprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
 
         return modelAndView;
     }

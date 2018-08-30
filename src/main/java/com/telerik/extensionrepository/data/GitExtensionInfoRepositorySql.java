@@ -22,6 +22,25 @@ public class GitExtensionInfoRepositorySql implements GitExtensionInfoRepository
     }
 
     @Override
+    public List<GitExtensionInfo> getAllGitInfo() {
+
+        List<GitExtensionInfo> list = new ArrayList<>();
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            list = session.createQuery("from GitExtensionInfo").list();
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return list;
+    }
+
+    @Override
     public GitExtensionInfo getGitInfoById(int id) {
 
         GitExtensionInfo gitExtensionInfo = null;

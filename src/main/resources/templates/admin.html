@@ -13,6 +13,10 @@
 
 <a th:href="@{/}"><button>HOME</button></a>
 
+<a th:href="@{/admin/refreshGit}"><button>Refresh all Git Info</button></a>
+
+<p th:text="'Last successful sync: '+${adminInfo.getLastSuccessfulSync()}"></p>
+
 <h2>For Approval:</h2>
 
 

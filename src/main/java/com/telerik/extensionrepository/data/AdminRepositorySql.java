@@ -1,16 +1,14 @@
 package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
-import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.model.GitExtensionInfo;
-import com.telerik.extensionrepository.model.UploadFile;
-import com.telerik.extensionrepository.model.User;
+import com.telerik.extensionrepository.model.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -181,6 +179,45 @@ public class AdminRepositorySql implements AdminRepository {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    @Override
+    public void updateLastSuccessfulSync(Date date) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            Admin admin = session.get(Admin.class, 1);
+
+            admin.setLastSuccessfulSync(date);
+
+            session.update(admin);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public Admin getAdminInfo() {
+
+        Admin admin = null;
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            admin = session.get(Admin.class, 1);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        return admin;
     }
 
 

@@ -3,12 +3,16 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
+import com.telerik.extensionrepository.model.Admin;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.AdminService;
+import com.telerik.extensionrepository.service.base.GitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,13 +21,33 @@ public class AdminServiceImpl implements AdminService {
 
     private ExtensionRepository extensionRepository;
     private AdminRepository adminRepository;
+    private GitService gitService;
     private GitExtensionInfoRepository gitExtensionInfoRepository;
 
     @Autowired
-    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository){
+    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository, GitService gitService){
         this.extensionRepository = extensionRepository;
         this.adminRepository = adminRepository;
         this.gitExtensionInfoRepository = gitExtensionInfoRepository;
+        this.gitService = gitService;
+    }
+
+    @Override
+    public int refreshAllGitHubInfo() {
+
+        List<GitExtensionInfo> allGitInfo =  gitExtensionInfoRepository.getAllGitInfo();
+
+        int errors = 0;
+
+        for (GitExtensionInfo gitInfo:
+             allGitInfo) {
+           gitInfo =  gitService.getGitDetails(gitInfo.getGitRepoLink());
+            gitExtensionInfoRepository.updateGitInfo(gitInfo);
+        }
+
+        adminRepository.updateLastSuccessfulSync(new Date());
+
+        return errors;
     }
 
     @Override
@@ -82,5 +106,10 @@ public class AdminServiceImpl implements AdminService {
      //  adminRepository.deleteFile(extension.getFileId());
 
 
+    }
+
+    @Override
+    public Admin getAdminInfo() {
+        return adminRepository.getAdminInfo();
     }
 }

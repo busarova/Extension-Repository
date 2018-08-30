@@ -19,6 +19,7 @@ public class ExtensionTestTest {
                 .addAnnotatedClass(GitExtensionInfo.class)
                 .addAnnotatedClass(UploadFile.class)
                 .addAnnotatedClass(Tags.class)
+                .addAnnotatedClass(Admin.class)
                 .buildSessionFactory();
 
         Session session = factory.openSession();
@@ -28,18 +29,15 @@ public class ExtensionTestTest {
 
             session.beginTransaction();
 
-            String name = "#awesome";
+            Admin admin = session.get(Admin.class, 1);
 
-            List<Tags> list = session.createQuery("from Tags t where t.name = :name")
-                .setParameter("name", name)
-                .list();
+        System.out.println(admin.getLastSuccessfulSync());
 
             session.getTransaction().commit();
 
 
         session.close();
 
-        System.out.println(list.get(0).getName());
 
     }
 

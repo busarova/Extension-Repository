@@ -20,6 +20,7 @@ public class FactorySession {
                 .addAnnotatedClass(GitExtensionInfo.class)
                 .addAnnotatedClass(UploadFile.class)
                 .addAnnotatedClass(Tags.class)
+                .addAnnotatedClass(Admin.class)
                 .buildSessionFactory();
     }
 

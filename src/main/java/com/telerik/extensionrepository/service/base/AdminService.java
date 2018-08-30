@@ -1,11 +1,14 @@
 package com.telerik.extensionrepository.service.base;
 
+import com.telerik.extensionrepository.model.Admin;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
 
 import java.util.List;
 
 public interface AdminService {
+
+    int refreshAllGitHubInfo();
 
     List<Extension> getUnnaprovedExt();
 
@@ -24,5 +27,7 @@ public interface AdminService {
     void unFeatureExtension(int id);
 
     void deleteExtension(int id);
+
+    Admin getAdminInfo();
 
 }
