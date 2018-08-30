@@ -29,7 +29,5 @@ public interface ExtensionRepository {
 
     Extension getExtById(int id);
 
-    void changeFileId(Extension extension, int newId);
-
     void registerDownload(Extension extension);
 }

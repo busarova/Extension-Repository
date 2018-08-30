@@ -170,7 +170,7 @@ public class Extension {
     }
 
     public String isItApproved(){
-        if(getApproved() == 1){
+        if(getApproved() == 0){
             return "Pending Approval";
         }else{
             return "Approved";
@@ -178,7 +178,7 @@ public class Extension {
     }
 
     public String isItFeatured(){
-        if(getFeatured() == 1){
+        if(getFeatured() == 0){
             return "Not Featured";
         }else{
             return "Featured";

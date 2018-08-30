@@ -26,8 +26,8 @@
    </div>
 </div>
 
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/feature/'+${extension.getId()}">Feature this Extension<br></a>
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/un-feature/'+${extension.getId()}">Unfeature this Extension<br></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 0}" th:href="'/admin/feature/'+${extension.getId()}">Feature this Extension<br></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:if="${extension.getFeatured() == 1}" th:href="'/admin/un-feature/'+${extension.getId()}">Unfeature this Extension<br></a>
 
 <a th:href="@{/}">home</a>
 

@@ -30,7 +30,7 @@ public class AdminRepositorySql implements AdminRepository {
 
             Extension extension = session.get(Extension.class, id);
 
-            extension.setApproved(0);
+            extension.setApproved(1);
 
             session.update(extension);
             session.save(extension);
@@ -53,7 +53,7 @@ public class AdminRepositorySql implements AdminRepository {
 
             Extension extension = session.get(Extension.class, id);
 
-            extension.setApproved(1);
+            extension.setApproved(0);
 
             session.update(extension);
             session.save(extension);
@@ -132,7 +132,7 @@ public class AdminRepositorySql implements AdminRepository {
 
             Extension extension = session.get(Extension.class, id);
 
-            extension.setFeatured(0);
+            extension.setFeatured(1);
 
             session.update(extension);
 
@@ -151,7 +151,7 @@ public class AdminRepositorySql implements AdminRepository {
 
             Extension extension = session.get(Extension.class, id);
 
-            extension.setFeatured(1);
+            extension.setFeatured(0);
 
             session.update(extension);
 

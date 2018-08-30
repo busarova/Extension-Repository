@@ -64,7 +64,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
+            theList = session.createQuery("from Extension e where approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
         }catch (Exception e){
@@ -115,7 +115,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where featured = 0 and approved = 0 order by e.name").list();
+            theList = session.createQuery("from Extension e where featured = 1 and approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
         }catch (Exception e){
@@ -133,7 +133,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where approved = 0 order by e.numberOfDownloads").list();
+            theList = session.createQuery("from Extension e where approved = 1 order by e.numberOfDownloads").list();
 
             session.getTransaction().commit();
         }catch (Exception e){
@@ -150,7 +150,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try(Session session = factory.openSession()){
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
+            theList = session.createQuery("from Extension e where approved = 1 order by e.name").list();
 
             session.getTransaction().commit();
         }catch (Exception e){
@@ -219,25 +219,6 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         return extension;
     }
 
-    @Override
-    public void changeFileId(Extension extension, int newId) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            Extension selected = session.get(Extension.class, extension.getId());
-
-          //  selected.setFileId(newId);
-
-            session.update(selected);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
-    }
 
     @Override
     public void registerDownload(Extension extension) {
