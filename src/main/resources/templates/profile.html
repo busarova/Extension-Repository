@@ -11,7 +11,8 @@
 
 <h1>USER PAGE</h1>
 
-<a href="#" id="profilePic"><img src="/pics/icons/user_default.png" height="120"></a>
+<a th:if="${image == null}" id="profilePic"> <img src="/pics/icons/user_default.png" height="120"> </a>
+<a th:unless="${image == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+image}" alt="" height="120"></a>
 
 <div class="alignTextCenter">
            <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
