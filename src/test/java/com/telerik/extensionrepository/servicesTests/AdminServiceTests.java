@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 public class AdminServiceTests {
 
     @Mock
-    AdminRepository adminRepository = mock(AdminRepository.class);
+    private AdminRepository adminRepository = mock(AdminRepository.class);
     @Mock
     private ExtensionRepository extensionRepository = mock(ExtensionRepository.class);
     @Mock
