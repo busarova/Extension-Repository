@@ -62,10 +62,6 @@ public class ExtensionController {
 
         modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
 
-        modelAndView.addObject("name", 0);
-        modelAndView.addObject("description", 0);
-        modelAndView.addObject("tags", 0);
-
         return modelAndView;
     }
 
@@ -77,10 +73,6 @@ public class ExtensionController {
         ModelAndView modelAndView = new ModelAndView("edit-extension");
 
         modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
-
-        modelAndView.addObject("name", 1);
-        modelAndView.addObject("description", 0);
-        modelAndView.addObject("tags", 0);
 
         return modelAndView;
     }

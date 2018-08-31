@@ -17,13 +17,12 @@ public class Tags {
     private String name;
 
     @Column(name = "owners_id_list")
-    String owners_id_list;
+    private String owners_id_list;
 
     public Tags(){}
 
     public Tags(String name){
         this.name = name;
-        this.owners_id_list = owners_id_list;
     }
 
     public int getId() {

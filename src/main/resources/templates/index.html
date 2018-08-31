@@ -169,8 +169,8 @@
 
             <div class="circular">
                 <a th:href="'/extension-details/'+${Extension.getId()}">
-                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" width="25%"> </a>
-                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt="" width="25%"></a>
+                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" width="25%" height="10%"> </a>
+                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt="" width="25%" height="10%"></a>
                                      <h4 th:text="${Extension.getName()}"></h4>
                                      </a>
 
