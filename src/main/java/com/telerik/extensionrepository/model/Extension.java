@@ -49,15 +49,16 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, long numberOfDownloads, String tags, Date uploadDate, int featured) {
+    public Extension(String name, String description, String version, String owner, String tags, Date uploadDate) {
         this.name = name;
         this.description = description;
         this.version = version;
         this.owner = owner;
-        this.numberOfDownloads = numberOfDownloads;
+        this.numberOfDownloads = 0;
         this.tags = tags;
+        this.approved = 0;
         this.uploadDate = uploadDate;
-        this.featured = featured;
+        this.featured = 0;
     }
 
     public int getId() {

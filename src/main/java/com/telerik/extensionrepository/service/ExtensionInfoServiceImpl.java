@@ -113,7 +113,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
             case "uploadDate":
 
-                list.sort(Comparator.comparing(Extension::getId).reversed());
+                list.sort(Comparator.comparing(Extension::getUploadDate).reversed());
                 return list;
 
             case "lastCommitDate":

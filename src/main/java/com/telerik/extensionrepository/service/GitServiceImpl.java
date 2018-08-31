@@ -16,13 +16,6 @@ import java.util.List;
 @Service
 public class GitServiceImpl implements GitService {
 
-    private GitHub gitHub;
-
-    @Autowired
-    public GitServiceImpl(GitHub gitHub) {
-        this.gitHub = gitHub;
-    }
-
     //If the link is different than null or empty string
     //Then connect with Git Api and get the data then return the GitExtensionInfo object full
     //Otherwise return empty
@@ -30,9 +23,19 @@ public class GitServiceImpl implements GitService {
     @Override
     public GitExtensionInfo getGitDetails(String gitLink) {
 
-        if(gitLink == null || gitLink.equals("")){
+        final String token = "6bd730709f26540abf3e15e3a6dcbf1bd4a6693c";
+
+        if (gitLink == null || gitLink.equals("")) {
             return new GitExtensionInfo();
         }
+        GitHub gitHub = null;
+
+        try {
+            gitHub = GitHub.connectUsingOAuth(token);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
         String gitUserRepo = link[0] + "/" + link[1];
@@ -40,8 +43,9 @@ public class GitServiceImpl implements GitService {
         try {
 
             GHRepository repo = gitHub.getRepository(gitUserRepo);
+
             int pullRequests = repo.getPullRequests(GHIssueState.OPEN).size();
-            int openIssues = repo.getIssues(GHIssueState.ALL).size();
+            int openIssues = repo.getOpenIssueCount();
             List<GHCommit> commits = repo.listCommits().asList();
             Date lastCommitDate = commits.get(0).getCommitDate();
 

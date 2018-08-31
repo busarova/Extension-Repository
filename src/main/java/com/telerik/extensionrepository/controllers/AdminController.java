@@ -97,8 +97,6 @@ public class AdminController {
 
         ModelAndView modelAndView = new ModelAndView("redirect:/extension-details/" + id);
 
-
-
         return modelAndView;
     }
 

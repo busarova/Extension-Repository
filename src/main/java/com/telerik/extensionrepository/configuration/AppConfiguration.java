@@ -60,35 +60,5 @@ public class AppConfiguration {
         return multipartResolver;
     }
 
-
-    private String user;
-    private String token;
-
-    @Bean
-    public GitHub createGitHub() {
-        try {
-            return GitHub.connect(this.user, this.token);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
 }
 

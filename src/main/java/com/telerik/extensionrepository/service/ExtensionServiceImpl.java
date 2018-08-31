@@ -45,7 +45,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         UploadFile uploadFile = new UploadFile();
 
         // Checks if there is no file or if it is an empty string
-        //If there is a file will set it properties
+        //If there is a file will set its properties
         //Otherwise will leave it null so that thymeleaf will show "No file" in page
 
         if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
@@ -65,9 +65,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
         newExtension.setUploadFile(uploadFile);
 
-
         extensionRepository.createExtension(newExtension);
-
         tagService.loadNewTags(newExtension);
 
     }
