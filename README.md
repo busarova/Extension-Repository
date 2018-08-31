@@ -15,6 +15,7 @@ Installation instructions at the bottom.
 - Upload/Download extension file (stored in database)
 - User Page (profile pic, owned extensions etc.)
 - Search by tags
+- Upload logo
 - Connects with GitHub API and takes data (last commit date, pull requests, open issues)
 
 ## Public:
@@ -34,6 +35,8 @@ Installation instructions at the bottom.
 - Edit extensions he created (edit, delete, update)
 - Upload/Update extension file, if owner of extension
 - See status of extension (approved or not)
+- Upload profile pic
+- Upload extension logo
 
 ## Admin:
 
