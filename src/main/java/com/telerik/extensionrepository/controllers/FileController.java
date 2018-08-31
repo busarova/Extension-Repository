@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -165,7 +166,9 @@ public class FileController {
                 uploadFile.setLogoData(aFile.getBytes());
 
 
-                fileService.storeFile(uploadFile);
+                fileService.updateFile(uploadFile);
+
+                adminService.removeApproval(Integer.parseInt(id));
 
             }
 

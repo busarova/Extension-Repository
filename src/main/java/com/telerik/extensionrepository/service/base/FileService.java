@@ -13,4 +13,6 @@ public interface FileService {
     void storeProfilePic(User user);
 
     UploadFile getFile(int id);
+
+    void updateFile(UploadFile uploadFile);
 }

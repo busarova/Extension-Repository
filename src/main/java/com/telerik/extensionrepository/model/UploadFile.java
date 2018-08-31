@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.model;
 
 
 import javax.persistence.*;
+import java.util.Base64;
 
 @Entity
 @Table(name = "files")
@@ -50,5 +51,9 @@ public class UploadFile {
     public byte[] getLogoData(){return logoData;}
 
     public void setLogoData(byte[] logoData){this.logoData = logoData;}
+
+    public String encodeLogoToString(){
+        return Base64.getEncoder().encodeToString(getLogoData());
+    }
 
 }

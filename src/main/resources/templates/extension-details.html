@@ -11,7 +11,8 @@
 <div class="alignTextCenter">
 
 <h1 th:text="${extension.getName()}"></h1>
-<a href=""><img src="/pics/icons/ext_default.jpg" height="120"></a>
+<a th:if="${logo == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" height="120"> </a>
+<a th:unless="${logo == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+logo}" alt="" height="120"></a>
 <br>
 
 <p th:if="${extension.getUploadFile().getData() != null}"><a th:href="'/download/' + ${extension.getId()}"><button>Download Extension</button></a></p>

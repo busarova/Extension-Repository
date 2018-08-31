@@ -41,4 +41,9 @@ public class FileServiceImpl implements FileService {
 
         return fileRepository.getFile(id);
     }
+
+    @Override
+    public void updateFile(UploadFile uploadFile) {
+        fileRepository.updateUploadFile(uploadFile);
+    }
 }

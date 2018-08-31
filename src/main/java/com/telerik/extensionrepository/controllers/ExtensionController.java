@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.Base64;
 import java.util.List;
 
 @Controller
@@ -46,6 +47,10 @@ public class ExtensionController {
         modelAndView.addObject("extension", extension);
 
         modelAndView.addObject("tags", tagService.extractTagsFromExtension(extension));
+
+        if(extension.getUploadFile().getLogoData() != null) {
+            modelAndView.addObject("logo", Base64.getEncoder().encodeToString(extension.getUploadFile().getLogoData()));
+        }
 
         return modelAndView;
     }

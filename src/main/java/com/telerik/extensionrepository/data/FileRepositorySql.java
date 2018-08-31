@@ -34,6 +34,20 @@ public class FileRepositorySql implements FileRepository {
     }
 
     @Override
+    public void updateUploadFile(UploadFile uploadFile) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.update(uploadFile);
+
+            session.getTransaction().commit();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
     public void saveProfilePic(User user) {
 
         try(Session session = factory.openSession()){
