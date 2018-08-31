@@ -18,6 +18,7 @@ function hide(){
     $("#editDescriptionForm").toggle();
     $("#editTagsForm").toggle();
     $("#editNameForm").toggle();
+    $("#extensionLogoForm").toggle();
 
 }
 
@@ -44,6 +45,13 @@ $('#showEditName').click(function(){
     $('#editNameForm').toggle();
 
 });
+
+$('#showExtensionsLogoForm').click(function(){
+
+    $('#extensionLogoForm').toggle();
+
+});
+
 
 
 

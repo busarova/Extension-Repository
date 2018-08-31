@@ -151,6 +151,30 @@ public class FileController {
 
     }
 
+    @PostMapping("/user/changeExtensionLogo/{id}")
+    public String uploadLogo(HttpServletRequest request,@RequestParam CommonsMultipartFile[] fileUpload, @PathVariable("id")
+            String id){
+
+        if (fileUpload != null && fileUpload.length > 0) {
+            for (CommonsMultipartFile aFile : fileUpload) {
+
+                Extension currentExtension = extensionInfoService.getById(Integer.parseInt(id));
+
+                UploadFile uploadFile = currentExtension.getUploadFile();
+
+                uploadFile.setLogoData(aFile.getBytes());
+
+
+                fileService.storeFile(uploadFile);
+
+            }
+
+        }
+
+        return "redirect:/extension-details/"+id;
+
+    }
+
 
 
     /*@RequestMapping(value = "/download/{name}",

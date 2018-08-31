@@ -21,6 +21,13 @@
 
 <div sec:authorize="hasRole('ROLE_USER')">
 <a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getId()}"><button>Edit Extension</button></a>
+              <a href="#" id="showExtensionsLogoForm"><button>Change Logo</button></a>
+
+              <form id="extensionLogoForm" th:action="@{/user/changeExtensionLogo/{path}(path=${extension.getId()})}" enctype="multipart/form-data" method="post">
+                  <p >Attach File: <input type="file" name="fileUpload" size="50" /></p>
+                  <input type="submit" value="Submit" />
+              </form>
+
    <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/edit-extension/'+${extension.getId()}"><button>Edit Extension</button></a>
    </div>
@@ -54,4 +61,6 @@ Tags: <a th:each="TagForm : ${tags}"> <a th:text="${TagForm.getName()}" th:href=
 </div>
 
 </body>
+
+<div th:replace="fragments :: scripts"></div>
 </html>

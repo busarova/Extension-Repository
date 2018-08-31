@@ -10,6 +10,7 @@ public class UploadFile {
     private int id;
     private String fileName;
     private byte[] data;
+    private byte[] logoData;
 
 
     @Id
@@ -44,5 +45,10 @@ public class UploadFile {
     public void setData(byte[] data) {
         this.data = data;
     }
+
+    @Column(name = "logo_data")
+    public byte[] getLogoData(){return logoData;}
+
+    public void setLogoData(byte[] logoData){this.logoData = logoData;}
 
 }
