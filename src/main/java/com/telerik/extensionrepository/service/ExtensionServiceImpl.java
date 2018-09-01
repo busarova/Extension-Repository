@@ -32,17 +32,19 @@ public class ExtensionServiceImpl implements ExtensionService {
     // Creates extension from the dto information given at input
 
     @Override
-    public void createExtension(ExtensionForm extensionForm) {
-
-        Extension newExtension = new Extension();
+    public Extension createExtension(ExtensionForm extensionForm) {
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication()
                 .getPrincipal();
 
-        GitExtensionInfo gitExtensionInfo = new GitExtensionInfo();
-        gitExtensionInfo.setGitRepoLink(extensionForm.getGithubLink());
+        Extension newExtension = new Extension(
+                extensionForm.getName(),
+                extensionForm.getDescription(),
+                extensionForm.getVersion(),
+                user.getUsername(),
+                tagManipulations.checkForHashTag(extensionForm.getTags()));
 
-        UploadFile uploadFile = new UploadFile();
+        newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
 
         // Checks if there is no file or if it is an empty string
         //If there is a file will set its properties
@@ -50,53 +52,43 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
 
-            uploadFile.setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
-            uploadFile.setData(extensionForm.getCommonsMultipartFile().getBytes());
+            newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+            newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
 
         }
 
-        newExtension.setName(extensionForm.getName());
-        newExtension.setDescription(extensionForm.getDescription());
-        newExtension.setOwner(user.getUsername());
-        newExtension.setTags(tagManipulations.checkForHashTag(extensionForm.getTags()));
-        newExtension.setVersion(extensionForm.getVersion());
-        newExtension.setApproved(0);
-        newExtension.setFeatured(0);
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
-        newExtension.setUploadFile(uploadFile);
-
         extensionRepository.createExtension(newExtension);
         tagService.loadNewTags(newExtension);
 
+        return newExtension;
+    }
+
+    public Extension updateExtension(Extension extension){
+
+        return extensionRepository.updateExtension(extension);
     }
 
     @Override
-    public void updateExtension(Extension extension) {
-        extensionRepository.updateExtension(extension);
-    }
-
-    @Override
-    public void changeExtensionName(Extension extension, String newName) {
+    public Extension changeExtensionName(Extension extension, String newName) {
 
         extension.setName(newName);
 
-        extensionRepository.updateExtension(extension);
+        return extensionRepository.updateExtension(extension);
 
     }
-
-
     @Override
-    public void registerDownload(Extension extension) {
+    public Extension registerDownload(Extension extension) {
 
-        extensionRepository.registerDownload(extension);
+       return extensionRepository.registerDownload(extension);
     }
 
     @Override
-    public void changeExtensionDescription(Extension extension, String newDescription) {
+    public Extension changeExtensionDescription(Extension extension, String newDescription) {
 
         extension.setDescription(newDescription);
 
-        extensionRepository.updateExtension(extension);
+        return extensionRepository.updateExtension(extension);
     }
 
     @Override

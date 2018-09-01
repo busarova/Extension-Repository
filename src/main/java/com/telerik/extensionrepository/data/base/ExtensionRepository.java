@@ -17,7 +17,7 @@ public interface ExtensionRepository {
 
     Extension updateExtension(Extension extension);
 
-    void createExtension(Extension extension);
+    Extension createExtension(Extension extension);
 
     List<Extension> getFeaturedExtensions();
 
@@ -31,7 +31,7 @@ public interface ExtensionRepository {
 
     Extension getExtById(int id);
 
-    void registerDownload(Extension extension);
+    Extension registerDownload(Extension extension);
 
     Extension deleteExtension(Extension extension);
 }

@@ -5,15 +5,15 @@ import com.telerik.extensionrepository.dto.ExtensionForm;
 
 public interface ExtensionService {
 
-    void createExtension(ExtensionForm extensionForm);
+    Extension createExtension(ExtensionForm extensionForm);
 
-    void updateExtension(Extension extension);
+    Extension updateExtension(Extension extension);
 
-    void changeExtensionName(Extension extension, String newName);
+    Extension changeExtensionName(Extension extension, String newName);
 
-    void registerDownload(Extension extension);
+    Extension registerDownload(Extension extension);
 
-    void changeExtensionDescription(Extension extension, String newDescription);
+    Extension changeExtensionDescription(Extension extension, String newDescription);
 
     void addExtensionTag(Extension extension, String newTags);
 

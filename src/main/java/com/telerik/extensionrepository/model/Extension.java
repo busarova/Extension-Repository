@@ -49,7 +49,12 @@ public class Extension {
 
     public Extension(){}
 
-    public Extension(String name, String description, String version, String owner, String tags, Date uploadDate) {
+    public Extension(String name,
+                     String description,
+                     String version,
+                     String owner,
+                     String tags) {
+
         this.name = name;
         this.description = description;
         this.version = version;
@@ -57,7 +62,8 @@ public class Extension {
         this.numberOfDownloads = 0;
         this.tags = tags;
         this.approved = 0;
-        this.uploadDate = uploadDate;
+        this.gitExtensionInfo = new GitExtensionInfo();
+        this.uploadFile = new UploadFile();
         this.featured = 0;
     }
 

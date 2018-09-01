@@ -109,7 +109,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
 
     @Override
-    public void createExtension(Extension extension) {
+    public Extension createExtension(Extension extension) {
 
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -122,6 +122,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             System.out.println(e.getMessage());
         }
 
+        return extension;
     }
 
     @Override
@@ -238,7 +239,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
 
     @Override
-    public void registerDownload(Extension extension) {
+    public Extension registerDownload(Extension extension) {
 
         try (Session session = factory.openSession()) {
             session.beginTransaction();
@@ -258,6 +259,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             System.out.println(e.getMessage());
         }
 
+        return extension;
     }
 
     @Override

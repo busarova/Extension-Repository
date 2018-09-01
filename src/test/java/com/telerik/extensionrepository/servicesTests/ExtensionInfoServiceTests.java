@@ -48,7 +48,7 @@ public class ExtensionInfoServiceTests {
         Assert.assertEquals("test extension 4", resultExtensions.get(3).getName());
     }
 
-    //
+
 //    List<Extension> getAllApproved();
     @Test
     public void getApprovedExtensions_whenMatch_returnListOfApprovedExtensions() {
@@ -76,7 +76,7 @@ public class ExtensionInfoServiceTests {
         Assert.assertEquals("Approved", resultExtensions.get(2).isItApproved());
         Assert.assertEquals("Approved", resultExtensions.get(3).isItApproved());
     }
-//
+
 //    List<Extension> getFeatured();
 @Test
 public void getFeaturedExtensions_whenMatch_returnListOfFeaturedExtensions() {
@@ -104,7 +104,7 @@ public void getFeaturedExtensions_whenMatch_returnListOfFeaturedExtensions() {
     Assert.assertEquals("Featured", resultExtensions.get(2).isItFeatured());
     Assert.assertEquals("Featured", resultExtensions.get(3).isItFeatured());
 }
-//
+
 //    List<Extension> getPopular();
 @Test
 public void getPopularExtensions_whenMatch_returnListOfPopularExtensions() {
@@ -133,12 +133,11 @@ public void getPopularExtensions_whenMatch_returnListOfPopularExtensions() {
     Assert.assertEquals("test extension 4", resultExtensions.get(3).getName());
 }
 
-//
+
 //    List<Extension> getNew();
-//
+
 //    List<Extension> getByUserName(String userName);
 
-//
 //    Extension getById(int id);
 @Test
 public void getExtensionById_whenMatch_returnsExtensionWithRequestedId() {
@@ -156,7 +155,7 @@ public void getExtensionById_whenMatch_returnsExtensionWithRequestedId() {
     Assert.assertEquals(11, resultExtension.getId());
 
 }
-//
+
 //    Extension getExtByName(String name);
 @Test
 public void getExtensionByName_whenMatch_returnsExtensionWithRequestedName() {
@@ -174,10 +173,10 @@ public void getExtensionByName_whenMatch_returnsExtensionWithRequestedName() {
     Assert.assertEquals("extension test 1", resultExtension.getName());
 
 }
-//
+
 //    List<Extension> returnOrderedBy(String parameter);
-//
+
 //    List<Extension> returnAllOrderedBy(String parameter);
-//
+
 //    List<Extension> sortListBy(List<Extension> list, String parameter);
 }
