@@ -2,7 +2,6 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.model.GitExtensionInfo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -227,31 +226,6 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.beginTransaction();
 
             extension = session.get(Extension.class, id);
-
-            session.getTransaction().commit();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        return extension;
-    }
-
-
-    @Override
-    public Extension registerDownload(Extension extension) {
-
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            Extension selected = session.get(Extension.class, extension.getId());
-
-            long download = selected.getNumberOfDownloads();
-            download++;
-
-            selected.setNumberOfDownloads(download);
-
-            session.update(selected);
 
             session.getTransaction().commit();
 

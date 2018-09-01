@@ -31,7 +31,5 @@ public interface ExtensionRepository {
 
     Extension getExtById(int id);
 
-    Extension registerDownload(Extension extension);
-
     Extension deleteExtension(Extension extension);
 }

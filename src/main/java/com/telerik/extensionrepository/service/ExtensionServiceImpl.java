@@ -64,7 +64,7 @@ public class ExtensionServiceImpl implements ExtensionService {
         return newExtension;
     }
 
-    public Extension updateExtension(Extension extension){
+    public Extension updateExtension(Extension extension) {
 
         return extensionRepository.updateExtension(extension);
     }
@@ -77,10 +77,15 @@ public class ExtensionServiceImpl implements ExtensionService {
         return extensionRepository.updateExtension(extension);
 
     }
+
     @Override
     public Extension registerDownload(Extension extension) {
 
-       return extensionRepository.registerDownload(extension);
+        long extensionDownloads = extension.getNumberOfDownloads();
+        extensionDownloads++;
+        extension.setNumberOfDownloads(extensionDownloads);
+
+        return extensionRepository.updateExtension(extension);
     }
 
     @Override
