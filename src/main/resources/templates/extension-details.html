@@ -19,6 +19,7 @@
 <p th:unless="${extension.getUploadFile().getData() != null}">NO FILE UPLOADED</p>
 
 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/refreshGit/' + ${extension.getId()}"><button>Refresh Git Info</button></a>
 
 <div sec:authorize="hasRole('ROLE_USER')">
 <a th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}" th:href="'/edit-extension/'+${extension.getId()}"><button>Edit Extension</button></a>

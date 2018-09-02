@@ -119,4 +119,12 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @RequestMapping("/admin/refreshGit/{id}")
+    public String refreshGit(@PathVariable("id") String id){
+
+        adminService.refreshExtensionGitInfo(Integer.parseInt(id));
+
+        return "redirect:/extension-details/"+id;
+    }
+
 }

@@ -32,4 +32,6 @@ public interface AdminService {
 
     Admin getAdminInfo();
 
+    void refreshExtensionGitInfo(int id);
+
 }

@@ -165,7 +165,6 @@ public class FileController {
 
                 uploadFile.setLogoData(aFile.getBytes());
 
-
                 fileService.updateFile(uploadFile);
 
                 adminService.removeApproval(Integer.parseInt(id));

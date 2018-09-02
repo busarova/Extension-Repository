@@ -34,16 +34,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int refreshAllGitHubInfo() {
 
-        List<GitExtensionInfo> allGitInfo = gitExtensionInfoRepository.getAllGitInfo();
+
+        List<Extension> allExtensions = extensionRepository.getAllExtensions();
 
         int errors = 0;
 
-        for (GitExtensionInfo gitInfo :
-                allGitInfo) {
-            String gitLink = gitInfo.getGitRepoLink();
-            gitInfo = gitService.getGitDetails(gitLink);
-            gitExtensionInfoRepository.updateGitInfo(gitInfo);
-            System.out.println("GIT INFO: " + gitInfo.getId() + "UPDATED");
+        for (Extension extension :
+                allExtensions) {
+
+            refreshExtensionGitInfo(extension.getId());
+
         }
 
         adminRepository.updateLastSuccessfulSync(new Date());
@@ -126,5 +126,18 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin getAdminInfo() {
         return adminRepository.getAdminInfo();
+    }
+
+    @Override
+    public void refreshExtensionGitInfo(int id) {
+
+        Extension extension = extensionRepository.getExtById(id);
+
+        GitExtensionInfo gitInfo = gitService.getGitDetails(extension.getGitExtensionInfo().getGitRepoLink());
+
+        extension.setGitExtensionInfo(gitInfo);
+
+        extensionRepository.updateExtension(extension);
+
     }
 }
