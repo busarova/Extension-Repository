@@ -55,6 +55,7 @@ Tags: <a th:each="TagForm : ${tags}"> <a th:text="${TagForm.getName()}" th:href=
 <p th:text="'Open Issues: ' + ${extension.getGitExtensionInfo().getOpenIssues()}"></p>
 <p th:text="'Pull Requests: ' + ${extension.getGitExtensionInfo().getPullRequests()}"></p>
 <p th:text="'Last Commit Date: ' + ${extension.getGitExtensionInfo().getLastCommitDate()}"></p>
+<p sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Last Git Sync: ' + ${extension.getGitExtensionInfo().getLastSuccessfulSync()}"></p>
 
 
 <p th:text="'Status:  ' + ${extension.isItApproved()}"></p>

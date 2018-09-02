@@ -19,6 +19,7 @@
     <p>Welcome, <a th:href="@{/profile}"><span sec:authentication="name"/></a></p>
 
 </div>
+<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Admin</a>
 <p><a th:href="@{/user/create-extension}">Create extension</a></p>
 <p><a th:href="@{/tags}">Tag Palace</a></p>
 

@@ -29,6 +29,9 @@ public class GitExtensionInfo {
     @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Extension extension;
 
+    @Column(name = "last_successful_sync")
+    private Date lastSuccessfulSync;
+
     public GitExtensionInfo(){}
 
     public GitExtensionInfo(int openIssues, int pullRequests, Date lastCommitDate) {
@@ -45,6 +48,13 @@ public class GitExtensionInfo {
         this.id = id;
     }
 
+    public Date getLastSuccessfulSync() {
+        return lastSuccessfulSync;
+    }
+
+    public void setLastSuccessfulSync(Date lastSuccessfulSync) {
+        this.lastSuccessfulSync = lastSuccessfulSync;
+    }
 
     public int getOpenIssues() {
         return openIssues;

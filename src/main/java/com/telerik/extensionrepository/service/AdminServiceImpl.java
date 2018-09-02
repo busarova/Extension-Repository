@@ -135,6 +135,8 @@ public class AdminServiceImpl implements AdminService {
 
         GitExtensionInfo gitInfo = gitService.getGitDetails(extension.getGitExtensionInfo().getGitRepoLink());
 
+        gitInfo.setLastSuccessfulSync(new Date());
+
         extension.setGitExtensionInfo(gitInfo);
 
         extensionRepository.updateExtension(extension);
