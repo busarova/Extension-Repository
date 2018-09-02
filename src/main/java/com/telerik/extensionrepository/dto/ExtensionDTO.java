@@ -16,7 +16,7 @@ public class ExtensionDTO {
     private long numberOfDownloads;
     private String tags;
     private int approved;
-    private Date uploadDate;
+    private String uploadDate;
     private int featured;
     private String gitRepoLink;
     private int openIssues;
@@ -34,7 +34,7 @@ public class ExtensionDTO {
         this.numberOfDownloads = extension.getNumberOfDownloads();
         this.tags = extension.getTags();
         this.approved = extension.getApproved();
-        this.uploadDate = extension.getUploadDate();
+        this.uploadDate = extension.getUploadDate().toString();
         this.featured = extension.getFeatured();
         this.gitRepoLink = extension.getGitExtensionInfo().getGitRepoLink();
         this.openIssues = extension.getGitExtensionInfo().getOpenIssues();
@@ -108,11 +108,11 @@ public class ExtensionDTO {
         this.approved = approved;
     }
 
-    public Date getUploadDate() {
+    public String getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(Date uploadDate) {
+    public void setUploadDate(String uploadDate) {
         this.uploadDate = uploadDate;
     }
 

@@ -6,6 +6,7 @@ import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.RestExtensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -33,5 +34,17 @@ public class RestHomeController {
 
         return restExtensionService.getAllApproved();
 
+    }
+
+    @GetMapping("api/getExtension/{name}")
+    public ExtensionDTO getExtensionByName(@PathVariable ("name") String name){
+
+        return restExtensionService.getExtensionByName(name);
+    }
+
+    @GetMapping("api/getAll")
+    public List<ExtensionDTO> getAllExtensions(){
+
+        return restExtensionService.getAll();
     }
 }

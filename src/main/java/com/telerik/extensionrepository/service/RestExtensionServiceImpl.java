@@ -23,16 +23,32 @@ public class RestExtensionServiceImpl implements RestExtensionService {
     @Override
     public List<ExtensionDTO> getAllApproved() {
 
+        return convertExtListToDto(extensionRepository.getAllApproved());
+    }
+
+    @Override
+    public List<ExtensionDTO> getAll() {
+        return convertExtListToDto(extensionRepository.getAllExtensions());
+    }
+
+    @Override
+    public ExtensionDTO getExtensionByName(String name) {
+        return new ExtensionDTO(extensionRepository.getExtByName(name));
+    }
+
+    @Override
+    public List<ExtensionDTO> convertExtListToDto(List<Extension> extensions) {
+
         List<ExtensionDTO> allDto = new ArrayList<>();
 
-        List<Extension> allExtensions = extensionRepository.getAllApproved();
-
         for (Extension ext:
-             allExtensions) {
+                extensions) {
 
             allDto.add(new ExtensionDTO(ext));
         }
 
         return allDto;
     }
+
+
 }
