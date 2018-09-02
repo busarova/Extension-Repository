@@ -1,6 +1,8 @@
 package com.telerik.extensionrepository.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Base64;
 
@@ -22,6 +24,7 @@ public class UploadFile {
     }
 
     @OneToOne(mappedBy = "uploadFile", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
     private Extension extension;
 
     public void setId(int id){

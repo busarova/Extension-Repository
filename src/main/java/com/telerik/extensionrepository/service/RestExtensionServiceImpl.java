@@ -1,0 +1,38 @@
+package com.telerik.extensionrepository.service;
+
+import com.telerik.extensionrepository.data.base.ExtensionRepository;
+import com.telerik.extensionrepository.dto.ExtensionDTO;
+import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.service.base.RestExtensionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class RestExtensionServiceImpl implements RestExtensionService {
+
+    private ExtensionRepository extensionRepository;
+
+    @Autowired
+    public RestExtensionServiceImpl(ExtensionRepository extensionRepository){
+        this.extensionRepository = extensionRepository;
+    }
+
+    @Override
+    public List<ExtensionDTO> getAllApproved() {
+
+        List<ExtensionDTO> allDto = new ArrayList<>();
+
+        List<Extension> allExtensions = extensionRepository.getAllApproved();
+
+        for (Extension ext:
+             allExtensions) {
+
+            allDto.add(new ExtensionDTO(ext));
+        }
+
+        return allDto;
+    }
+}

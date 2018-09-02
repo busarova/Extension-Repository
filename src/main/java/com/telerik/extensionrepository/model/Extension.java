@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -35,10 +37,12 @@ public class Extension {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "git_id")
+    @JsonManagedReference
     private GitExtensionInfo gitExtensionInfo;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
+    @JsonManagedReference
     private UploadFile uploadFile;
 
     @Column(name = "upload_date")

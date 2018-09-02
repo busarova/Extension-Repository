@@ -1,5 +1,6 @@
 package com.telerik.extensionrepository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class GitExtensionInfo {
     private Date lastCommitDate;
 
     @OneToOne(mappedBy = "gitExtensionInfo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonBackReference
     private Extension extension;
 
     @Column(name = "last_successful_sync")
