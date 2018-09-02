@@ -89,14 +89,39 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
         return null;
     }
 
+    // to fix the last commit date order when real extensions are placed
+
     @Override
     public List<Extension> returnAllOrderedBy(String parameter) {
 
-        String[] commands = parameter.split(" ");
+        switch (parameter){
 
-        return sortListBy(getAll(), commands[1]);
+            case "name":
+
+                return extensionRepository.getAllApproved();
+
+            case "downloads":
+
+                return extensionRepository.getPopularExtensions();
+
+            case "uploadDate":
+
+                return extensionRepository.getNewExtensions();
+
+            case "lastCommitDate":
+
+                return extensionRepository.getAllExtensions();
+
+            case "featured":
+
+                return extensionRepository.getFeaturedExtensions();
+        }
+
+        return null;
 
     }
+
+    // To be decided if to stay by the rest functions
 
     @Override
     public List<Extension> sortListBy(List<Extension> list, String parameter) {

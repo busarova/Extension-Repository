@@ -27,7 +27,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension").list();
+            theList = session.createQuery("from Extension e order by e.name").list();
 
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -150,7 +150,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where approved = 1 order by e.numberOfDownloads").list();
+            theList = session.createQuery("from Extension e where approved = 1 order by e.numberOfDownloads desc").list();
 
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -167,7 +167,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try (Session session = factory.openSession()) {
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where approved = 1 order by e.name").list();
+            theList = session.createQuery("from Extension e where approved = 1 order by e.uploadDate desc").list();
 
             session.getTransaction().commit();
         } catch (Exception e) {

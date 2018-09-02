@@ -133,10 +133,7 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("index");
 
-       // List<Extension> list = extensionInfoService.returnOrderedBy(name);
-
         List<Extension> list = extensionInfoService.returnAllOrderedBy(name);
-
 
         modelAndView.addObject("allApproved", list);
 
