@@ -1,11 +1,8 @@
 package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
-import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.dto.ExtensionForm;
-import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;

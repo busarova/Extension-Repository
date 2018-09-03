@@ -2,7 +2,6 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
-import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.Admin;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
@@ -21,13 +20,11 @@ public class AdminServiceImpl implements AdminService {
     private ExtensionRepository extensionRepository;
     private AdminRepository adminRepository;
     private GitService gitService;
-    private GitExtensionInfoRepository gitExtensionInfoRepository;
 
     @Autowired
-    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitExtensionInfoRepository gitExtensionInfoRepository, GitService gitService) {
+    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitService gitService) {
         this.extensionRepository = extensionRepository;
         this.adminRepository = adminRepository;
-        this.gitExtensionInfoRepository = gitExtensionInfoRepository;
         this.gitService = gitService;
     }
 

@@ -2,7 +2,6 @@ package com.telerik.extensionrepository.servicesTests;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
-import com.telerik.extensionrepository.data.base.GitExtensionInfoRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.AdminServiceImpl;
@@ -25,8 +24,6 @@ public class AdminServiceTests {
     private AdminRepository adminRepository = mock(AdminRepository.class);
     @Mock
     private ExtensionRepository extensionRepository = mock(ExtensionRepository.class);
-    @Mock
-    private GitExtensionInfoRepository gitExtensionInfoRepository = mock(GitExtensionInfoRepository.class);
 
     private GitService gitService;
 
@@ -42,7 +39,7 @@ public class AdminServiceTests {
 
         when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         Extension resultExt = service.approveExt(10);
 
@@ -59,7 +56,7 @@ public class AdminServiceTests {
 
         when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         Extension resultExt = service.removeApproval(10);
 
@@ -86,7 +83,7 @@ public class AdminServiceTests {
         when(adminRepository.getAllUsers())
                 .thenReturn(users);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         // Act
         List<User> resultUsers = service.getAllUsers();
@@ -109,7 +106,7 @@ public class AdminServiceTests {
 
         when(adminRepository.getUserByName(user.getName())).thenReturn(user);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         User resultUser = service.getUser("test username 1");
 
@@ -126,7 +123,7 @@ public class AdminServiceTests {
 
         when(adminRepository.getUserByName(user.getName())).thenReturn(user);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         User resultUser = service.disableUser("test username 1");
 
@@ -143,7 +140,7 @@ public class AdminServiceTests {
 
         when(adminRepository.getUserByName(user.getName())).thenReturn(user);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         User resultUser = service.enableUser("test username 1");
 
@@ -159,7 +156,7 @@ public class AdminServiceTests {
 
         when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         Extension resultExt = service.featureExtension(10);
 
@@ -176,7 +173,7 @@ public class AdminServiceTests {
 
         when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
         Extension resultExt = service.unFeatureExtension(10);
 
@@ -200,7 +197,7 @@ public class AdminServiceTests {
         when(extensionRepository.getAllNotApproved())
                 .thenReturn(extensions);
 
-        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
+        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitService);
 
 
         List<Extension> resultExtensions = service.getNotApprovedExt();
