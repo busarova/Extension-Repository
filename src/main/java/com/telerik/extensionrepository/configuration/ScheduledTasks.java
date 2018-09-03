@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ScheduledTasks {
 
-    AdminService adminService;
+    private AdminService adminService;
 
     public ScheduledTasks(AdminService adminService){
         this.adminService = adminService;
