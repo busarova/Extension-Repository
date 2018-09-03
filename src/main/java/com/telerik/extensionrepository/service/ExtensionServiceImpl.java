@@ -74,6 +74,8 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         extension.setName(newName);
 
+        extension.setApproved(0);
+
         return extensionRepository.updateExtension(extension);
 
     }
@@ -93,6 +95,8 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         extension.setDescription(newDescription);
 
+        extension.setApproved(0);
+
         return extensionRepository.updateExtension(extension);
     }
 
@@ -102,6 +106,8 @@ public class ExtensionServiceImpl implements ExtensionService {
         newTags = tagManipulations.checkForHashTag(newTags);
 
         extension.setTags(extension.getTags() + " " + newTags);
+
+        extension.setApproved(0);
 
         extensionRepository.updateExtension(extension);
 

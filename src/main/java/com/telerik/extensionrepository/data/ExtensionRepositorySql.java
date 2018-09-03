@@ -97,6 +97,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     public Extension updateExtension(Extension extension) {
 
         Transaction transaction = null;
+
         try (Session session = factory.openSession()) {
 
             transaction = session.beginTransaction();

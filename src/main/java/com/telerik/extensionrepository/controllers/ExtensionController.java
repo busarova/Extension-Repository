@@ -41,8 +41,6 @@ public class ExtensionController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        System.out.println("currently reviewing: " + extension.getName());
-
         modelAndView.addObject("extension", extension);
 
         modelAndView.addObject("tags", tagService.extractTagsFromExtension(extension));
@@ -88,8 +86,6 @@ public class ExtensionController {
 
         extensionService.changeExtensionName(extension, name);
 
-        adminService.removeApproval(extension.getId());
-
         modelAndView.addObject(extension);
 
         return modelAndView;
@@ -104,8 +100,6 @@ public class ExtensionController {
 
         extensionService.changeExtensionDescription(extension, content);
 
-        adminService.removeApproval(extension.getId());
-
         modelAndView.addObject(extension);
 
         return modelAndView;
@@ -119,8 +113,6 @@ public class ExtensionController {
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
         extensionService.addExtensionTag(extension, content);
-
-        adminService.removeApproval(extension.getId());
 
         modelAndView.addObject(extension);
 
