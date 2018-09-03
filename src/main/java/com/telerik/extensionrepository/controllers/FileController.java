@@ -83,17 +83,7 @@ public class FileController {
 
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<com.telerik.extensionrepository.model.Extension> featured = extensionInfoService.getFeatured();
-
-        modelAndView.addObject("featured", featured);
-
-        List<com.telerik.extensionrepository.model.Extension> popular = extensionInfoService.getPopular();
-
-        modelAndView.addObject("popular", popular);
-
-        List<com.telerik.extensionrepository.model.Extension> newExt = extensionInfoService.getNew();
-
-        modelAndView.addObject("newExt", newExt);
+        modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
 
         return modelAndView;
     }
@@ -176,39 +166,6 @@ public class FileController {
         return "redirect:/extension-details/"+id;
 
     }
-
-
-
-    /*@RequestMapping(value = "/download/{name}",
-            produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-    public String download(@PathVariable("name")
-                                   String name, HttpServletResponse response) {
-
-        int fileId = extensionInfoService.getExtByName(name).getFileId();
-
-        System.out.println("THE ID IS: " + fileId);
-
-        UploadFile file = fileService.getFile(fileId);
-
-        System.out.println(file.getFileName());
-
-        ByteArrayInputStream array = new ByteArrayInputStream(file.getData());
-
-        try {
-            response.setHeader("Content-Disposition", "inline;filename=\"" + file.getFileName()+ "\"");
-            OutputStream out = response.getOutputStream();
-         //   response.setContentType(file.getContentType());
-            IOUtils.copy(array, out);
-            out.flush();
-            out.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return null;
-    }*/
 
 
 }

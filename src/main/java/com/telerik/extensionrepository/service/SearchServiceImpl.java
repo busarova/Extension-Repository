@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class SearchServiceImpl implements SearchService {
 
-    ExtensionRepository extensionRepository;
+    private ExtensionRepository extensionRepository;
 
     @Autowired
     public SearchServiceImpl(ExtensionRepository extensionRepository) {

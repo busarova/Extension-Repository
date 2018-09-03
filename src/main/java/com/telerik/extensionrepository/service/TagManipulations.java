@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TagManipulations {
+    class TagManipulations {
 
     //Splits the input string tags by " "
     //Checks for every String (tag) of them if first character is #
     //If not puts # at char(0)
 
-    public String checkForHashTag(String tags){
+    String checkForHashTag(String tags){
 
         String[] parsedTags = tags.split(" ");
 
@@ -39,7 +39,7 @@ public class TagManipulations {
     //Extracts all tags which are separated by " " in an extension
     //And puts them into a List
 
-    public List<TagForm> extractTagsFromExtension(Extension extension){
+    List<TagForm> extractTagsFromExtension(Extension extension){
 
         List<TagForm> tags = new ArrayList<>();
 

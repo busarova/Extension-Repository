@@ -17,13 +17,11 @@ import javax.persistence.criteria.CriteriaBuilder;
 public class TagController {
 
     private TagService tagService;
-    private ExtensionInfoService extensionInfoService;
 
     @Autowired
-    public TagController(TagService tagService, ExtensionInfoService extensionInfoService){
+    public TagController(TagService tagService){
 
         this.tagService = tagService;
-        this.extensionInfoService = extensionInfoService;
 
     }
 
@@ -53,8 +51,6 @@ public class TagController {
     public ModelAndView showExtensionsByTagName(@PathVariable("name") String name){
 
         ModelAndView modelAndView = new ModelAndView("tag-palace-show");
-
-        System.out.println(name);
 
         Tags tag = tagService.getTagByName(name);
 

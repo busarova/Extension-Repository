@@ -32,12 +32,6 @@ public class UserController {
         this.adminService = adminService;
     }
 
-    /*@GetMapping("/profile")
-    public String showUserPage(){
-
-        return "profile";
-    }*/
-
     @GetMapping("/accessDenied")
     public String accessDenied(){
 
@@ -91,10 +85,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("image", getProfilePicAsString());
         modelAndView.addObject("extensions", extensionInfoService.getByUserName(user.getUsername()));
-        /*modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
-        modelAndView.addObject("extensionForm", extension);*/
-
-
 
         return modelAndView;
 

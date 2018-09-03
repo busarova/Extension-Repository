@@ -12,12 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController {
 
-    private ExtensionInfoService extensionInfoService;
     private AdminService adminService;
 
     @Autowired
-    public AdminController(ExtensionInfoService extensionInfoService, AdminService adminService){
-        this.extensionInfoService = extensionInfoService;
+    public AdminController(AdminService adminService){
         this.adminService = adminService;
     }
 
