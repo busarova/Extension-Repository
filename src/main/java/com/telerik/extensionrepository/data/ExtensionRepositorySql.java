@@ -2,11 +2,14 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.OptimisticLockException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,6 +75,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         return theList;
     }
+
     @Override
     public List<Extension> getAllNotApproved() {
         List<Extension> theList = new ArrayList<>();
@@ -82,7 +86,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             theList = session.createQuery("from Extension e where approved = 0 order by e.name").list();
 
             session.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (HibernateException e) {
             System.out.println(e.getMessage());
         }
 
@@ -92,15 +96,20 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     @Override
     public Extension updateExtension(Extension extension) {
 
+        Transaction transaction = null;
         try (Session session = factory.openSession()) {
-            session.beginTransaction();
 
+            transaction = session.beginTransaction();
             session.update(extension);
+            transaction.commit();
 
-            session.getTransaction().commit();
+        } catch (HibernateException | OptimisticLockException e) {
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
+            if (transaction != null){
+                transaction.rollback();
+            }
+
         }
 
         return extension;
