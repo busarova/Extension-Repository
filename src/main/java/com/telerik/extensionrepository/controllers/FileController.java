@@ -56,28 +56,15 @@ public class FileController {
 
     @PostMapping("/doUpload/{name}")
     public ModelAndView handleFileUpload(HttpServletRequest request, @PathVariable("name") String name,
-                                   @RequestParam CommonsMultipartFile[] fileUpload) throws Exception {
+                                   @RequestParam CommonsMultipartFile aFile) throws Exception {
 
 
-        if (fileUpload != null && fileUpload.length > 0) {
-            for (CommonsMultipartFile aFile : fileUpload){
-
-                System.out.println("Saving file: " + aFile.getOriginalFilename());
+        if (aFile != null) {
 
                 Extension extension = extensionInfoService.getExtByName(name);
 
-                UploadFile uploadFile = extension.getUploadFile();
-                uploadFile.setFileName(aFile.getOriginalFilename());
-                uploadFile.setData(aFile.getBytes());
-                fileService.storeFile(uploadFile);
+                fileService.storeFile(extension, aFile);
 
-
-
-
-                extensionService.updateExtension(extension);
-
-                adminService.removeApproval(extension.getId());
-            }
 
         }
 
@@ -95,9 +82,7 @@ public class FileController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        int fileId = extension.getUploadFile().getId();
-
-        UploadFile uploadFile = fileService.getFile(fileId);
+        UploadFile uploadFile = extension.getUploadFile();
 
 
         ByteArrayInputStream inputStream = new ByteArrayInputStream(uploadFile.getData());
