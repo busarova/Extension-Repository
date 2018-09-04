@@ -32,7 +32,13 @@ public class TagServiceImpl implements TagService {
     @Override
     public void loadNewTags(Extension extension) {
 
-        String[] tagList = extension.getTags().split(" ");
+        String tags = extension.getTags();
+
+        if(tags == null || tags.equals("")){
+            return;
+        }
+
+        String[] tagList = tags.split(" ");
 
         for (String tag:
              tagList) {

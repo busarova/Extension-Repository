@@ -14,7 +14,6 @@ public class Extension {
     @Column(name = "extension_id")
     private int id;
 
-
     @Version
     @Column(name = "update_version")
     private int updateVersion;

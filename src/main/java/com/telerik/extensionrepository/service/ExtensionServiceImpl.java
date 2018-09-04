@@ -7,7 +7,6 @@ import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
@@ -29,33 +28,14 @@ public class ExtensionServiceImpl implements ExtensionService {
     // Creates extension from the dto information given at input
 
     @Override
-    public Extension createExtension(ExtensionForm extensionForm) {
+    public Extension createExtension(ExtensionForm extensionForm, User user) {
 
-        User user = (User) SecurityContextHolder.getContext().getAuthentication()
-                .getPrincipal();
-
-        Extension newExtension = new Extension(
-                extensionForm.getName(),
-                extensionForm.getDescription(),
-                extensionForm.getVersion(),
-                user.getUsername(),
-                tagManipulations.checkForHashTag(extensionForm.getTags()));
-
-        newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
-
-        // Checks if there is no file or if it is an empty string
-        //If there is a file will set its properties
-        //Otherwise will leave it null so that thymeleaf will show "No file" in page
-
-        if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
-
-            newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
-            newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
-
-        }
+        Extension newExtension = createExtensionFromForm(extensionForm, user);
 
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
+
         extensionRepository.createExtension(newExtension);
+
         tagService.loadNewTags(newExtension);
 
         return newExtension;
@@ -109,6 +89,33 @@ public class ExtensionServiceImpl implements ExtensionService {
         extensionRepository.updateExtension(extension);
 
         tagService.loadNewTags(extension);
+    }
+
+    @Override
+    public Extension createExtensionFromForm(ExtensionForm extensionForm, User user) {
+
+        // Checks if there is no file or if it is an empty string
+        //If there is a file will set its properties
+        //Otherwise will leave it null so that thymeleaf will show "No file" in page
+
+        Extension newExtension = new Extension(
+                extensionForm.getName(),
+                extensionForm.getDescription(),
+                extensionForm.getVersion(),
+                user.getUsername(),
+                tagManipulations.checkForHashTag(extensionForm.getTags()));
+
+        newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
+
+        if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
+
+            newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+            newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
+
+        }
+
+
+        return newExtension;
     }
 
 
