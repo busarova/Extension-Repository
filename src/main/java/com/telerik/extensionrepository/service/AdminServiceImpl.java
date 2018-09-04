@@ -35,13 +35,18 @@ public class AdminServiceImpl implements AdminService {
         List<Extension> allExtensions = extensionRepository.getAllExtensions();
 
         int errors = 0;
-
+// new log
+        // set start date
         for (Extension extension :
                 allExtensions) {
-
+//try
             refreshExtensionGitInfo(extension.getId());
-
+//catch
+            // set end date, save exception
+            //break
         }
+
+        // finally always close the end date
 
         adminRepository.updateLastSuccessfulSync(new Date());
 

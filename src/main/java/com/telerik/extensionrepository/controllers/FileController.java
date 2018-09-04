@@ -62,10 +62,7 @@ public class FileController {
         if (aFile != null) {
 
                 Extension extension = extensionInfoService.getExtByName(name);
-
                 fileService.storeFile(extension, aFile);
-
-
         }
 
         ModelAndView modelAndView = new ModelAndView("index");
