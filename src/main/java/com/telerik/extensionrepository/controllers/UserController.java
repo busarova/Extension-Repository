@@ -80,7 +80,7 @@ public class UserController {
                 .getPrincipal();
 
 
-        extensionService.createExtension(extension);
+        extensionService.createExtension(extension, user);
 
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("image", getProfilePicAsString());

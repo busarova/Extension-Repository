@@ -34,26 +34,26 @@ public class RestExtensionController {
         this.extensionService = extensionService;
     }
 
-    @GetMapping("api/getAllApproved")
+    @GetMapping("api/extensions/approved")
     public List<ExtensionDTO> getAllApproved(){
 
         return restExtensionService.getAllApproved();
 
     }
 
-    @GetMapping("api/getExtension/{name}")
+    @GetMapping("api/extensions/{name}")
     public ExtensionDTO getExtensionByName(@PathVariable ("name") String name){
 
         return restExtensionService.getExtensionByName(name);
     }
 
-    @GetMapping("api/getAll")
+    @GetMapping("api/extensions")
     public List<ExtensionDTO> getAllExtensions(){
 
         return restExtensionService.getAll();
     }
 
-    @RequestMapping(value = "api/download/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @RequestMapping(value = "api/extensions/download/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public @ResponseBody void downloadExtensionFile(HttpServletResponse response, @PathVariable("id")
             String id) throws IOException {
 

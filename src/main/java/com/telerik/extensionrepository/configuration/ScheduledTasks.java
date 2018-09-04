@@ -18,7 +18,6 @@ public class ScheduledTasks {
 
         adminService.refreshAllGitHubInfo();
 
-        System.out.println("WWWWWWWWWWWWWWWOOOOOOOOOOOOOOWWWWWWWWWWWWWWWWWW");
     }*/
 
 }

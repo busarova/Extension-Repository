@@ -31,6 +31,10 @@ public class TagForm {
     }
 
     public String getNameNoHashTag(){
+        if(getName().equals("")){
+            return getName();
+        }
+
         if(getName().charAt(0) == '#'){
             return getName().substring(1, getName().length());
         }

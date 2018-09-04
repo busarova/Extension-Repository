@@ -16,6 +16,10 @@ import java.util.List;
 
     String checkForHashTag(String tags){
 
+        if(tags == null || tags.equals("")){
+            return "";
+        }
+
         String[] parsedTags = tags.split(" ");
 
         StringBuilder builder = new StringBuilder();
