@@ -15,32 +15,53 @@
 
 <p th:text="'Last successful sync: '+${adminInfo.getLastSuccessfulSync()}"></p>
 
-<h2>For Approval:</h2>
-
-
-<div class="inLine">
-
-<div th:each="Extension : ${extensions}">
-
-<a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></a>  --> <a th:href="'/admin/approve/'+${Extension.getId()}">approve</a></p>
-
-</div>
-
-</div>
-
-<h2>Users: </h2>
-
-<div class="inLine">
-
-<div th:each="User : ${users}">
-
-<p style="display: inline" th:text="${User.getName()}"></p> <p style="display: inline" th:text="' status: ' + ${User.getStatus()}"></p>
-<a th:if="${User.getStatus() == 'Enabled'}" th:href="'/admin/disable-user/' + ${User.getName()}">Disable</a> <a th:unless="${User.getStatus() == 'Enabled'}" th:href="'/admin/enable-user/' + ${User.getName()}">Enable</a>
-
-
-</div>
-
-</div>
+<div class="container">
+  <h2>For Approval</h2>
+  <!--<p>this is responsive table :P</p>-->
+  <div class="table-responsive">
+  <table class="table table-hover" border="1">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Extension Name</th>
+        <th>Upload Date</th>
+        <th>Owner</th>
+        <th>Github</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody th:each="Extension : ${extensions}">
+      <tr>
+        <td th:text="${Extension.getId()}"></td>
+        <td><a th:href="'/extension-details/'+${Extension.getId()}" th:text="${Extension.getName()}"></a></td>
+        <td th:text="${Extension.getUploadDate()}"></td>
+        <td th:text="${Extension.getOwner()}"></td>
+        <td><a th:href="${Extension.getGitExtensionInfo().getGitRepoLink()}" th:text="${Extension.getGitExtensionInfo().getGitRepoLink()}"></a> </td>
+        <td><a class="approve-button" th:href="'/admin/approve/'+${Extension.getId()}">approve</a> </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+ <h2>Users</h2>
+  <!--<p>this is responsive table :P</p>-->
+  <div class="table-responsive">
+  <table class="table table-hover" border="1">
+    <thead>
+      <tr>
+        <th>User Name</th>
+        <th>Status</th>
+        <th>Action</th>
+       </tr>
+    </thead>
+    <tbody th:each="User : ${users}">
+      <tr>
+        <td ><a href="" th:text="${User.getName()}"></a> </td>
+        <td th:text="${User.getStatus()}"></td>
+        <td><a th:if="${User.getStatus() == 'Enabled'}" class="error" th:href="'/admin/disable-user/' + ${User.getName()}">Disable</a> <a th:unless="${User.getStatus() == 'Enabled'}" class="approve-button" th:href="'/admin/enable-user/' + ${User.getName()}">Enable</a></td>
+       </tr>
+    </tbody>
+  </table>
+ </div>
 
 
 </body>
