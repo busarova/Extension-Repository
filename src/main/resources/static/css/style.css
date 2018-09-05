@@ -30,6 +30,12 @@ img{
     font-family: Centaur;
 }
 
+#tags-extension-details{
+    font-size: 25px;
+    color: crimson;
+    font-family: Centaur;
+}
+
 #navbar-title{
     font-style: italic;
     font-size: 25px;
