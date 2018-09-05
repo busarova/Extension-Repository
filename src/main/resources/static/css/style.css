@@ -20,6 +20,10 @@ img{
     font-size: 25px;
 }
 
+.approve-button{
+    color: green;
+}
+
 
 .hoverDiv{
     text-align: center;
