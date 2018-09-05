@@ -3,9 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments :: head">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 </head>
 <body>
 
@@ -20,98 +18,63 @@
         <input type="submit" value="Search"/>
     </form>
 </div>
-<hr>
 
-<div>
 
-    <div class="container">
-
-    </div>
-
-    <div class="alignTextCenter">
-        <div class="w3-dropdown-hover">
-            <button class="w3-button">Sort By</button>
-            <div class="w3-dropdown-content w3-bar-block w3-border">
-                <a href="/sortby/name" class="w3-bar-item w3-button">Name</a>
-                <a href="/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>
-                <a href="/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>
-                <a href="/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 home-buttons">
+            <a class="button button-primary" href="/featured">Featured</a>
+            <a class="button button-neutral" href="/sortby/uploadDate">New</a>
+            <a class="button button-neutral" href="/sortby/downloads">Popular</a>
         </div>
-
-
-        <a href="/featured">
-            <button class="w3-button">Show Featured</button>
-        </a>
     </div>
-
-    <br><br>
-
-    <!--<div class="alignTextCenter">-->
-    <!--<div th:each="Extension : ${allApproved}" class="col-lg-4 col-sm-4">-->
-
-    <!--<div class="circular">-->
-    <!--<a th:href="'/extension-details/'+${Extension.getId()}">-->
-    <!--<a th:href="'/extension-details/'+${Extension.getId()}"-->
-    <!--th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic">-->
-    <!--<img src="/pics/icons/ext_default.jpg" width="25%" height="10%"> </a>-->
-    <!--<a th:href="'/extension-details/'+${Extension.getId()}"-->
-    <!--th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic">-->
-    <!--<img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt=""-->
-    <!--width="25%" height="10%"></a>-->
-    <!--<h4 th:text="${Extension.getName()}"></h4>-->
-    <!--</a>-->
-
-    <!--</div>-->
-    <!--</div>-->
-    <!--</div>-->
-
-    <!--</div>-->
+</div>
+<!--<div class="alignTextCenter">-->
+<!--<div class="w3-dropdown-hover">-->
+<!--<button class="w3-button">Sort By</button>-->
+<!--<div class="w3-dropdown-content w3-bar-block w3-border">-->
+<!--<a href="/sortby/name" class="w3-bar-item w3-button">Name</a>-->
+<!--<a href="/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>-->
+<!--<a href="/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>-->
+<!--<a href="/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>-->
+<!--</div>-->
+<!--</div>-->
 
 
-    <!--<div th:replace="fragments :: scripts">-->
-    <!--</div>-->
-    <!--</body>-->
-    <!--</html>-->
+<!--<a href="/featured">-->
+<!--<button class="w3-button">Show Featured</button>-->
+<!--</a>-->
+<!--</div>-->
 
-    <!------ Include the above in your HEAD tag ---------->
 
-    <div class="Features-section paddingTB60 ">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 site-heading ">
+<div class="Features-section paddingTB60 ">
+    <div class="container">
+        <div class="row">
 
-                    <div class="border"></div>
-                </div>
-            </div>
-            <div class="row">
-
-                <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
-                    <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
-                        <div class="col-md-12 feature-box">
-                            <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
-                                <img src="/pics/icons/MPIcon.png">
+            <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
+                <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
+                    <div class="col-md-12 feature-box">
+                        <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
+                            <img src="/pics/icons/MPIcon.png">
+                        </div>
+                        <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
+                            <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
+                        </div>
+                        <h4 th:text="${Extension.getName()}"></h4>
+                        <div class="row">
+                            <div class="col-sm-6" th:text="${Extension.getOwner()}">
                             </div>
-                            <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
-                                <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
-                            </div>
-                            <h4 th:text="${Extension.getName()}"></h4>
-                            <div class="row">
-                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
-                                </div>
-                                <div class="glyphicon glyphicon-download-alt col-sm-6"
-                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
-                                </div>
+                            <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                 th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
                             </div>
                         </div>
-                </div>
+                    </div>
                 </a>
             </div>
         </div>
     </div>
+</div>
 
-</div>
-</div>
-</div>
+
 </body>
 </html>
