@@ -8,6 +8,77 @@
 <div th:replace="fragments :: header">
 </div>
 
+<div class="blue-background">
+<div class="container">
+
+    <h1 th:text="${extension.getName()}"></h1>
+    <div class="row">
+        <div class="col-md-12">
+            <img th:if="${logo == null}" style='float:left;width:240px;height:360px; margin-right:30px;' src="/pics/icons/MPIcon.png" />
+            <img th:unless="${logo == null}" style='float:left;width:240px;height:360px; margin-right:30px;' th:src="*{'data:image/png;base64,'+logo}" />
+
+
+              <div style="margin-top: 30px">
+              <p id="description-extension-details">Description</p>
+              <p th:text="${extension.getDescription()}"></p>
+              </div>
+
+
+
+              <div style="margin-top: 150px">
+               <a th:href="'/download/' + ${extension.getId()}"><img src="/pics/icons/downloads.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-right:30px;'></a><span th:text="${extension.getNumberOfDownloads()}" id="description-extension-details"></span>
+               <img src="/pics/icons/star.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 30px;'><span id="description-extension-details">Featured</span>
+               <a th:href="'/edit-extension/'+${extension.getId()}"><img src="/pics/icons/repair.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 30px;'></a><span id="description-extension-details">Edit</span>
+               </div>
+        </div>
+     </div>
+
+     <hr>
+
+
+</div>
+</div>
+
+<div class="container">
+<div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Version</th>
+                    <th>Uploaded On</th>
+                    <th>Owner</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td th:text="${extension.getVersion()}"></td>
+                    <td th:text="${extension.getUploadDate()}"></td>
+                    <td th:text="${extension.getOwner()}"></td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+</div>
+
+
+<div class="container">
+<p><strong>GitHub Info: </strong></p>
+<p th:text="'Open Issues: ' + ${extension.getGitExtensionInfo().getOpenIssues()}"></p>
+<p th:text="'Pull Requests: ' + ${extension.getGitExtensionInfo().getPullRequests()}"></p>
+<p th:text="'Last Commit Date: ' + ${extension.getGitExtensionInfo().getLastCommitDate()}"></p>
+<p sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Last Git Sync: ' + ${extension.getGitExtensionInfo().getLastSuccessfulSync()}"></p>
+<p sec:authorize="hasRole('ROLE_ADMIN')" th:text="'Status:  ' + ${extension.isItApproved()}"></p>
+</div>
+
+
+
+
+
+
+
+
+
+
 <div class="alignTextCenter">
 
 <h1 th:text="${extension.getName()}"></h1>

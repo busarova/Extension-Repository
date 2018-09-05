@@ -15,6 +15,21 @@ img{
     font-size: 17px;
 }
 
+.enlarge_on_hover:hover{
+    transform: scale(1.5);
+
+}
+
+/*.blue-background{
+    background-color: blanchedalmond;
+}*/
+
+#description-extension-details{
+    font-size: 35px;
+    color: darkblue;
+    font-family: Centaur;
+}
+
 #navbar-title{
     font-style: italic;
     font-size: 25px;
@@ -22,6 +37,10 @@ img{
 
 .approve-button{
     color: green;
+}
+
+.extension-details-list{
+    list-style: none;
 }
 
 .hoverDiv{
