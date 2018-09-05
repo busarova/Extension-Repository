@@ -11,6 +11,9 @@
 
 </head>
 <body>
+
+<div th:replace="fragments :: header">
+</div>
 <h1>Register Page</h1>
 
 <i th:if="${registrationError != null}" th:text="${registrationError}" class="error" />

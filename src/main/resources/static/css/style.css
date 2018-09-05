@@ -6,7 +6,18 @@
 }
 
 img{
+
     border-radius: 20%;
+}
+
+.navbar{
+
+    font-size: 17px;
+}
+
+#navbar-title{
+    font-style: italic;
+    font-size: 25px;
 }
 
 
