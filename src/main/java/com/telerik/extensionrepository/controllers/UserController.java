@@ -18,6 +18,8 @@ import javax.validation.Valid;
 import java.util.Base64;
 import java.util.List;
 
+import static java.lang.System.err;
+
 @Controller
 public class UserController {
 
@@ -67,10 +69,12 @@ public class UserController {
     @PostMapping("/user/create-extension")
     public ModelAndView createExtension(@ModelAttribute ("extensionForm") @Valid ExtensionForm extension, Errors errors){
 
-        if(errors.hasErrors()){
+
+        if(errors.hasErrors() || extension.getCommonsMultipartFile().isEmpty()){
 
             ModelAndView modelAndView = new ModelAndView("create-extension");
             modelAndView.addObject("errors", errors);
+            modelAndView.addObject("fileError", true);
 
             return modelAndView;
 

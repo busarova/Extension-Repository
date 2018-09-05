@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments :: head">
 </head>
@@ -32,6 +33,7 @@
                                 </p>
 
             <p>Attach File: <input  type="file" th:field="*{commonsMultipartFile}" name="file"/></p>
+            <p class="error" th:if="${fileError} == true" th:text="'File is Required'"></p>
 
             <p><input type="submit" value="Submit" /><input type="reset" value="Reset" /></p>
 

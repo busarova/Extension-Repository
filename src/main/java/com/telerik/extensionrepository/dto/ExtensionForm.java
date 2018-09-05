@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.dto;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import javax.validation.Constraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

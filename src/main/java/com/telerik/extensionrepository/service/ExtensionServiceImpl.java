@@ -107,12 +107,8 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
 
-        if (extensionForm.getCommonsMultipartFile() != null && extensionForm.getCommonsMultipartFile().getSize() > 0) {
-
-            newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
-            newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
-
-        }
+        newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+        newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
 
 
         return newExtension;
