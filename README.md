@@ -16,11 +16,14 @@ Installation instructions at the bottom.
 - User Page (profile pic, owned extensions etc.)
 - Search by tags
 - Upload logo
+- Validations
+- Optimistic Locking
 - Connects with GitHub API and takes data (last commit date, pull requests, open issues)
+- Integration with continuous integration server (CircleCi)
+- RestApi (public part)
 
 ## Public:
 
-- See Repositories grouped by Featured, Popular, New
 - Sort Repositories by Name, Downloads, Last Commit Date, Upload Date
 - Inspect Repository Details
 - Search by name
@@ -45,7 +48,7 @@ Installation instructions at the bottom.
 - Edit all extensions (edit, delete, update)
 - See all users
 - Disable/Enable Users (cannot login until enabled)
-- Could refresh synchronisation for all extensions with github
+- Could refresh synchronisation for all or single extension with github
 - Displaying last successful sync
 
 
