@@ -97,16 +97,20 @@
                             </div>
                             <h4 th:text="${Extension.getName()}"></h4>
                             <div class="row">
-                                <div class="glyphicon glyphicon-download-alt  col-sm-6 col-md-3"
-                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}"></div>
+                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
+                                </div>
+                                <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
+                                </div>
                             </div>
                         </div>
-                    </a>
                 </div>
+                </a>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
 </div>
 </body>

@@ -20,10 +20,6 @@ img{
     font-size: 25px;
 }
 
-.approve-button{
-    color: green;
-}
-
 
 .hoverDiv{
     text-align: center;
@@ -62,8 +58,15 @@ img{
 
 .link-block{
 
-    color: black;
+    color: lightslategray;
     text-decoration: none;
+}
+.glyphicon-download-alt{
+    text-align: right;
+}
+
+.col-sm-6{
+    font-size: 12px;
 }
 /* Site Heading */
 .site-heading h3{
@@ -85,8 +88,6 @@ img{
 
 .icon {
     padding:5px;
-    background:white;
-    border-radius:90px;
     text-align: center;
 }
 .icon img{
@@ -109,8 +110,9 @@ img{
 .feature-box h4 {
 
     font-family: "Gill Sans", sans-serif;
+    color: black;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     margin: 15px 0 5px;
 }
