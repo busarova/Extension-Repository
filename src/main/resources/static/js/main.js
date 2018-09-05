@@ -13,7 +13,7 @@ $('#tags').html('ASDAdas');*/
 
 hide();
 
-function hide(){
+function hide() {
     $("#profilePicForm").toggle();
     $("#editDescriptionForm").toggle();
     $("#editTagsForm").toggle();
@@ -22,36 +22,45 @@ function hide(){
 
 }
 
-$('.profilePic').click(function(){
+$('.profilePic').click(function () {
 
     $('#profilePicForm').toggle();
 
 });
 
-$('#showEditDescription').click(function(){
+$('#showEditDescription').click(function () {
 
     $('#editDescriptionForm').toggle();
 
 });
 
-$('#showEditTags').click(function(){
+$('#showEditTags').click(function () {
 
     $('#editTagsForm').toggle();
 
 });
 
-$('#showEditName').click(function(){
+$('#showEditName').click(function () {
 
     $('#editNameForm').toggle();
 
 });
 
-$('#showExtensionsLogoForm').click(function(){
+$('#showExtensionsLogoForm').click(function () {
 
     $('#extensionLogoForm').toggle();
 
 });
 
+$(document).ready(function(e){
+    $('.search-panel .dropdown-menu').find('a').click(function(e) {
+        e.preventDefault();
+        var param = $(this).attr("href").replace("#","");
+        var concept = $(this).text();
+        $('.search-panel span#search_concept').text(concept);
+        $('.input-group #search_param').val(param);
+    });
+});
 
 
 

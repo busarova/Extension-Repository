@@ -10,15 +10,37 @@
 <div th:replace="fragments :: header">
 </div>
 
-<div class="alignTextCenter">
+<!--<div class="alignTextCenter">-->
 
-    <p>Search Extensions:</p>
-    <form th:action="@{/search}" method="post">
-        <input type="text" name="params" placeholder="Search..">
-        <input type="submit" value="Search"/>
-    </form>
+<!--<p>Search Extensions:</p>-->
+<!--<form th:action="@{/search}" method="post">-->
+<!--<input type="text" name="params" placeholder="Search..">-->
+<!--<input type="submit" value="Search"/>-->
+<!--</form>-->
+<!--</div>-->
+
+<div class="container">
+
+    <div class="input-group">
+        <div class="input-group-btn search-panel">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span id="search_concept">Oreder By</span> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Name</a></li>
+                <li><a href="#">Number of downloads</a></li>
+                <li><a href="#">Upload date</a></li>
+                <li><a href="#">Last commit date</a></li>
+            </ul>
+        </div>
+        <input type="hidden" name="search_param" value="all" id="search_param">
+        <input type="text" class="form-control" name="params" placeholder="Search">
+        <span class="input-group-btn">
+                    <button class="btn btn-default" type="button"><span
+                            class="glyphicon glyphicon-search"></span></button>
+                </span>
+    </div>
 </div>
-
 
 <div class="container">
     <div class="row">
@@ -29,23 +51,6 @@
         </div>
     </div>
 </div>
-<!--<div class="alignTextCenter">-->
-<!--<div class="w3-dropdown-hover">-->
-<!--<button class="w3-button">Sort By</button>-->
-<!--<div class="w3-dropdown-content w3-bar-block w3-border">-->
-<!--<a href="/sortby/name" class="w3-bar-item w3-button">Name</a>-->
-<!--<a href="/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>-->
-<!--<a href="/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>-->
-<!--<a href="/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<a href="/featured">-->
-<!--<button class="w3-button">Show Featured</button>-->
-<!--</a>-->
-<!--</div>-->
-
 
 <div class="Features-section paddingTB60 ">
     <div class="container">
@@ -77,4 +82,7 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
 </html>

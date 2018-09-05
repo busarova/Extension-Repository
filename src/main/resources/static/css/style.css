@@ -71,55 +71,15 @@ img{
 .col-sm-6{
     font-size: 12px;
 }
-/* Site Heading */
-.site-heading h3{
-    font-size : 40px;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-.border {
-    background: #e8e8e8 ;
-    height: 1px;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 45px;
-    float:left;
-}
+/* SEARCH */
+.input-group{
 
-/* Feature-CSS */
-
-.icon {
-    padding:5px;
-    text-align: center;
-}
-.icon img{
-    max-height: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    min-width: 100px;
+    margin: 30px;
+    max-width: 30%;
+    float: right;
 
 }
-.feature-box {
-    padding: 10px;
-    transition: .5s;
-    margin-bottom: 30px;
-    border: 1px solid #e8e8e8;
-}
-.feature-box:hover {
-
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.feature-box h4 {
-
-    font-family: "Gill Sans", sans-serif;
-    color: black;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 600;
-    margin: 15px 0 5px;
-}
- /*BUTTONS*/
+/*BUTTONS*/
 
 .button {
     background-color: transparent;
@@ -164,5 +124,38 @@ img{
 .home-buttons{
     padding: 40px;
 }
+
+/* Feature-CSS */
+
+.icon {
+    padding:5px;
+    text-align: center;
+}
+.icon img{
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.feature-box {
+    padding: 10px;
+    transition: .5s;
+    margin-bottom: 30px;
+    border: 1px solid #e8e8e8;
+}
+.feature-box:hover {
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.feature-box h4 {
+
+    font-family: "Gill Sans", sans-serif;
+    color: black;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 15px 0 5px;
+}
+
 
 
