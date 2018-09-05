@@ -9,7 +9,9 @@
 <div th:replace="fragments :: header">
 </div>
 
+<div class="alignTextCenter">
 <h1>ADMINISTRATION PAGE</h1>
+</div>
 
 <a th:href="@{/admin/refreshGit}"><button>Refresh all Git Info</button></a>
 
@@ -37,7 +39,7 @@
         <td th:text="${Extension.getUploadDate()}"></td>
         <td th:text="${Extension.getOwner()}"></td>
         <td><a th:href="${Extension.getGitExtensionInfo().getGitRepoLink()}" th:text="${Extension.getGitExtensionInfo().getGitRepoLink()}"></a> </td>
-        <td><a class="approve-button" th:href="'/admin/approve/'+${Extension.getId()}">approve</a> </td>
+        <td><a class="approve-button" th:href="'/admin/approve/'+${Extension.getId()}">Approve</a> </td>
       </tr>
     </tbody>
   </table>
