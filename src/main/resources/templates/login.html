@@ -4,8 +4,6 @@
 
 <head>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" href="/css/loginRegister.css">
 
 </head>
@@ -22,10 +20,12 @@
                         <div class="login" id="card">
                             <div class="front signin_form">
                                 <p>Login Your Account</p>
-                                <form class="login-form">
+                                <i th:if="${param.error}" style="color: red">Wrong username or password</i>
+                                <form class="login-form" th:action="@{/authenticateUser}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="email" class="form-control" placeholder="Type your email">
+                                            <input type="text" name="username" class="form-control"
+                                                   placeholder="Type your username">
                                             <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-user"></i>
                                       </span>
@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="password" class="form-control"
+                                            <input type="password" name="password" class="form-control"
                                                    placeholder="Type your password">
                                             <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-lock"></i>
@@ -54,10 +54,14 @@
                             </div>
                             <div class="back signup_form" style="opacity: 0;">
                                 <p>Sign Up for Your New Account</p>
-                                <form class="login-form">
+
+                                <i th:if="${registrationError != null}" th:text="${registrationError}" class="error"/>
+
+                                <form class="login-form" th:action="@{/registerUser}" th:object="${user}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Username">
+                                            <input type="text" th:field="*{name}" class="form-control"
+                                                   placeholder="Username"/>
                                             <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-user"></i>
                                       </span>
@@ -65,7 +69,8 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="input-group">
-                                            <input type="password" class="form-control" placeholder="Confirm Password">
+                                            <input type="password" th:field="*{password}" class="form-control"
+                                                   placeholder="Password"/>
                                             <span class="input-group-addon">
                                           <i class="glyphicon glyphicon-lock"></i>
                                       </span>
@@ -95,25 +100,12 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
-    <script src="/js/main.js"></script>
+
 </div>
-<!--<div th:replace="fragments :: header">-->
-<!--</div>-->
 
-<!--<i th:if="${param.error}" class="error">Wrong username or password</i>-->
-
-<!--<i th:if="${param.logout}">You have been logged out.</i>-->
-
-<!--<form th:action="@{/authenticateUser}" method="post">-->
-<!--<p>-->
-<!--User name: <input type="text" id="username" name="username" />-->
-<!--</p>-->
-<!--<p>-->
-<!--Password: <input type="password" id="password" name="password" />-->
-<!--</p>-->
-<!--<input type="submit" value="Login" />-->
-<!--</form>-->
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-Flip/1.0.18/jquery.flip.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
