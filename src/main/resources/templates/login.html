@@ -21,7 +21,7 @@
                             <div class="front signin_form">
                                 <p>Login Your Account</p>
                                 <i th:if="${param.error}" style="color: red">Wrong username or password</i>
-                                <form class="login-form" th:action="@{/authenticateUser}" method="post">
+                                <form autocomplete="off" class="login-form" th:action="@{/authenticateUser}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input type="text" name="username" class="form-control"
