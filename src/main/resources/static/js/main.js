@@ -69,7 +69,7 @@ $().ready(function() {
     });
 });
 
-
+// Log in/Register Flip
 $(".signup_link").click(function() {
 
     $(".signin_form").css('opacity', '0');
@@ -92,3 +92,21 @@ $("#unflip-btn").click(function(){
 
 });
 
+function initializeFileUploads() {
+    $('.file-upload').change(function () {
+        var file = $(this).val();
+        $(this).closest('.input-group').find('.file-upload-text').val(file);
+    });
+    $('.file-upload-btn').click(function () {
+        $(this).find('.file-upload').trigger('click');
+    });
+    $('.file-upload').click(function (e) {
+        e.stopPropagation();
+    });
+}
+
+
+// On document load:
+$(function() {
+    initializeFileUploads();
+});
