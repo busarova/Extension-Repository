@@ -1,92 +1,275 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments :: head">
+
+<head>
+    <title>Profile</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/profile.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/uploadFile.js"></script>
+
 </head>
+
 <body>
 <div th:replace="fragments :: header">
 </div>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10"><h1><span sec:authentication="name" /></h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><!--left col-->
 
-<div class="alignTextCenter">
+            <div class="text-center">
+                <div th:if="${image == null}" class="profilePic">
+                    <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                         alt="avatar">
+                </div>
+                <div th:unless="${image == null}" class="profilePic">
+                    <img th:src="*{'data:image/png;base64,'+image}" class="avatar img-circle img-thumbnail" alt="">
+                </div>
+                <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
+                    <h6>Upload a different photo...</h6>
+                    <input type="file" name="fileUpload" class="file-upload">
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+            </hr><br>
 
-<h1>USER PAGE</h1>
 
-<a th:if="${image == null}" class="profilePic"> <img src="/pics/icons/user_default.png" height="120"> </a>
-<a th:unless="${image == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+image}" alt="" height="120"></a>
+            <div class="panel panel-default">
+                <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                <div class="panel-body"><a href="http://bootnipets.com">https://www.telerikacademy.com/</a></div>
+            </div>
 
-<div class="alignTextCenter">
-           <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
-               <p >Attach File: <input type="file" name="fileUpload" size="50" /></p>
-               <input type="submit" value="Submit" />
-           </form>
-</div>
 
-<br>
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
 
-Name: <span sec:authentication="name" />
-<br>
+            </ul>
 
-<a th:href="@{/}"><button>HOME</button></a>
+            <div class="panel panel-default">
+                <div class="panel-heading">Social Media</div>
+                <div class="panel-body">
+                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i
+                        class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
+                        class="fa fa-google-plus fa-2x"></i>
+                </div>
+            </div>
 
-<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>
-<br>
+        </div><!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#myExtensions">My Extensions</a></li>
+                <li><a data-toggle="tab" href="#edit">Edit Profile</a></li>
+            </ul>
 
-<p><a th:href="@{/user/create-extension}">Create extension</a></p>
-<p><a href="#" class="profilePic">Change pic</a></p>
 
-<br>
-<h2>Current extensions:</h2>
+            <div class="tab-content">
+                <div class="tab-pane" id="edit">
+                    <hr>
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       placeholder="first name" title="enter your first name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                       placeholder="last name" title="enter your last name if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Phone</h4></label>
+                                <input type="text" class="form-control" name="phone" id="phone"
+                                       placeholder="enter phone" title="enter your phone number if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Mobile</h4></label>
+                                <input type="text" class="form-control" name="mobile" id="mobile"
+                                       placeholder="enter mobile number" title="enter your mobile number if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="you@email.com" title="enter your email.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Location</h4></label>
+                                <input type="email" class="form-control" id="location" placeholder="location"
+                                       title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Verify</h4></label>
+                                <input type="password" class="form-control" name="verify password" id="password2"
+                                       placeholder="password2" title="enter your password2.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i
+                                        class="glyphicon glyphicon-ok-sign"></i> Save
+                                </button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr>
+
+                </div><!--/tab-pane-->
+
+                <div class="tab-pane active" id="myExtensions">
+
+                    <hr>
+                    <div class="row">
+
+                        <div th:each="Extension : ${extensions}" class="col-sm-6 col-md-3">
+                            <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
+                                <div class="col-md-12 feature-box">
+                                    <div class="icon"
+                                         th:if="${Extension.getUploadFile().getLogoData() == null}">
+                                        <img src="/pics/icons/MPIcon.png">
+                                    </div>
+                                    <div class="icon"
+                                         th:unless="${Extension.getUploadFile().getLogoData() == null}">
+                                        <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
+                                    </div>
+                                    <h4 th:text="${Extension.getName()}"></h4>
+                                    <div class="row">
+                                        <div class="col-sm-6" th:text="${Extension.getOwner()}">
+                                        </div>
+                                        <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                             th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <hr>
+                </div>
+
+            </div><!--/tab-pane-->
+        </div><!--/tab-content-->
+
+    </div><!--/col-9-->
+</div><!--/row-->
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
+<!--<head th:replace="fragments :: head">-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--<div class="alignTextCenter">-->
+
+<!--<h1>USER PAGE</h1>-->
+
+
+<!--<br>-->
+
+<!--Name: <span sec:authentication="name" />-->
+<!--<br>-->
+
+<!--<a th:href="@{/}"><button>HOME</button></a>-->
+
+<!--<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>-->
+<!--<br>-->
+
+<!--<p><a th:href="@{/user/create-extension}">Create extension</a></p>-->
+<!--<p><a href="#" class="profilePic">Change pic</a></p>-->
+
+<!--<br>-->
+<!--<h2>Current extensions:</h2>-->
 
 
 <!-- <div th:each="Extension : ${extensions}">
-<br>
-<a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></p> </a>
-<p th:text="' status: ' + ${Extension.isItApproved()}"></p>
-</div>
--->
+<!--<br>-->
+<!--<a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></p> </a>-->
+<!--<p th:text="' status: ' + ${Extension.isItApproved()}"></p>-->
+<!--</div>-->
+<!--&ndash;&gt;-->
 
 
-<div class="alignTextCenter">
-                <div class="w3-dropdown-hover">
-                  <button class="w3-button">Sort By</button>
-                  <div class="w3-dropdown-content w3-bar-block w3-border">
-                    <a href="/user/sortby/name" class="w3-bar-item w3-button">Name</a>
-                    <a href="/user/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>
-                    <a href="/user/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>
-                    <a href="/user/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>
-                  </div>
-                </div>
+<!--<div class="alignTextCenter">-->
+<!--<div class="w3-dropdown-hover">-->
+<!--<button class="w3-button">Sort By</button>-->
+<!--<div class="w3-dropdown-content w3-bar-block w3-border">-->
+<!--<a href="/user/sortby/name" class="w3-bar-item w3-button">Name</a>-->
+<!--<a href="/user/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>-->
+<!--<a href="/user/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>-->
+<!--<a href="/user/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>-->
+<!--</div>-->
+<!--</div>-->
 
 
-                <a href="/user/sortby/featured"><button class="w3-button">Show Featured</button></a>
+<!--<a href="/user/sortby/featured"><button class="w3-button">Show Featured</button></a>-->
 
 
-</div>
+<!--</div>-->
 
-<hr>
-
-
+<!--<hr>-->
 
 
-<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">
+<!--<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">-->
 
-            <div class="circular">
-                <a th:href="'/extension-details/'+${Extension.getId()}">
-                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" width="25%" height="10%"> </a>
-                                     <a th:href="'/extension-details/'+${Extension.getId()}" th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt="" width="25%" height="10%"></a>
-                                     <h4 th:text="${Extension.getName()}"></h4>
-                                     <p th:text="' status: ' + ${Extension.isItApproved()}"></p>
-                                     </a>
+<!--<div class="circular">-->
+<!--<a th:href="'/extension-details/'+${Extension.getId()}">-->
+<!--<a th:href="'/extension-details/'+${Extension.getId()}" th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" width="25%" height="10%"> </a>-->
+<!--<a th:href="'/extension-details/'+${Extension.getId()}" th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt="" width="25%" height="10%"></a>-->
+<!--<h4 th:text="${Extension.getName()}"></h4>-->
+<!--<p th:text="' status: ' + ${Extension.isItApproved()}"></p>-->
+<!--</a>-->
 
-            </div>
+<!--</div>-->
 
-</div>
-
-
+<!--</div>-->
 
 
-</div>
+<!--</div>-->
 
-</body>
-<div th:replace="fragments :: scripts"></div>
-</html>
+<!--</body>-->
+<!--<div th:replace="fragments :: scripts"></div>-->
+<!--</html>-->

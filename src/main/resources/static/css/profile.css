@@ -1,0 +1,52 @@
+/* Feature-CSS */
+
+.icon {
+    padding:5px;
+    text-align: center;
+}
+.icon img{
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.profilePic img {
+
+    max-height: 220px;
+    min-height: 220px;
+    max-width: 220px;
+    min-width: 220px;
+}
+
+.feature-box {
+    padding: 10px;
+    transition: .5s;
+    margin-bottom: 30px;
+    border: 1px solid #e8e8e8;
+}
+.feature-box:hover {
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.feature-box h4 {
+
+    font-family: "Gill Sans", sans-serif;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    color: black;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 15px 0 5px;
+}
+.link-block{
+
+    color: lightslategray;
+    text-decoration: none;
+}
+.glyphicon-download-alt{
+    text-align: right;
+}
+
+.col-sm-6{
+    font-size: 12px;
+}
