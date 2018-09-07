@@ -33,6 +33,7 @@
                 <div th:unless="${image == null}" class="profilePic">
                     <img th:src="*{'data:image/png;base64,'+image}" class="avatar img-circle img-thumbnail" alt="">
                 </div>
+
                 <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
                     <h6>Upload a different photo...</h6>
                     <input type="file" name="fileUpload" class="file-upload">
@@ -40,7 +41,6 @@
                 </form>
             </div>
             </hr><br>
-
 
             <div class="panel panel-default">
                 <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
@@ -56,9 +56,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Social Media</div>
                 <div class="panel-body">
-                    <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i
-                        class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i
-                        class="fa fa-google-plus fa-2x"></i>
+                    <div class="SMLinks">
+                        <a href="https://www.facebook.com/">
+                            <img src="/pics/icons/if_facebook_3009513.png">
+                        </a>
+                        <a href="https://www.twitter.com/">
+                            <img src="/pics/icons/if_twitter_3009565.png">
+                        </a>
+                        <a href="https://www.linkedin.com/">
+                            <img src="/pics/icons/if_linkedin_3009543.png">
+                        </a>
+                    </div>
                 </div>
             </div>
 
