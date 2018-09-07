@@ -94,10 +94,6 @@ public class ExtensionServiceImpl implements ExtensionService {
     @Override
     public Extension createExtensionFromForm(ExtensionForm extensionForm, User user) {
 
-        // Checks if there is no file or if it is an empty string
-        //If there is a file will set its properties
-        //Otherwise will leave it null so that thymeleaf will show "No file" in page
-
         Extension newExtension = new Extension(
                 extensionForm.getName(),
                 extensionForm.getDescription(),
@@ -110,6 +106,8 @@ public class ExtensionServiceImpl implements ExtensionService {
         newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
         newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
 
+        newExtension.getUploadFile().setFileName(extensionForm.getLogoMultipartFile().getOriginalFilename());
+        newExtension.getUploadFile().setLogoData(extensionForm.getLogoMultipartFile().getBytes());
 
         return newExtension;
     }

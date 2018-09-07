@@ -57,7 +57,7 @@
 
                                 <i th:if="${registrationError != null}" th:text="${registrationError}" class="error"/>
 
-                                <form class="login-form" th:action="@{/registerUser}" th:object="${user}" method="post">
+                                <form autocomplete="off" class="login-form" th:action="@{/registerUser}" th:object="${user}" method="post">
                                     <div class="form-group">
                                         <div class="input-group">
                                             <input type="text" th:field="*{name}" class="form-control"

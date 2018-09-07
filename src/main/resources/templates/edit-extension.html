@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-                      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments :: head">
 </head>
 <body>
@@ -10,55 +10,67 @@
 
 <div class="alignTextCenter">
 
-<h1>EDIT EXTENSION</h1>
+    <h1>EDIT EXTENSION</h1>
 
-<a href=""><img src="/pics/icons/ext_default.jpg" height="120"></a>
-<br>
+    <a href=""><img src="/pics/icons/ext_default.jpg" height="120"></a>
+    <br>
 
-<a th:href="@{/}"><button>HOME</button></a>
+    <a th:href="@{/}">
+        <button>HOME</button>
+    </a>
 
-<a th:href="'/edit-file/' + ${extension.getName()}"><button>Upload File</button></a>
+    <a th:href="'/edit-file/' + ${extension.getName()}">
+        <button>Upload File</button>
+    </a>
 
-<div sec:authorize="hasRole('ROLE_USER')">
-<p th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a th:href="'/delete-extension/'+${extension.getId()}"><button>Delete Extension</button></a></p>
-   <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/delete-extension/'+${extension.getId()}"><button>Delete Extension</button></a>
-   </div>
-</div>
-
-
-<hr>
-<span th:text="'Name:  ' + ${extension.getName()}" ></span>  <a class="editExtension" id="showEditName" href="#">Edit</a>
-<form id="editNameForm" th:action="'/user/edit-extension/name/change/' + ${extension.getId()}" method="post">
-                               <input type="text" name="name" placeholder="New Name">
-                                   <input type="submit" value="Submit" />
-                               </form>
-
-<br>
-
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <p th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a
+                th:href="'/delete-extension/'+${extension.getId()}">
+            <button>Delete Extension</button>
+        </a></p>
+        <div th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}">
+            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/delete-extension/'+${extension.getId()}">
+                <button>Delete Extension</button>
+            </a>
+        </div>
+    </div>
 
 
-<p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
-<p th:text="'Version:  ' + ${extension.getVersion()}"></p>
+    <hr>
+    <span th:text="'Name:  ' + ${extension.getName()}"></span> <a class="editExtension" id="showEditName"
+                                                                  href="#">Edit</a>
+    <form id="editNameForm" th:action="'/user/edit-extension/name/change/' + ${extension.getId()}" method="post">
+        <input type="text" name="name" placeholder="New Name">
+        <input type="submit" value="Submit"/>
+    </form>
+
+    <br>
 
 
-<span th:text="'Description:  ' + ${extension.getDescription()}"></span>   <a class="editExtension" href="#" id="showEditDescription"><strong>Edit</strong></a><br>
-                               <form id="editDescriptionForm" th:action="'/user/edit-extension/descr/change/' + ${extension.getId()}" method="post">
-                                   <textarea type="text" placeholder="Type in new description..." name="content" rows="5" cols="40"></textarea>
-                                   <input type="submit" value="Submit" />
-                               </form>
+    <p th:text="'Owner:  ' + ${extension.getOwner()}"></p>
+    <p th:text="'Version:  ' + ${extension.getVersion()}"></p>
 
-<p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
-<span th:text="'Tags:  ' + ${extension.getTags()}"></span>                     <a class="editExtension" href="#" id="showEditTags"><strong>Edit</strong></a><br>
-                                      <form id="editTagsForm" th:action="'/user/edit-extension/tag/change/' + ${extension.getId()}" method="post">
-                                      <input type="text" name="content" placeholder="Type your tags with space...">
-                                      <input type="submit" value="Submit" />
-                                                                     </form>
 
-<p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
-<p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
+    <span th:text="'Description:  ' + ${extension.getDescription()}"></span> <a class="editExtension" href="#"
+                                                                                id="showEditDescription"><strong>Edit</strong></a><br>
+    <form id="editDescriptionForm" th:action="'/user/edit-extension/descr/change/' + ${extension.getId()}"
+          method="post">
+        <textarea type="text" placeholder="Type in new description..." name="content" rows="5" cols="40"></textarea>
+        <input type="submit" value="Submit"/>
+    </form>
 
-<p class="error" th:if="${extension.getUploadFile()} == null"> No File Upploaded</p>
+    <p th:text="'Downloads:  ' + ${extension.getNumberOfDownloads()}"></p>
+    <span th:text="'Tags:  ' + ${extension.getTags()}"></span> <a class="editExtension" href="#"
+                                                                  id="showEditTags"><strong>Edit</strong></a><br>
+    <form id="editTagsForm" th:action="'/user/edit-extension/tag/change/' + ${extension.getId()}" method="post">
+        <input type="text" name="content" placeholder="Type your tags with space...">
+        <input type="submit" value="Submit"/>
+    </form>
+
+    <p th:text="'Uploaded on:  ' + ${extension.getUploadDate()}"></p>
+    <p th:text="'Featured:  ' + ${extension.isItFeatured()}"></p>
+
+    <p class="error" th:if="${extension.getUploadFile()} == null"> No File Upploaded</p>
 
 </div>
 

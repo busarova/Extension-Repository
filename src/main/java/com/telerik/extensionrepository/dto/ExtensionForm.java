@@ -22,7 +22,7 @@ public class ExtensionForm {
     private String version;
     private String tags;
     private CommonsMultipartFile commonsMultipartFile;
-
+    private CommonsMultipartFile logoMultipartFile;
     private String githubLink;
 
     public ExtensionForm(){}
@@ -84,4 +84,11 @@ public class ExtensionForm {
         this.commonsMultipartFile = commonsMultipartFile;
     }
 
+    public CommonsMultipartFile getLogoMultipartFile() {
+        return logoMultipartFile;
+    }
+
+    public void setLogoMultipartFile(CommonsMultipartFile logoMultipartFile) {
+        this.logoMultipartFile = logoMultipartFile;
+    }
 }
