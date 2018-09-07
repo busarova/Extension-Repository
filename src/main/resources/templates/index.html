@@ -14,67 +14,57 @@
 
     <div class="container">
 
-        <div class="input-group">
-            <div class="input-group-btn search-panel">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <span id="search_concept">Oreder By</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                    <li><a href="#">Name</a></li>
-                    <li><a href="#">Number of downloads</a></li>
-                    <li><a href="#">Upload date</a></li>
-                    <li><a href="#">Last commit date</a></li>
-                </ul>
-            </div>
-            <input type="hidden" name="search_param" value="all" id="search_param">
-            <input type="text" class="form-control" name="params" placeholder="Search">
-            <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><span
-                            class="glyphicon glyphicon-search"></span></button>
-                </span>
+        <div id="quick-access">
+            <form th:action="@{/search}" class="quick-search-form" method="post">
+                <div class="form-group">
+                    <input type="text" name="params" class="form-control" placeholder="Search for extensions here">
+                </div>
+                <button type="submit" id="quick-search" class="btn btn-custom"><span
+                        class="glyphicon glyphicon-search custom-glyph-color"></span></button>
+            </form>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12 home-buttons">
-            <a class="button button-primary" href="/featured">Featured</a>
-            <a class="button button-neutral" href="/sortby/uploadDate">New</a>
-            <a class="button button-neutral" href="/sortby/downloads">Popular</a>
-        </div>
-    </div>
-</div>
-
-<div class="Features-section paddingTB60 ">
     <div class="container">
         <div class="row">
-
-            <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
-                <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
-                    <div class="col-md-12 feature-box">
-                        <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
-                            <img src="/pics/icons/MPIcon.png">
-                        </div>
-                        <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
-                            <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
-                        </div>
-                        <h4 th:text="${Extension.getName()}"></h4>
-                        <div class="row">
-                            <div class="col-sm-6" th:text="${Extension.getOwner()}">
-                            </div>
-                            <div class="glyphicon glyphicon-download-alt col-sm-6"
-                                 th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
-                            </div>
-                        </div>
-                    </div>
-                </a>
+            <div class="col-md-12 home-buttons">
+                <a class="button button-primary" href="/featured">Featured</a>
+                <a class="button button-neutral" href="/sortby/uploadDate">New</a>
+                <a class="button button-neutral" href="/sortby/downloads">Popular</a>
             </div>
         </div>
     </div>
-</div>
+
+    <div class="Features-section paddingTB60 ">
+        <div class="container">
+            <div class="row">
+
+                <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
+                    <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
+                        <div class="col-md-12 feature-box">
+                            <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
+                                <img src="/pics/icons/MPIcon.png">
+                            </div>
+                            <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
+                                <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
+                            </div>
+                            <h4 th:text="${Extension.getName()}"></h4>
+                            <div class="row">
+                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
+                                </div>
+                                <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
+<link rel="stylesheet" href="/css/search.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 

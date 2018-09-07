@@ -1,0 +1,64 @@
+
+.quick-search-form .form-control {
+
+    height: 45px;
+    padding: 11px 18px;
+    color: #a4a4a4;
+    font-size: 13px;
+    line-height: 20px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 0!important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.btn-custom {
+    display: inline;
+    color: #FFFFFF;
+    background-color: #ff0040;
+    border-radius: 0!important;
+    padding: 11px 18px;
+}
+
+.btn-custom:hover{
+    background-color:#ff1a53;
+    border-radius: 0!important;
+}
+
+.custom-glyph-color{
+    color:#fff;
+}
+
+.custom-glyph-color:hover{
+    color:#b1b1b1;
+}
+
+#quick-access{
+    margin: 80px;
+
+
+}
+#quick-access form {
+    position: relative;
+}
+
+#quick-access input {
+    width: 100%;
+
+}
+
+#quick-access button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: #FFFFFF !important;
+    color: #555 !important;
+    -webkit-box-shadow: 0 0 0 1000px white inset !important;
+    -webkit-text-fill-color: #555555 !important;
+}
