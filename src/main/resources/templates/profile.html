@@ -7,12 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/profile.css">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="/js/uploadFile.js"></script>
-
 </head>
 
 <body>
@@ -20,7 +15,7 @@
 </div>
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1><span sec:authentication="name" /></h1></div>
+        <div class="col-sm-10"><h1><span sec:authentication="name"/></h1></div>
     </div>
     <div class="row">
         <div class="col-sm-3"><!--left col-->
@@ -34,11 +29,6 @@
                     <img th:src="*{'data:image/png;base64,'+image}" class="avatar img-circle img-thumbnail" alt="">
                 </div>
 
-                <form id="profilePicForm" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post">
-                    <h6>Upload a different photo...</h6>
-                    <input type="file" name="fileUpload" class="file-upload">
-                    <input type="submit" value="Submit"/>
-                </form>
             </div>
             </hr><br>
 
@@ -81,70 +71,72 @@
             <div class="tab-content">
                 <div class="tab-pane" id="edit">
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" th:action="@{/user/changePic}" enctype="multipart/form-data" method="post"
+                          id="registrationForm">
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="first_name"><h4>First name</h4></label>
-                                <input type="text" class="form-control" name="first_name" id="first_name"
-                                       placeholder="first name" title="enter your first name if any.">
+                                <label><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="last_name"><h4>Last name</h4></label>
-                                <input type="text" class="form-control" name="last_name" id="last_name"
-                                       placeholder="last name" title="enter your last name if any.">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-xs-6">
-                                <label for="phone"><h4>Phone</h4></label>
-                                <input type="text" class="form-control" name="phone" id="phone"
-                                       placeholder="enter phone" title="enter your phone number if any.">
+                                <label><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="mobile"><h4>Mobile</h4></label>
-                                <input type="text" class="form-control" name="mobile" id="mobile"
-                                       placeholder="enter mobile number" title="enter your mobile number if any.">
+                                <label><h4>Avatar</h4></label>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control file-upload-text" disabled
+                                           placeholder="select image..."/>
+                                    <span class="input-group-btn">
+                                <button type="button" class="btn btn-warning file-upload-btn">
+                                    Browse...
+                                <input type="file" class="file-upload" name="fileUpload"/>
+                                </button>
+                            </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label><h4>Phone Number</h4></label>
+                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email"
-                                       placeholder="you@email.com" title="enter your email.">
+                                <label><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="email"><h4>Location</h4></label>
-                                <input type="email" class="form-control" id="location" placeholder="location"
-                                       title="enter a location">
+                                <label><h4>Location</h4></label>
+                                <input type="text" class="form-control" id="location">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="password"><h4>Password</h4></label>
-                                <input type="password" class="form-control" name="password" id="password"
-                                       placeholder="password" title="enter your password.">
+                                <input type="password" class="form-control" name="password" id="password">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="password2"><h4>Verify</h4></label>
-                                <input type="password" class="form-control" name="verify password" id="password2"
-                                       placeholder="password2" title="enter your password2.">
+                                <label for="password2"><h4>Verify password</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2">
                             </div>
                         </div>
                         <div class="form-group">
@@ -196,88 +188,13 @@
                     <hr>
                 </div>
 
-            </div><!--/tab-pane-->
-        </div><!--/tab-content-->
+            </div>
+        </div>
 
-    </div><!--/col-9-->
-</div><!--/row-->
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/uploadFile.js"></script>
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org"-->
-<!--<head th:replace="fragments :: head">-->
-<!--</head>-->
-<!--<body>-->
-
-
-<!--<div class="alignTextCenter">-->
-
-<!--<h1>USER PAGE</h1>-->
-
-
-<!--<br>-->
-
-<!--Name: <span sec:authentication="name" />-->
-<!--<br>-->
-
-<!--<a th:href="@{/}"><button>HOME</button></a>-->
-
-<!--<a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}"><button>ADMIN</button></a>-->
-<!--<br>-->
-
-<!--<p><a th:href="@{/user/create-extension}">Create extension</a></p>-->
-<!--<p><a href="#" class="profilePic">Change pic</a></p>-->
-
-<!--<br>-->
-<!--<h2>Current extensions:</h2>-->
-
-
-<!-- <div th:each="Extension : ${extensions}">
-<!--<br>-->
-<!--<a th:href="'/extension-details/'+${Extension.getId()}"><p th:text="${Extension.getName()}"></p> </a>-->
-<!--<p th:text="' status: ' + ${Extension.isItApproved()}"></p>-->
-<!--</div>-->
-<!--&ndash;&gt;-->
-
-
-<!--<div class="alignTextCenter">-->
-<!--<div class="w3-dropdown-hover">-->
-<!--<button class="w3-button">Sort By</button>-->
-<!--<div class="w3-dropdown-content w3-bar-block w3-border">-->
-<!--<a href="/user/sortby/name" class="w3-bar-item w3-button">Name</a>-->
-<!--<a href="/user/sortby/uploadDate" class="w3-bar-item w3-button">Upload Date</a>-->
-<!--<a href="/user/sortby/downloads" class="w3-bar-item w3-button">Downloads</a>-->
-<!--<a href="/user/sortby/lastCommitDate" class="w3-bar-item w3-button">Commit Date</a>-->
-<!--</div>-->
-<!--</div>-->
-
-
-<!--<a href="/user/sortby/featured"><button class="w3-button">Show Featured</button></a>-->
-
-
-<!--</div>-->
-
-<!--<hr>-->
-
-
-<!--<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">-->
-
-<!--<div class="circular">-->
-<!--<a th:href="'/extension-details/'+${Extension.getId()}">-->
-<!--<a th:href="'/extension-details/'+${Extension.getId()}" th:if="${Extension.getUploadFile().getLogoData() == null}" class="profilePic"><img src="/pics/icons/ext_default.jpg" width="25%" height="10%"> </a>-->
-<!--<a th:href="'/extension-details/'+${Extension.getId()}" th:unless="${Extension.getUploadFile().getLogoData() == null}" href="#" id="profilePic"><img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}" alt="" width="25%" height="10%"></a>-->
-<!--<h4 th:text="${Extension.getName()}"></h4>-->
-<!--<p th:text="' status: ' + ${Extension.isItApproved()}"></p>-->
-<!--</a>-->
-
-<!--</div>-->
-
-<!--</div>-->
-
-
-<!--</div>-->
-
-<!--</body>-->
-<!--<div th:replace="fragments :: scripts"></div>-->
-<!--</html>-->
