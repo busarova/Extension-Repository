@@ -41,14 +41,15 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
-    public List<Extension> getAllByParam(String param) {
+    public List<Extension> getAllByParam(String param, String orderParam) {
         List<Extension> theList = new ArrayList<>();
 
         try (Session session = factory.openSession()) {
             session.beginTransaction();
 
-            theList = session.createQuery("from Extension e where e.name like :param")
+            theList = session.createQuery("from Extension where name like :param order by :orderParam")
                     .setParameter("param", "%" + param + "%")
+                    .setParameter("orderParam", orderParam)
                     .list();
 
             session.getTransaction().commit();
@@ -107,7 +108,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         } catch (HibernateException | OptimisticLockException e) {
 
             e.printStackTrace();
-            if (transaction != null){
+            if (transaction != null) {
                 transaction.rollback();
             }
 

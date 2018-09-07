@@ -19,13 +19,17 @@ public class SearchController {
 
 
     @PostMapping("/search")
-    public ModelAndView showSearch(@RequestParam String params){
+    public ModelAndView showSearch(@RequestParam String params, @RequestParam String orderParams){
 
-        ModelAndView modelAndView = new ModelAndView("index");
+        if (orderParams == null || orderParams.equals("")){
+            orderParams = "name";
+        }
+        ModelAndView modelAndView = new ModelAndView("searchResults");
 
-        modelAndView.addObject("allApproved", searchService.getAllByParam(params));
+        modelAndView.addObject("allApproved", searchService.getAllByParam(params, orderParams));
 
         return modelAndView;
 
     }
+
 }

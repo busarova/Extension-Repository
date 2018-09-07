@@ -19,10 +19,9 @@ public class SearchServiceImpl implements SearchService {
     }
 
     @Override
-    public List<Extension> getAllByParam(String param) {
+    public List<Extension> getAllByParam(String param, String orderParam) {
 
-        System.out.println("the param: " + param);
-        System.out.println(extensionRepository.getAllByParam(param));
-        return extensionRepository.getAllByParam(param);
+        return extensionRepository.getAllByParam(param, orderParam);
     }
+
 }

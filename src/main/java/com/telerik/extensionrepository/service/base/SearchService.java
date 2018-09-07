@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface SearchService {
 
-    public List<Extension> getAllByParam(String param);
+    public List<Extension> getAllByParam(String param, String orderParam);
 
 }

@@ -9,7 +9,7 @@ public interface ExtensionRepository {
 
     List<Extension> getAllExtensions();
 
-    List<Extension> getAllByParam(String param);
+    List<Extension> getAllByParam(String param, String orderParam);
 
     List<Extension> getAllApproved();
 
