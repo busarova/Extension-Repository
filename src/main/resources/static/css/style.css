@@ -39,6 +39,14 @@ img{
     font-family: Centaur;
 }
 
+.buttons-edit-extension{
+    font-size: 35px;
+    color: #1b5a7c;
+    font-family: Centaur;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 #tags-tag-palace{
     font-size: 25px;
     color: crimson;

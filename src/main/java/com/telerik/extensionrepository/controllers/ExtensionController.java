@@ -57,7 +57,13 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("edit-extension");
 
-        modelAndView.addObject(extensionInfoService.getById(Integer.parseInt(id)));
+        Extension extension = extensionInfoService.getById(Integer.parseInt(id));
+
+        modelAndView.addObject(extension);
+
+        if(extension.getUploadFile().getLogoData() != null) {
+            modelAndView.addObject("logo", Base64.getEncoder().encodeToString(extension.getUploadFile().getLogoData()));
+        }
 
         return modelAndView;
     }

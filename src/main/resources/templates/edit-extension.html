@@ -39,20 +39,44 @@
                   </div>
 
 
+                  <div style="margin-top: 30px; text-align: left">
+                                    <span id="description-extension-details" th:text="'Tags:  ' + ${extension.getTags()}"></span>
+                                     <p><a class="editExtension" id="showEditTags" href="#" ><strong>Edit</strong></a><br></p>
+                                        <form id="editTagsForm" th:action="'/user/edit-extension/tag/change/' + ${extension.getId()}" method="post">
+                                            <input type="text" name="content" placeholder="Type your tags with space...">
+                                            <input type="submit" value="Submit"/>
+                                        </form>
 
-
-
-
-
-
-            </div>
-         </div>
-
-         <hr>
-
-
+                    </div>
+                  </div>
     </div>
     </div>
+
+    <br><br>
+
+
+     <div class="container">
+        <a class="buttons-edit-extension" th:href="'/edit-file/' + ${extension.getName()}">
+            Upload File
+        </a>
+
+        <a class="buttons-edit-extension" th:href="'/delete-extension/'+${extension.getId()}">
+                     Delete Extension
+        </a>
+
+        <a class="buttons-edit-extension" sec:authorize="hasRole('ROLE_ADMIN')" th:href="'/admin/refreshGit/' + ${extension.getId()}">Refresh Git Info</a>
+
+        <a href="#" class="buttons-edit-extension" id="showExtensionsLogoForm">Change Logo</a>
+
+                      <form id="extensionLogoForm" th:action="@{/user/changeExtensionLogo/{path}(path=${extension.getId()})}" enctype="multipart/form-data" method="post">
+                          <p >Attach File: <input type="file" name="fileUpload" size="50" /></p>
+                          <input type="submit" value="Submit" />
+                      </form>
+
+        <a sec:authorize="hasRole('ROLE_ADMIN')" class="buttons-edit-extension" th:if="${extension.getFeatured() == 0}" th:href="'/admin/feature/'+${extension.getId()}">Feature this Extension<br></a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" class="buttons-edit-extension" th:if="${extension.getFeatured() == 1}" th:href="'/admin/un-feature/'+${extension.getId()}">Unfeature this Extension<br></a>
+
+        </div>
 
 
     <br>
@@ -63,7 +87,7 @@
 
 
 
-
+    <!--
     <a th:href="@{/}">
         <button>HOME</button>
     </a>
@@ -121,7 +145,11 @@
 
     <p class="error" th:if="${extension.getUploadFile()} == null"> No File Upploaded</p>
 
+    -->
+
 </div>
+</div>
+
 
 </body>
 <div th:replace="fragments :: scripts"></div>
