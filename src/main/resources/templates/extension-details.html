@@ -40,7 +40,7 @@
 </div>
 
 <div class="container">
-<a th:each="TagForm : ${tags}"> <a th:text="${TagForm.getName()}" style="margin-right: 15px" id="tags-extension-details" th:href="'/tags/searchByName/'+${TagForm.getNameNoHashTag()}"></a> </a>
+<a th:each="TagForm : ${tags}"> <a th:text="${TagForm.getName()}" style="margin-right: 15px" id="tags-extension-details" th:href="'/tags/searchById/'+${TagForm.getId()}"></a> </a>
 </div>
 
 <div class="container">

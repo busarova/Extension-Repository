@@ -6,10 +6,6 @@ import java.util.List;
 
 public interface TagRepository {
 
-    void createNewTag(Tags tag);
-
-    void updateTag(Tags tag);
-
     Tags getById(int id);
 
     Tags getByName(String name);
@@ -17,5 +13,7 @@ public interface TagRepository {
     List<Tags> getAll();
 
     List<Tags> getAllByName(String name);
+
+    void saveTag(Tags tag);
 
 }

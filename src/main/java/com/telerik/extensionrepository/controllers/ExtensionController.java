@@ -120,9 +120,7 @@ public class ExtensionController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        extensionService.addExtensionTag(extension, content);
-
-        modelAndView.addObject(extension);
+        modelAndView.addObject(extensionService.addExtensionTag(extension, content));
 
         return modelAndView;
     }
