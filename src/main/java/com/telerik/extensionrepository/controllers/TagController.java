@@ -58,13 +58,13 @@ public class TagController {
         Tags tag = tagService.getTagByName(name);
 
         if(tag == null){
-            modelAndView.addObject("extensions", null);
+            modelAndView.addObject("allApproved", null);
             modelAndView.addObject("Tag", new Tags(name));
 
             return modelAndView;
         }
 
-        modelAndView.addObject("extensions", tag.getExtensions());
+        modelAndView.addObject("allApproved", tag.getExtensions());
         modelAndView.addObject("Tag", tag);
 
         return modelAndView;
