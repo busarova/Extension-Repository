@@ -25,8 +25,24 @@ public class SearchController {
 
         modelAndView.addObject("allApproved", searchService.getAllByParam(params, orderParams));
 
+        modelAndView.addObject("searchQuery", params);
+
         return modelAndView;
 
+    }
+
+    @GetMapping("/searchAndOrder/{param}")
+    public ModelAndView showSearchResultsSorted(@PathVariable ("param") String param){
+
+        ModelAndView modelAndView = new ModelAndView("searchResults");
+
+        String[] splitParam = param.split(" ");
+
+        modelAndView.addObject("allApproved", searchService.getAllByParam(splitParam[0], splitParam[1]));
+
+        modelAndView.addObject("searchQuery", splitParam[0]);
+
+        return modelAndView;
     }
 
 }
