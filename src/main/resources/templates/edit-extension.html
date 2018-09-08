@@ -40,7 +40,7 @@
 
 
                   <div style="margin-top: 30px; text-align: left">
-                                    <span id="description-extension-details">Tags: <a th:each="Tags : ${tags}"> <a th:text="${Tags.getName()}" style="margin-right: 15px" id="tags-extension-details" th:href="'/tags/searchByName/'+${Tags.getNameNoHashTag()}"></a> </a></span>
+                                    <span  id="description-extension-details">Tags: <a th:each="Tags : ${tags}"> <a th:text="${Tags.getName()}" style="margin-right: 15px" id="tags-extension-details" th:href="'/tags/searchByName/'+${Tags.getNameNoHashTag()}"></a> </a></span>
                                      <p><a class="editExtension" id="showEditTags" href="#" ><strong>Edit</strong></a><br></p>
                                         <form id="editTagsForm" th:action="'/user/edit-extension/tag/change/' + ${extension.getId()}" method="post">
                                             <input type="text" name="content" placeholder="Type your tags with space...">
