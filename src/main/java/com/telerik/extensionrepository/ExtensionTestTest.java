@@ -1,6 +1,8 @@
 package com.telerik.extensionrepository;
 
 import com.telerik.extensionrepository.model.*;
+import com.telerik.extensionrepository.service.TagServiceImpl;
+import com.telerik.extensionrepository.service.base.TagService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -24,14 +26,12 @@ public class ExtensionTestTest {
 
         Session session = factory.openSession();
 
-        UploadFile file = null;
-
 
             session.beginTransaction();
 
-            Admin admin = session.get(Admin.class, 1);
+            Extension extension = session.get(Extension.class, 2);
 
-        System.out.println(admin.getLastSuccessfulSync());
+            System.out.println(extension.getTags());
 
             session.getTransaction().commit();
 

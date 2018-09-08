@@ -3,7 +3,9 @@ package com.telerik.extensionrepository.model;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "extension")
@@ -33,9 +35,6 @@ public class Extension {
     @Column(name = "number_of_downloads")
     private long numberOfDownloads;
 
-    @Column(name = "tags")
-    private String tags;
-
     @Column(name = "approved")
     private int approved;
 
@@ -49,6 +48,13 @@ public class Extension {
     @JsonManagedReference
     private UploadFile uploadFile;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinTable(
+            name = "extension_tags",
+            joinColumns = @JoinColumn(name = "extension_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tags> tags = new ArrayList<>();
+
     @Column(name = "upload_date")
     private Date uploadDate;
 
@@ -60,19 +66,25 @@ public class Extension {
     public Extension(String name,
                      String description,
                      String version,
-                     String owner,
-                     String tags) {
+                     String owner) {
 
         this.name = name;
         this.description = description;
         this.version = version;
         this.owner = owner;
         this.numberOfDownloads = 0;
-        this.tags = tags;
         this.approved = 0;
         this.gitExtensionInfo = new GitExtensionInfo();
         this.uploadFile = new UploadFile();
         this.featured = 0;
+    }
+
+    public List<Tags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
     }
 
     public int getId() {
@@ -137,14 +149,6 @@ public class Extension {
 
     public void setNumberOfDownloads(long numberOfDownloads) {
         this.numberOfDownloads = numberOfDownloads;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
     }
 
     public Date getUploadDate() {

@@ -16,8 +16,16 @@ public class Tags {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "owners_id_list")
-    private String owners_id_list;
+    @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    private List<Extension> extensions = new ArrayList<>();
+
+    public List<Extension> getExtensions() {
+        return extensions;
+    }
+
+    public void setExtensions(List<Extension> extensions) {
+        this.extensions = extensions;
+    }
 
     public Tags(){}
 
@@ -39,14 +47,6 @@ public class Tags {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getOwners_id_list() {
-        return owners_id_list;
-    }
-
-    public void setOwners_id_list(String owners_id_list) {
-        this.owners_id_list = owners_id_list;
     }
 
     public String getNameNoHashTag(){

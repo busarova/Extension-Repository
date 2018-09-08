@@ -40,8 +40,10 @@ public class TagController {
 
         ModelAndView modelAndView = new ModelAndView("tag-palace-show");
 
-        modelAndView.addObject("extensions", tagService.getExtensionsByTag(Integer.parseInt(id)));
-        modelAndView.addObject("Tag", tagService.getTagById(Integer.parseInt(id)));
+        Tags tag = tagService.getTagById(Integer.parseInt(id));
+
+        modelAndView.addObject("extensions", tag.getExtensions());
+        modelAndView.addObject("Tag", tag);
 
         return modelAndView;
 
@@ -61,7 +63,7 @@ public class TagController {
             return modelAndView;
         }
 
-        modelAndView.addObject("extensions", tagService.getExtensionsByTag(tag.getId()));
+        modelAndView.addObject("extensions", tag.getExtensions());
         modelAndView.addObject("Tag", tag);
 
         return modelAndView;

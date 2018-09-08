@@ -1,6 +1,8 @@
 package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.TagRepository;
+import com.telerik.extensionrepository.dto.ExtensionDTO;
+import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.dto.TagForm;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.Tags;
@@ -23,49 +25,38 @@ public class TagServiceImpl implements TagService {
         this.extensionInfoService = extensionInfoService;
     }
 
-    // Method splits tne newly tags by " " and for every tag checks if it is existent in tags table
-    // If the repo returns null pointer exc, then no tag by that name
-    // If it is not, creates new tag there and saves its owner
-    // If there is, adds the owner to the existing ones
-
+    //Loads the new tags into an arraylist
+    //while checking if such a tag exists or not with the repo
 
     @Override
-    public void loadNewTags(Extension extension) {
+    public List<Tags> loadNewTags(ExtensionForm extensionForm) {
 
-        String tags = extension.getTags();
+        List<Tags> tagList = new ArrayList<>();
 
-        if(tags == null || tags.equals("")){
-            return;
+        if(extensionForm.getTags() == null || extensionForm.getTags().equals("")){
+            return tagList;
         }
 
-        String[] tagList = tags.split(" ");
+        String[] tags = tagManipulations.checkForHashTag(extensionForm.getTags()).split(" ");
+
 
         for (String tag:
-             tagList) {
-
-            try{
-
-                Tags newTag = tagRepository.getByName(tag);
-
-                String owners = newTag.getOwners_id_list();
-
-                newTag.setOwners_id_list(owners + " " + Integer.toString(extension.getId()));
-
-                tagRepository.updateTag(newTag);
+            tags ) {
 
 
-            }catch (NullPointerException e){
 
-                Tags newTag = new Tags();
+            Tags currentTag = tagRepository.getByName(tag);
 
-                newTag.setName(tag);
-                newTag.setOwners_id_list(Integer.toString(extension.getId()));
-
-                tagRepository.createNewTag(newTag);
-
+            if(currentTag == null){
+                tagList.add(new Tags(tag));
+            }else{
+                tagList.add(currentTag);
             }
 
         }
+
+        return tagList;
+
     }
 
     @Override
@@ -73,56 +64,22 @@ public class TagServiceImpl implements TagService {
         return tagRepository.getAll();
     }
 
-    // Gets all tags by that name but first checks if the input string has # in the beginning of every word
-    //every tag is split by " " and checks all of them for #
-
-    @Override
-    public List<Tags> getAllTagsByName(String name) {
-        return tagRepository.getAllByName(tagManipulations.checkForHashTag(name));
-    }
-
-    //Returns List of Extensions that are marked with the current tag
-    //You get the current tag by tagId
-    //You get its getOwners field which is a string and every extension that ownes it is separated by " "
-    //You parse it and iterate it adding each extension to the list and then return it
-
-    @Override
-    public List<Extension> getExtensionsByTag(int tagId) {
-
-       Tags currentTag = tagRepository.getById(tagId);
-
-       String[] currentTagExtensionIds = currentTag.getOwners_id_list().split(" ");
-
-       List<Extension> list = new ArrayList<>();
-
-        for (String a:
-            currentTagExtensionIds ) {
-            list.add(extensionInfoService.getById(Integer.parseInt(a)));
-        }
-
-        return list;
-    }
-
-    @Override
-    public Tags getTagById(int tagId) {
-        return tagRepository.getById(tagId);
-    }
-
-
-    // To finish
     @Override
     public Tags getTagByName(String name) {
-
-
-        return tagRepository.getAll().stream()
+          return tagRepository.getAll().stream()
                 .filter( x -> x.getName().equals(tagManipulations.checkForHashTag(name)))
                 .findFirst()
                 .orElse(null);
     }
 
     @Override
-    public List<TagForm> extractTagsFromExtension(Extension extension) {
-        return tagManipulations.extractTagsFromExtension(extension);
+    public List<Tags> getAllTagsByName(String name) {
+        return tagRepository.getAllByName(name);
+    }
+
+    @Override
+    public Tags getTagById(int tagId) {
+        return tagRepository.getById(tagId);
     }
 
 

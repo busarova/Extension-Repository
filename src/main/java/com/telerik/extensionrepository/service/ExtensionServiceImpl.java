@@ -3,6 +3,7 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.dto.ExtensionForm;
+import com.telerik.extensionrepository.model.Tags;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;
@@ -34,9 +35,14 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         newExtension.setGitExtensionInfo(gitService.getGitDetails(extensionForm.getGithubLink()));
 
-        extensionRepository.createExtension(newExtension);
+        newExtension.setTags(tagService.loadNewTags(extensionForm));
 
-        tagService.loadNewTags(newExtension);
+        for (Tags tag:
+            newExtension.getTags() ) {
+            System.out.println(tag.getName());
+        }
+
+        extensionRepository.createExtension(newExtension);
 
         return newExtension;
     }
@@ -82,13 +88,13 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         newTags = tagManipulations.checkForHashTag(newTags);
 
-        extension.setTags(extension.getTags() + " " + newTags);
+     //   extension.setTags(extension.getTags() + " " + newTags);
 
         extension.setApproved(0);
 
         extensionRepository.updateExtension(extension);
 
-        tagService.loadNewTags(extension);
+    //    tagService.loadNewTags(extension);
     }
 
     @Override
@@ -98,16 +104,16 @@ public class ExtensionServiceImpl implements ExtensionService {
                 extensionForm.getName(),
                 extensionForm.getDescription(),
                 extensionForm.getVersion(),
-                user.getUsername(),
-                tagManipulations.checkForHashTag(extensionForm.getTags()));
+                user.getUsername());
 
         newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
 
         newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
         newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
 
-        newExtension.getUploadFile().setFileName(extensionForm.getLogoMultipartFile().getOriginalFilename());
-        newExtension.getUploadFile().setLogoData(extensionForm.getLogoMultipartFile().getBytes());
+        if(extensionForm.getLogoMultipartFile() != null && extensionForm.getLogoMultipartFile().getSize() > 1) {
+            newExtension.getUploadFile().setLogoData(extensionForm.getLogoMultipartFile().getBytes());
+        }
 
         return newExtension;
     }

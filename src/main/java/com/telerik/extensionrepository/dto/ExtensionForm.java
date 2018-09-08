@@ -27,13 +27,14 @@ public class ExtensionForm {
 
     public ExtensionForm(){}
 
-    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, String githubLink, CommonsMultipartFile commonsMultipartFile) {
+    public ExtensionForm(@NotNull @NotEmpty @Size(min = 3, message = NAME_SIZE) String name, String description, String version, String tags, String githubLink, CommonsMultipartFile commonsMultipartFile, CommonsMultipartFile logoMultipartFile) {
         this.name = name;
         this.description = description;
         this.version = version;
         this.tags = tags;
         this.githubLink = githubLink;
         this.commonsMultipartFile = commonsMultipartFile;
+        this.logoMultipartFile = logoMultipartFile;
     }
 
     public String getName() {

@@ -36,7 +36,7 @@ import java.util.List;
 
         }
 
-        return builder.toString().trim();
+        return builder.toString().trim().toLowerCase();
 
     }
 
@@ -47,7 +47,7 @@ import java.util.List;
 
         List<TagForm> tags = new ArrayList<>();
 
-        String[] parsedTags = extension.getTags().split(" ");
+        String[] parsedTags = null;//extension.getTags().split(" ");
 
         for (String tag:
             parsedTags ) {
@@ -57,6 +57,5 @@ import java.util.List;
         return tags;
 
         }
-
 
 }

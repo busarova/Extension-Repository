@@ -32,7 +32,6 @@ public class ExtensionDTO {
         this.version = extension.getVersion();
         this.owner = extension.getOwner();
         this.numberOfDownloads = extension.getNumberOfDownloads();
-        this.tags = extension.getTags();
         this.approved = extension.getApproved();
         this.uploadDate = extension.getUploadDate().toString();
         this.featured = extension.getFeatured();

@@ -72,27 +72,21 @@ public class TagRepositorySql implements TagRepository {
     @Override
     public Tags getByName(String name) {
 
-            List<Tags> list = null;
+            Tags tag = null;
 
             try(Session session = factory.openSession()){
                 session.beginTransaction();
 
-                list = session.createQuery("from Tags t where t.name = :name")
+                tag = (Tags) session.createQuery("from Tags t where t.name = :name")
                         .setParameter("name", name)
-                        .list();
+                        .uniqueResult();
 
                 session.getTransaction().commit();
             }catch (Exception e){
                 System.out.println(e.getMessage());
             }
 
-
-            if(list == null || list.size() == 0){
-                return null;
-            }else {
-                return list.get(0);
-            }
-
+            return tag;
     }
 
     @Override

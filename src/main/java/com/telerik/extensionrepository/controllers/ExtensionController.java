@@ -43,7 +43,7 @@ public class ExtensionController {
 
         modelAndView.addObject("extension", extension);
 
-        modelAndView.addObject("tags", tagService.extractTagsFromExtension(extension));
+        modelAndView.addObject("tags", extension.getTags());
 
         if(extension.getUploadFile().getLogoData() != null) {
             modelAndView.addObject("logo", Base64.getEncoder().encodeToString(extension.getUploadFile().getLogoData()));

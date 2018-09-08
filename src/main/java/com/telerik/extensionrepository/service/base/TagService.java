@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.service.base;
 
+import com.telerik.extensionrepository.dto.ExtensionDTO;
+import com.telerik.extensionrepository.dto.ExtensionForm;
 import com.telerik.extensionrepository.dto.TagForm;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.Tags;
@@ -8,18 +10,14 @@ import java.util.List;
 
 public interface TagService {
 
-    void loadNewTags(Extension extension);
+    List<Tags> loadNewTags(ExtensionForm extensionForm);
 
     List<Tags> getAllTags();
 
-    List<Tags> getAllTagsByName(String name);
-
-    List<Extension> getExtensionsByTag(int tagId);
-
-    Tags getTagById(int tagId);
-
     Tags getTagByName(String name);
 
-    List<TagForm> extractTagsFromExtension(Extension extension);
+    List<Tags> getAllTagsByName(String name);
+
+    Tags getTagById(int tagId);
 
 }
