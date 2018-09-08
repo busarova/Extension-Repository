@@ -209,28 +209,5 @@ public class AdminServiceTests {
         Assert.assertEquals("Approved", resultExtensions.get(2).isItApproved());
         Assert.assertEquals("Approved", resultExtensions.get(3).isItApproved());
     }
-//    public List<Extension> getNotApprovedExt()
-
-
-//    TODO
-//    public void deleteExtension(int id) {
-//
-//    @Test
-//    public void deleteExtension_whenDeleted_returnNull() {
-//
-//        Extension extension = new Extension();
-//        extension.setId(10);
-//
-//        when(extensionRepository.getExtById(extension.getId())).thenReturn(extension);
-//
-//        AdminService service = new AdminServiceImpl(extensionRepository, adminRepository, gitExtensionInfoRepository, gitService);
-//
-//
-//    }
-
-
-//    public Admin getAdminInfo() {
-//        return adminRepository.getAdminInfo();
-
 
 }

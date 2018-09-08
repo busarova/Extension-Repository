@@ -35,7 +35,7 @@
         <div class="container">
             <div class="row">
 
-                <div th:each="Extension : ${extensions}" class="col-sm-6 col-md-3">
+                <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
                     <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
                         <div class="col-md-12 feature-box">
                             <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
@@ -59,23 +59,8 @@
         </div>
     </div>
 
-
-    <!--<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">-->
-
-    <!--<div class="circular">-->
-    <!--<a th:href="'/extension-details/'+${Extension.getId()}">-->
-    <!--<img src="/pics/icons/ext_default.jpg" width="25%">-->
-    <!--<h4 th:text="${Extension.getName()}"></h4>-->
-    <!--</a>-->
-
-    <!--</div>-->
-
-    <!--</div>-->
-
-
 </div>
 <link rel="stylesheet" href="/css/search.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="hello.js"></script>
 </body>
 </html>
