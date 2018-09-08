@@ -30,58 +30,47 @@
 </div>
 <div class="container">
 
-    <div class="col-sm-9">
-        <ul class="nav nav-tabs">
-            <li class="active"><a name="name" data-toggle="tab" href="#myExtensions">My Extensions</a></li>
-            <li><a name="name" data-toggle="tab" href="#edit">Edit Profile</a></li>
-        </ul>
+    <ul class="nav nav-tabs">
+        <li class="active"><a name="name" data-toggle="tab" href="#name">Name</a></li>
+        <li><a name="orderParams" data-toggle="tab" href="#name">Downloads</a></li>
+        <li><a name="orderParams" data-toggle="tab" href="#name">Upload Date</a></li>
+        <li><a name="orderParams" data-toggle="tab" href="#name">Last Commit Date</a></li>
+    </ul>
 
+        <div class="tab-pane active" id="name">
 
-        <div class="tab-content">
-            <div class="tab-pane" id="edit">
-                <hr>
-
-                <hr>
-
-            </div><!--/tab-pane-->
-
-            <div class="tab-pane active" id="myExtensions">
-
-                <hr>
-                <div class="row">
-                    <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
-                        <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
-                            <div class="col-md-12 feature-box">
-                                <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
-                                    <img src="/pics/icons/MPIcon.png">
+            <hr>
+            <div class="row">
+                <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
+                    <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
+                        <div class="col-md-12 feature-box">
+                            <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
+                                <img src="/pics/icons/MPIcon.png">
+                            </div>
+                            <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
+                                <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
+                            </div>
+                            <h4 th:text="${Extension.getName()}"></h4>
+                            <div class="row">
+                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
                                 </div>
-                                <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
-                                    <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
-                                </div>
-                                <h4 th:text="${Extension.getName()}"></h4>
-                                <div class="row">
-                                    <div class="col-sm-6" th:text="${Extension.getOwner()}">
-                                    </div>
-                                    <div class="glyphicon glyphicon-download-alt col-sm-6"
-                                         th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
-                                    </div>
+                                <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
                                 </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
-
-
-                <hr>
             </div>
 
+            <hr>
         </div>
-    </div>
 
+    </div>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/js/uploadFile.js"></script>
 
 </body>
 </html>

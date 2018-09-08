@@ -1,4 +1,6 @@
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 
+/*Search*/
 .quick-search-form .form-control {
 
     height: 45px;
@@ -18,7 +20,7 @@
     color: #FFFFFF;
     background-color: #ff0040;
     border-radius: 0!important;
-    padding: 11px 18px;
+    padding: 11px 18px!important;
 }
 
 .btn-custom:hover{
@@ -61,4 +63,53 @@ input:-webkit-autofill:focus {
     color: #555 !important;
     -webkit-box-shadow: 0 0 0 1000px white inset !important;
     -webkit-text-fill-color: #555555 !important;
+}
+
+/*Extension boxes*/
+.icon {
+    padding:5px;
+    text-align: center;
+}
+.icon img{
+    max-height: 100px;
+    min-height: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+
+.feature-box {
+    padding: 10px;
+    transition: .5s;
+    margin-bottom: 30px;
+    border: 1px solid #e8e8e8;
+}
+.feature-box:hover {
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.feature-box h4 {
+
+    font-family: "Gill Sans", sans-serif;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    color: black;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 15px 0 5px;
+}
+.link-block{
+
+    color: lightslategray;
+    text-decoration: none;
+}
+.glyphicon-download-alt{
+    text-align: right;
+}
+
+.col-sm-6{
+    font-size: 12px;
+}
+
+.panel-body{
+    text-align: center;
 }
