@@ -15,6 +15,9 @@ public class Admin {
     @Column(name = "last_successful_sync")
     private Date lastSuccessfulSync;
 
+    @Column(name = "last_successful_tag_clean")
+    private Date lastSuccessfulTagClean;
+
     public Admin(){}
 
     public Date getLastSuccessfulSync() {
@@ -33,5 +36,11 @@ public class Admin {
         this.id = id;
     }
 
+    public Date getLastSuccessfulTagClean() {
+        return lastSuccessfulTagClean;
+    }
 
+    public void setLastSuccessfulTagClean(Date lastSuccessfulTagClean) {
+        this.lastSuccessfulTagClean = lastSuccessfulTagClean;
+    }
 }

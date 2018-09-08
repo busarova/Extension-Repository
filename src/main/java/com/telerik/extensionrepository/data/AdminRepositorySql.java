@@ -117,5 +117,25 @@ public class AdminRepositorySql implements AdminRepository {
 
     }
 
+    @Override
+    public void updateLastSuccessfulTagClean(Date date) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            Admin admin = session.get(Admin.class, 1);
+
+            admin.setLastSuccessfulTagClean(date);
+
+            session.update(admin);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+
 
 }

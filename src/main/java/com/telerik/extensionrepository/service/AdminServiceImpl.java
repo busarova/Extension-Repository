@@ -136,11 +136,9 @@ public class AdminServiceImpl implements AdminService {
 
         Extension extension = extensionRepository.getExtById(id);
 
-        GitExtensionInfo gitInfo = gitService.getGitDetails(extension.getGitExtensionInfo().getGitRepoLink());
+        gitService.getGitDetails(extension.getGitExtensionInfo().getGitRepoLink());
 
-        gitInfo.setLastSuccessfulSync(new Date());
-
-        extension.setGitExtensionInfo(gitInfo);
+        extension.getGitExtensionInfo().setLastSuccessfulSync(new Date());
 
         extensionRepository.updateExtension(extension);
 
@@ -159,6 +157,8 @@ public class AdminServiceImpl implements AdminService {
                 count++;
             }
         }
+
+        adminRepository.updateLastSuccessfulTagClean(new Date());
 
         return count;
     }
