@@ -135,11 +135,35 @@ public void getPopularExtensions_whenMatch_returnListOfPopularExtensions() {
 }
 
 
-//    List<Extension> getNew();
-
 //    List<Extension> getByUserName(String userName);
+@Test
+public void getAllExtensionsOfUser_whenMatch_returnListOfAllExtensionsWithGivenOwner() {
 
-//    Extension getById(int id);
+    List<Extension> extensions = new ArrayList<>();
+
+    for (int i = 1; i < 4; i++) {
+
+        Extension extension = new Extension();
+        extension.setOwner("test user");
+        extensions.add(extension);
+    }
+
+    when(extensionRepository.getByUserName("test user"))
+            .thenReturn(extensions);
+
+    ExtensionInfoService service = new ExtensionInfoServiceImpl(extensionRepository);
+
+    List<Extension> resultExtensions = service.getByUserName("test user");
+
+    Assert.assertEquals(resultExtensions.size(), 3);
+
+    Assert.assertEquals("test user", resultExtensions.get(0).getOwner());
+    Assert.assertEquals("test user", resultExtensions.get(1).getOwner());
+    Assert.assertEquals("test user", resultExtensions.get(2).getOwner());
+}
+
+
+    //    Extension getById(int id);
 @Test
 public void getExtensionById_whenMatch_returnsExtensionWithRequestedId() {
 
@@ -175,9 +199,6 @@ public void getExtensionByName_whenMatch_returnsExtensionWithRequestedName() {
 
 }
 
-//    List<Extension> returnOrderedBy(String parameter);
-
 //    List<Extension> returnAllOrderedBy(String parameter);
 
-//    List<Extension> sortListBy(List<Extension> list, String parameter);
 }

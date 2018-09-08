@@ -23,11 +23,11 @@ public interface ExtensionInfoService {
 
     Extension getExtByName(String name);
 
-    List<Extension> returnOrderedBy(String parameter);
+//    List<Extension> returnOrderedBy(String parameter);
 
     List<Extension> returnAllOrderedBy(String parameter) throws RepositoryException;
 
-    List<Extension> sortListBy(List<Extension> list, String parameter);
+//    List<Extension> sortListBy(List<Extension> list, String parameter);
 
 
 

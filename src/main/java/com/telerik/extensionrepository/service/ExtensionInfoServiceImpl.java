@@ -69,26 +69,26 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     }
 
-    @Override
-    public List<Extension> returnOrderedBy(String parameter) {                       // sorts the list by the parameter
-
-        String[] commands = parameter.split(" ");
-
-        switch (commands[0]){
-
-            case "popular":
-                return sortListBy(getPopular(), commands[1]);
-
-            case "featured":
-                return sortListBy(getFeatured(), commands[1]);
-
-            case "new":
-                return sortListBy(getNew(), commands[1]);
-
-        }
-
-        return null;
-    }
+//    @Override
+//    public List<Extension> returnOrderedBy(String parameter) {                       // sorts the list by the parameter
+//
+//        String[] commands = parameter.split(" ");
+//
+//        switch (commands[0]){
+//
+//            case "popular":
+//                return sortListBy(getPopular(), commands[1]);
+//
+//            case "featured":
+//                return sortListBy(getFeatured(), commands[1]);
+//
+//            case "new":
+//                return sortListBy(getNew(), commands[1]);
+//
+//        }
+//
+//        return null;
+//    }
 
     // to fix the last commit date order when real extensions are placed
 
@@ -122,39 +122,39 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     }
 
-    // To be decided if to stay by the rest functions
-
-    @Override
-    public List<Extension> sortListBy(List<Extension> list, String parameter) {
-
-        switch (parameter){
-
-            case "name":
-                list.sort(Comparator.comparing(Extension::getName));
-                return list;
-
-            case "downloads":
-                list.sort(Comparator.comparing(Extension::getNumberOfDownloads));
-                 return list;
-
-            case "uploadDate":
-
-                list.sort(Comparator.comparing(Extension::getUploadDate).reversed());
-                return list;
-
-            case "lastCommitDate":
-
-                list.sort(Comparator.comparing(Extension::getUploadDate));
-                return list;
-
-            case "featured":
-
-               return list.stream()
-                        .filter(x -> x.getFeatured() == 0)
-                        .collect(Collectors.toList());
-        }
-
-        return null;
-    }
+//    // To be decided if to stay by the rest functions
+//
+//    @Override
+//    public List<Extension> sortListBy(List<Extension> list, String parameter) {
+//
+//        switch (parameter){
+//
+//            case "name":
+//                list.sort(Comparator.comparing(Extension::getName));
+//                return list;
+//
+//            case "downloads":
+//                list.sort(Comparator.comparing(Extension::getNumberOfDownloads));
+//                 return list;
+//
+//            case "uploadDate":
+//
+//                list.sort(Comparator.comparing(Extension::getUploadDate).reversed());
+//                return list;
+//
+//            case "lastCommitDate":
+//
+//                list.sort(Comparator.comparing(Extension::getUploadDate));
+//                return list;
+//
+//            case "featured":
+//
+//               return list.stream()
+//                        .filter(x -> x.getFeatured() == 0)
+//                        .collect(Collectors.toList());
+//        }
+//
+//        return null;
+//    }
 
 }
