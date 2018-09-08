@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.rest_controllers;
 
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,9 @@ public class TestController {
     }
 
     @GetMapping("/test")
-    public List<Extension> test(){
-        return extensionInfoService.getAll();
+    public List<Extension> test() throws RepositoryException{
+
+            return extensionInfoService.getAll();
+
     }
 }

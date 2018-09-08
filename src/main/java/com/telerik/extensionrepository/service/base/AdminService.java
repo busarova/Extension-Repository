@@ -3,12 +3,13 @@ package com.telerik.extensionrepository.service.base;
 import com.telerik.extensionrepository.model.Admin;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 
 import java.util.List;
 
 public interface AdminService {
 
-    int refreshAllGitHubInfo();
+    int refreshAllGitHubInfo() throws RepositoryException;
 
     List<Extension> getNotApprovedExt();
 

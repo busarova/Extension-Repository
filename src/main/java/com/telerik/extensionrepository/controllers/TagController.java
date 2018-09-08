@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Controller
 public class TagController {
@@ -42,7 +43,7 @@ public class TagController {
 
         Tags tag = tagService.getTagById(Integer.parseInt(id));
 
-        modelAndView.addObject("extensions", tag.getExtensions());
+        modelAndView.addObject("allApproved", tag.getExtensions());
         modelAndView.addObject("Tag", tag);
 
         return modelAndView;

@@ -2,12 +2,13 @@ package com.telerik.extensionrepository.data.base;
 
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 
 import java.util.List;
 
 public interface ExtensionRepository {
 
-    List<Extension> getAllExtensions();
+    List<Extension> getAllExtensions() throws RepositoryException;
 
     List<Extension> getAllApproved();
 

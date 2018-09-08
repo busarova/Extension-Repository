@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,7 +26,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
     }
 
     @Override
-    public List<Extension> getAllExtensions() {
+    public List<Extension> getAllExtensions() throws RepositoryException {
         List<Extension> theList = new ArrayList<>();
 
         try (Session session = factory.openSession()) {
@@ -35,7 +36,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new RepositoryException("There was a problem with the database.");
         }
 
         return theList;

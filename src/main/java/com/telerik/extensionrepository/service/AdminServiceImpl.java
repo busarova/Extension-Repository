@@ -8,6 +8,7 @@ import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.GitService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +30,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public int refreshAllGitHubInfo() {
+    public int refreshAllGitHubInfo() throws RepositoryException {
 
 
         List<Extension> allExtensions = extensionRepository.getAllExtensions();

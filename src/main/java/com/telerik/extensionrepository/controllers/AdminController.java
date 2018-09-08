@@ -2,6 +2,7 @@ package com.telerik.extensionrepository.controllers;
 
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,7 +37,16 @@ public class AdminController {
 
         ModelAndView modelAndView = new ModelAndView("admin");
 
-        adminService.refreshAllGitHubInfo();
+        try {
+
+            adminService.refreshAllGitHubInfo();
+
+        }catch(RepositoryException rep){
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", rep);
+
+            return modelAndView;
+        }
 
         modelAndView.addObject("extensions", adminService.getNotApprovedExt());
         modelAndView.addObject("users", adminService.getAllUsers());

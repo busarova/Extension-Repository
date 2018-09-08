@@ -66,6 +66,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public Tags getTagByName(String name) {
+
           return tagRepository.getAll().stream()
                 .filter( x -> x.getName().equals(tagManipulations.checkForHashTag(name)))
                 .findFirst()

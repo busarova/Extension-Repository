@@ -1,12 +1,13 @@
 package com.telerik.extensionrepository.service.base;
 
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 
 import java.util.List;
 
 public interface ExtensionInfoService {
 
-    List<Extension> getAll();
+    List<Extension> getAll() throws RepositoryException;
 
     List<Extension> getAllApproved();
 
@@ -24,7 +25,7 @@ public interface ExtensionInfoService {
 
     List<Extension> returnOrderedBy(String parameter);
 
-    List<Extension> returnAllOrderedBy(String parameter);
+    List<Extension> returnAllOrderedBy(String parameter) throws RepositoryException;
 
     List<Extension> sortListBy(List<Extension> list, String parameter);
 
