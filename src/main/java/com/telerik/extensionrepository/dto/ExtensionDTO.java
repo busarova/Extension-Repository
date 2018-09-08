@@ -4,7 +4,7 @@ import com.telerik.extensionrepository.model.Extension;
 
 import java.util.Date;
 
-//User to transfer data with the rest service
+//Used to transfer data with the rest service
 
 public class ExtensionDTO {
 
