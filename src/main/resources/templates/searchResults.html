@@ -31,13 +31,13 @@
 <div class="container">
 
     <ul class="nav nav-tabs">
-        <li class="active"><a name="name" data-toggle="tab" href="#name">Name</a></li>
+        <li class="active"><a name="orderParams" th:href="'/searchAndOrder/'+${searchQuery}+' name'">Name</a></li>
         <li><a name="orderParams" th:href="'/searchAndOrder/'+${searchQuery}+' downloads'">Downloads</a></li>
         <li><a name="orderParams" th:href="'/searchAndOrder/'+${searchQuery}+' uploadDate'">Upload Date</a></li>
         <li><a name="orderParams" th:href="'/searchAndOrder/'+${searchQuery}+' lastCommit'">Last Commit Date</a></li>
     </ul>
 
-        <div class="tab-pane active" id="name">
+        <div class="tab-pane" id="name">
 
             <hr>
             <div class="row">

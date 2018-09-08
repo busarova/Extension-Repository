@@ -7,37 +7,37 @@
 <body>
 
 
-
 <div th:replace="fragments :: header">
 </div>
 
 <h1 class="alignTextCenter">Tag Palace</h1>
 <div class="alignTextCenter">
 
-<p>Search for Tags:</p>
-<form th:action="@{/tags/search}" method="post">
-<input type="text" name="name" placeholder="Search..">
-    <input type="submit" value="Search" />
-</form>
-<p><a th:href="@{/tags}">show all</a></p>
+    <div class="container">
+
+        <div id="quick-access">
+            <form th:action="@{/tags/search}" class="quick-search-form" method="post">
+                <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Search tags..">
+                </div>
+                <button type="submit" value="Search" id="quick-search" class="btn btn-custom"><span
+                        class="glyphicon glyphicon-search custom-glyph-color"></span></button>
+            </form>
+        </div>
+        <hr>
+    </div>
+    <div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
+
+        <div class="circular">
+            <a id="tags-tag-palace" th:href="'/tags/searchById/'+${Tags.getId()}">
+                <p th:text="${Tags.getName()}"></p>
+
+            </a>
+        </div>
+    </div>
 </div>
 
-<p class="tag-name"></p>
-<p class="tag-owner"></p>
-<hr>
-
-<div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
-
-            <div class="circular">
-                <a id="tags-tag-palace" th:href="'/tags/searchById/'+${Tags.getId()}">
-                                     <p th:text="${Tags.getName()}"></p>
-
-                                     </a>
-
-            </div>
-
-</div>
-
+<link rel="stylesheet" href="/css/search.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="hello.js"></script>
 </body>
