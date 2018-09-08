@@ -61,7 +61,7 @@ public class LoginController {
 
         userDetailsManager.createUser(newUser);
 
-        return "register-confirmation";
+        return "login";
     }
 
     private boolean checkUserExist(String userName) {

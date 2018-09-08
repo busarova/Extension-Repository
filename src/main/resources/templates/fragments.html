@@ -29,7 +29,6 @@
     <ul class="nav navbar-nav navbar-right">
 
       <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/admin}">Admin</a></li>
-      <!--<li><a sec:authorize="isAnonymous()" th:href="@{/register}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>-->
       <li><a sec:authorize="isAnonymous()" th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login </a></li>
       <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
       <li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">Welcome, <span sec:authentication="name"/></a></li>

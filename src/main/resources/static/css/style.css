@@ -1,4 +1,6 @@
-
+.paddingTB60{
+    padding-bottom: 60px;
+}
 .header{
     text-align: center;
     background-color: black;
@@ -15,16 +17,13 @@ img{
 
     font-size: 17px;
     padding-left: 40px;
+    padding-right: 40px;
 }
 
 .enlarge_on_hover:hover{
     transform: scale(1.5);
 
 }
-
-/*.blue-background{
-    background-color: blanchedalmond;
-}*/
 
 #description-extension-details{
     font-size: 35px;
@@ -113,14 +112,7 @@ img{
 .col-sm-6{
     font-size: 12px;
 }
-/* SEARCH */
-.input-group{
 
-    margin: 30px;
-    max-width: 30%;
-    float: right;
-
-}
 /*BUTTONS*/
 
 .button {
