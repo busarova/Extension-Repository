@@ -59,6 +59,8 @@ public class ExtensionController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
+        modelAndView.addObject("tags", extension.getTags());
+
         modelAndView.addObject(extension);
 
         if(extension.getUploadFile().getLogoData() != null) {

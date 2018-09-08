@@ -56,4 +56,9 @@ public class Tags {
 
         return getName();
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }
