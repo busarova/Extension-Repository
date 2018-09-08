@@ -12,7 +12,6 @@
 </div>
 
 <h1 class="alignTextCenter">Tag Palace</h1>
-<a th:href="@{/}">home</a>
 <div class="alignTextCenter">
 
 <p>Search for Tags:</p>
@@ -30,7 +29,7 @@
 <div th:each="Tags : ${allTags}" class="col-lg-4 col-sm-4">
 
             <div class="circular">
-                <a th:href="'/tags/searchById/'+${Tags.getId()}">
+                <a id="tags-tag-palace" th:href="'/tags/searchById/'+${Tags.getId()}">
                                      <p th:text="${Tags.getName()}"></p>
 
                                      </a>

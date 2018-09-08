@@ -30,9 +30,16 @@ img{
     font-size: 35px;
     color: darkblue;
     font-family: Centaur;
+    text-align: left;
 }
 
 #tags-extension-details{
+    font-size: 25px;
+    color: crimson;
+    font-family: Centaur;
+}
+
+#tags-tag-palace{
     font-size: 25px;
     color: crimson;
     font-family: Centaur;
