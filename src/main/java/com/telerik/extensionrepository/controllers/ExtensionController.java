@@ -5,14 +5,14 @@ import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.TagService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Base64;
@@ -133,9 +133,19 @@ public class ExtensionController {
 
         ModelAndView modelAndView = new ModelAndView("index");
 
-        List<Extension> list = extensionInfoService.returnAllOrderedBy(name);
+        try {
 
-        modelAndView.addObject("allApproved", list);
+
+            List<Extension> list = extensionInfoService.returnAllOrderedBy(name);
+
+            modelAndView.addObject("allApproved", list);
+
+        }catch(RepositoryException rep){
+
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", rep);
+        }
+
 
         return modelAndView;
     }
@@ -155,5 +165,13 @@ public class ExtensionController {
         adminService.deleteExtension(extension.getId());
 
         return "redirect:/profile";
+    }
+
+    @ExceptionHandler
+    ResponseEntity handleExtensionNotFoundException(RepositoryException rep) {
+        rep.printStackTrace();
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(rep.getMessage());
     }
 }

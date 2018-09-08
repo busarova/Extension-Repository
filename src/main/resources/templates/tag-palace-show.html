@@ -26,24 +26,34 @@
 <p class="tag-owner"></p>
 <hr>
 
-<div class="alignTextCenter">
+<div class="Features-section paddingTB60 ">
+        <div class="container">
+            <div class="row">
 
-<h2 th:text="'Extensions marked by ' + ${Tag.getName()}">Extensions marked by</h2>
-
-<div th:each="Extension : ${extensions}" class="col-lg-4 col-sm-4">
-
-            <div class="circular">
-                <a th:href="'/extension-details/'+${Extension.getId()}">
-                                     <img src="/pics/icons/ext_default.jpg" width="25%">
-                                     <h4 th:text="${Extension.getName()}"></h4>
-                                     </a>
-
+                <div th:each="Extension : ${allApproved}" class="col-sm-6 col-md-3">
+                    <a th:href="'/extension-details/'+${Extension.getId()}" class="link-block">
+                        <div class="col-md-12 feature-box">
+                            <div class="icon" th:if="${Extension.getUploadFile().getLogoData() == null}">
+                                <img src="/pics/icons/MPIcon.png">
+                            </div>
+                            <div class="icon" th:unless="${Extension.getUploadFile().getLogoData() == null}">
+                                <img th:src="*{'data:image/png;base64,'+Extension.getUploadFile().encodeLogoToString()}">
+                            </div>
+                            <h4 th:text="${Extension.getName()}"></h4>
+                            <div class="row">
+                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
+                                </div>
+                                <div class="glyphicon glyphicon-download-alt col-sm-6"
+                                     th:text=" ' ' + ${Extension.getNumberOfDownloads()}">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
+        </div>
+    </div>
 
-</div>
-
-
-</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="hello.js"></script>

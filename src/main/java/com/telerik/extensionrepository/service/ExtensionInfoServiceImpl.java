@@ -3,6 +3,7 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     }
 
     @Override
-    public List<Extension> getAll() {
+    public List<Extension> getAll() throws RepositoryException {
         return extensionRepository.getAllExtensions();
     }
 
@@ -92,7 +93,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     // to fix the last commit date order when real extensions are placed
 
     @Override
-    public List<Extension> returnAllOrderedBy(String parameter) {
+    public List<Extension> returnAllOrderedBy(String parameter) throws RepositoryException{
 
         switch (parameter){
 

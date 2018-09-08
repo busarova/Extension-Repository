@@ -116,7 +116,7 @@ public class TagRepositorySql implements TagRepository {
             session.beginTransaction();
 
             theList = session.createQuery("from Tags t where t.name like :param")
-                    .setParameter("param", param)
+                    .setParameter("param", "%" + param + "%")
                     .list();
 
             session.getTransaction().commit();
