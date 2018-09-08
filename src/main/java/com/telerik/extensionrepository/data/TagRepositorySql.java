@@ -114,4 +114,21 @@ public class TagRepositorySql implements TagRepository {
         }
 
     }
+
+    @Override
+    public void deleteTag(Tags tag) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.delete(tag);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+
+    }
 }

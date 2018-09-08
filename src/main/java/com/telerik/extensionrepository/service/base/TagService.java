@@ -20,4 +20,6 @@ public interface TagService {
 
     Tags getTagById(int tagId);
 
+    void deleteTag(Tags tag);
+
 }

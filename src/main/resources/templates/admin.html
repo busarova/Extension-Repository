@@ -17,6 +17,10 @@
 
 <p th:text="'Last successful sync: '+${adminInfo.getLastSuccessfulSync()}"></p>
 
+
+<a th:href="@{/admin/cleanEmptyTags}"><button>Clean Database of Empty Tags</button></a>
+<p th:if="${tagsCleaned != null}" th:text="${tagsCleaned} + ' empty tags have been cleaned.'"></p>
+
 <div class="container">
   <h2>For Approval</h2>
   <!--<p>this is responsive table :P</p>-->

@@ -2,12 +2,10 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
-import com.telerik.extensionrepository.model.Admin;
-import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.model.GitExtensionInfo;
-import com.telerik.extensionrepository.model.User;
+import com.telerik.extensionrepository.model.*;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.GitService;
+import com.telerik.extensionrepository.service.base.TagService;
 import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +19,14 @@ public class AdminServiceImpl implements AdminService {
     private ExtensionRepository extensionRepository;
     private AdminRepository adminRepository;
     private GitService gitService;
+    private TagService tagService;
 
     @Autowired
-    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitService gitService) {
+    public AdminServiceImpl(ExtensionRepository extensionRepository, AdminRepository adminRepository, GitService gitService, TagService tagService) {
         this.extensionRepository = extensionRepository;
         this.adminRepository = adminRepository;
         this.gitService = gitService;
+        this.tagService = tagService;
     }
 
     @Override
@@ -144,5 +144,22 @@ public class AdminServiceImpl implements AdminService {
 
         extensionRepository.updateExtension(extension);
 
+    }
+
+    @Override
+    public int emptyTagCheck() {
+
+        int count = 0;
+
+        for (Tags tag:
+           tagService.getAllTags()  ) {
+
+            if(tag.getExtensions().size() == 0){
+                tagService.deleteTag(tag);
+                count++;
+            }
+        }
+
+        return count;
     }
 }

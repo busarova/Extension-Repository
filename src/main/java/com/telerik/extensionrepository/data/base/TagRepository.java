@@ -16,4 +16,6 @@ public interface TagRepository {
 
     void saveTag(Tags tag);
 
+    void deleteTag(Tags tag);
+
 }
