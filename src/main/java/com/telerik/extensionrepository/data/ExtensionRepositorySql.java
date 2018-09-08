@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.OptimisticLockException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,25 +41,6 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         return theList;
     }
 
-    @Override
-    public List<Extension> getAllByParam(String param, String orderParam) {
-        List<Extension> theList = new ArrayList<>();
-
-        try (Session session = factory.openSession()) {
-            session.beginTransaction();
-
-            theList = session.createQuery("from Extension where name like :param order by :orderParam")
-                    .setParameter("param", "%" + param + "%")
-                    .setParameter("orderParam", orderParam)
-                    .list();
-
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        return theList;
-    }
 
     @Override
     public List<Extension> getAllApproved() {
@@ -263,5 +245,81 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             System.out.println(e.getMessage());
         }
         return extension;
+    }
+
+//    Search By
+    @Override
+    public List<Extension> getAllByParam(String param) {
+        List<Extension> theList = new ArrayList<>();
+
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension where approved = 1 and name like :param")
+                    .setParameter("param", "%" + param + "%")
+                    .list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
+    public List<Extension> searchByDownloads(String param) {
+        List<Extension> theList = new ArrayList<>();
+
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension where approved = 1 and name like :param order by numberOfDownloads desc")
+                    .setParameter("param", "%" + param + "%")
+                    .list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+    @Override
+    public List<Extension> searchByUploadDate(String param) {
+        List<Extension> theList = new ArrayList<>();
+
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension where approved = 1 and name like :param order by uploadDate desc")
+                    .setParameter("param", "%" + param + "%")
+                    .list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
+    }
+
+    @Override
+    public List<Extension> searchByLastCommitDate(String param) {
+        List<Extension> theList = new ArrayList<>();
+
+        try (Session session = factory.openSession()) {
+            session.beginTransaction();
+
+            theList = session.createQuery("from Extension where approved = 1 and name like :param order by gitExtensionInfo.lastCommitDate desc")
+                    .setParameter("param", "%" + param + "%")
+                    .list();
+
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return theList;
     }
 }

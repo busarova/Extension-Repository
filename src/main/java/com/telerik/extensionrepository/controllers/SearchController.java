@@ -21,9 +21,6 @@ public class SearchController {
     @PostMapping("/search")
     public ModelAndView showSearch(@RequestParam String params, @RequestParam String orderParams){
 
-        if (orderParams == null || orderParams.equals("")){
-            orderParams = "name";
-        }
         ModelAndView modelAndView = new ModelAndView("searchResults");
 
         modelAndView.addObject("allApproved", searchService.getAllByParam(params, orderParams));

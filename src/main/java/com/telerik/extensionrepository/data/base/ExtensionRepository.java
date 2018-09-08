@@ -9,8 +9,6 @@ public interface ExtensionRepository {
 
     List<Extension> getAllExtensions();
 
-    List<Extension> getAllByParam(String param, String orderParam);
-
     List<Extension> getAllApproved();
 
     List<Extension> getAllNotApproved();
@@ -32,4 +30,12 @@ public interface ExtensionRepository {
     Extension getExtById(int id);
 
     Extension deleteExtension(Extension extension);
+
+    List<Extension> getAllByParam(String param);
+
+    public List<Extension> searchByDownloads(String param);
+
+    public List<Extension> searchByUploadDate(String param);
+
+    public List<Extension> searchByLastCommitDate(String param);
 }

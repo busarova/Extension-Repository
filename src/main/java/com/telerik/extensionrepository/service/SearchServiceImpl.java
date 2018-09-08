@@ -21,7 +21,19 @@ public class SearchServiceImpl implements SearchService {
     @Override
     public List<Extension> getAllByParam(String param, String orderParam) {
 
-        return extensionRepository.getAllByParam(param, orderParam);
+        switch (orderParam) {
+
+            case "downloads":
+                return extensionRepository.searchByDownloads(param);
+
+            case "uploadDate":
+                return extensionRepository.searchByUploadDate(param);
+
+            case "lastCommit":
+                return extensionRepository.searchByLastCommitDate(param);
+        }
+
+        return extensionRepository.getAllByParam(param);
     }
 
 }
