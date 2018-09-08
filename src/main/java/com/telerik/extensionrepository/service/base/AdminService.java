@@ -35,4 +35,6 @@ public interface AdminService {
 
     void refreshExtensionGitInfo(int id);
 
+    int emptyTagCheck();
+
 }

@@ -20,4 +20,6 @@ public interface AdminRepository {
 
     User getUserByName(String name);
 
+    void updateLastSuccessfulTagClean(Date date);
+
 }

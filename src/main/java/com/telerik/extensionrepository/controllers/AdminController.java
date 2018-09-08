@@ -55,6 +55,19 @@ public class AdminController {
         return modelAndView;
     }
 
+    @GetMapping("/admin/cleanEmptyTags")
+    public ModelAndView emptyTagCheck(){
+
+        ModelAndView modelAndView = new ModelAndView("admin");
+
+        modelAndView.addObject("extensions", adminService.getNotApprovedExt());
+        modelAndView.addObject("users", adminService.getAllUsers());
+        modelAndView.addObject("adminInfo", adminService.getAdminInfo());
+        modelAndView.addObject("tagsCleaned", adminService.emptyTagCheck());
+
+        return modelAndView;
+    }
+
     @RequestMapping("/admin/approve/{id}")
     public ModelAndView getById(@PathVariable("id") String id){
 
