@@ -16,7 +16,7 @@ public interface ExtensionService {
 
     Extension changeExtensionDescription(Extension extension, String newDescription);
 
-    void addExtensionTag(Extension extension, String newTags);
+    Extension addExtensionTag(Extension extension, String newTags);
 
     Extension createExtensionFromForm(ExtensionForm form, User user);
 

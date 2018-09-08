@@ -11,6 +11,7 @@ import com.telerik.extensionrepository.service.base.TagService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
@@ -67,10 +68,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tags getTagByName(String name) {
 
-          return tagRepository.getAll().stream()
-                .filter( x -> x.getName().equals(tagManipulations.checkForHashTag(name)))
-                .findFirst()
-                .orElse(null);
+          return tagRepository.getByName(name);
     }
 
     @Override
@@ -82,6 +80,5 @@ public class TagServiceImpl implements TagService {
     public Tags getTagById(int tagId) {
         return tagRepository.getById(tagId);
     }
-
 
 }

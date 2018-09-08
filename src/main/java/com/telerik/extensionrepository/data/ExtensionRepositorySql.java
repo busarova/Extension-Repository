@@ -85,6 +85,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
         try (Session session = factory.openSession()) {
 
             transaction = session.beginTransaction();
+            extension.getTags().forEach(session::saveOrUpdate);
             session.update(extension);
             transaction.commit();
 

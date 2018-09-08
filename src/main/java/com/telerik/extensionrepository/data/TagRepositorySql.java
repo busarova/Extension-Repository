@@ -20,35 +20,6 @@ public class TagRepositorySql implements TagRepository {
         this.factory = factory;
     }
 
-    @Override
-    public void createNewTag(Tags tag) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            session.save(tag);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Override
-    public void updateTag(Tags tag) {
-
-        try(Session session = factory.openSession()){
-            session.beginTransaction();
-
-            session.update(tag);
-
-            session.getTransaction().commit();
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
 
     @Override
     public Tags getById(int id) {
@@ -77,8 +48,8 @@ public class TagRepositorySql implements TagRepository {
             try(Session session = factory.openSession()){
                 session.beginTransaction();
 
-                tag = (Tags) session.createQuery("from Tags t where t.name = :name")
-                        .setParameter("name", name)
+                tag = (Tags) session.createQuery("from Tags t where t.name like :name")
+                        .setParameter("name", "%" + name + "%")
                         .uniqueResult();
 
                 session.getTransaction().commit();
@@ -126,5 +97,21 @@ public class TagRepositorySql implements TagRepository {
         }
 
         return theList;
+    }
+
+    @Override
+    public void saveTag(Tags tag) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.save(tag);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
     }
 }

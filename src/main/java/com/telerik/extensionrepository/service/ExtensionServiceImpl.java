@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ExtensionServiceImpl implements ExtensionService {
 
@@ -84,17 +86,26 @@ public class ExtensionServiceImpl implements ExtensionService {
     }
 
     @Override
-    public void addExtensionTag(Extension extension, String newTags) {
+    public Extension addExtensionTag(Extension extension, String newTags) {
 
         newTags = tagManipulations.checkForHashTag(newTags);
 
-     //   extension.setTags(extension.getTags() + " " + newTags);
+        String[] splitTags = newTags.split(" ");
+
+        List<Tags> tagList = extension.getTags();
+
+        for (String tag:
+            splitTags ) {
+
+            tagList.add(new Tags(tag));
+        }
+
+        extension.setTags(tagList);
 
         extension.setApproved(0);
 
-        extensionRepository.updateExtension(extension);
+       return extensionRepository.updateExtension(extension);
 
-    //    tagService.loadNewTags(extension);
     }
 
     @Override
