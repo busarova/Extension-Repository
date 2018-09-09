@@ -1,4 +1,4 @@
-package com.telerik.extensionrepository.utils.exceptions;
+package com.telerik.extensionrepository.exceptions;
 
 public class RepositoryException extends Exception {
 

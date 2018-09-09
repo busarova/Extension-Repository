@@ -1,16 +1,16 @@
 package com.telerik.extensionrepository.service.base;
 
+import com.telerik.extensionrepository.exceptions.GithubSyncException;
 import com.telerik.extensionrepository.model.Admin;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 
-import java.math.BigInteger;
 import java.util.List;
 
 public interface AdminService {
 
-    int refreshAllGitHubInfo() throws RepositoryException;
+    int refreshAllGitHubInfo() throws RepositoryException, GithubSyncException;
 
     List<Extension> getNotApprovedExt();
 

@@ -5,7 +5,7 @@ import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.TagService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -141,7 +141,7 @@ public class ExtensionController {
         }catch(RepositoryException rep){
 
             modelAndView.setViewName("error");
-            modelAndView.addObject("error", rep);
+            modelAndView.addObject("errorMessage", rep);
         }
 
 
@@ -165,11 +165,4 @@ public class ExtensionController {
         return "redirect:/profile";
     }
 
-    @ExceptionHandler
-    ResponseEntity handleExtensionNotFoundException(RepositoryException rep) {
-        rep.printStackTrace();
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(rep.getMessage());
-    }
 }

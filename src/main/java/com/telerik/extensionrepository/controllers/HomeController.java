@@ -1,5 +1,6 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
@@ -33,7 +34,13 @@ public class HomeController {
 
         System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
-        modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
+
+        try {
+            modelAndView.addObject("allApproved", extensionInfoService.getAllApproved());
+        }catch (RepositoryException rep){
+            modelAndView.setViewName("error");
+            modelAndView.addObject("errorMessage", rep.getMessage());
+        }
 
 
         return modelAndView;

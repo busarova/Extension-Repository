@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.service;
 
+import com.telerik.extensionrepository.exceptions.GithubSyncException;
+import com.telerik.extensionrepository.exceptions.OAuthTokenException;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.service.base.GitService;
 import org.kohsuke.github.GHCommit;
@@ -21,7 +23,7 @@ public class GitServiceImpl implements GitService {
     //Otherwise return empty
 
     @Override
-    public GitExtensionInfo getGitDetails(String gitLink) {
+    public GitExtensionInfo getGitDetails(String gitLink) throws GithubSyncException {
 
         final String token = "6bd730709f26540abf3e15e3a6dcbf1bd4a6693c";
 
@@ -34,6 +36,7 @@ public class GitServiceImpl implements GitService {
             gitHub = GitHub.connectUsingOAuth(token);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new GithubSyncException("There was a problem with the OAuth token for github");
         }
 
 
@@ -59,8 +62,8 @@ public class GitServiceImpl implements GitService {
 
         } catch (IOException e) {
             e.printStackTrace();
+            throw new GithubSyncException("There was a problem retrieving data from Github.");
         }
 
-        return null;
     }
 }

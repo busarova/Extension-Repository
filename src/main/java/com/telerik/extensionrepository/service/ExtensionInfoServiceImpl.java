@@ -3,13 +3,11 @@ package com.telerik.extensionrepository.service;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ExtensionInfoServiceImpl implements ExtensionInfoService {
@@ -27,7 +25,7 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
     }
 
     @Override
-    public List<Extension> getAllApproved() {
+    public List<Extension> getAllApproved() throws RepositoryException {
         return extensionRepository.getAllApproved();
     }
 

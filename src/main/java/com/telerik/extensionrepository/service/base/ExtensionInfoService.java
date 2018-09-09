@@ -1,7 +1,7 @@
 package com.telerik.extensionrepository.service.base;
 
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface ExtensionInfoService {
 
     List<Extension> getAll() throws RepositoryException;
 
-    List<Extension> getAllApproved();
+    List<Extension> getAllApproved() throws RepositoryException;
 
     List<Extension> getFeatured();
 

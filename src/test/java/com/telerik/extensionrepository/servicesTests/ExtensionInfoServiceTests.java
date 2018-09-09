@@ -4,7 +4,7 @@ import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.ExtensionInfoServiceImpl;
 import com.telerik.extensionrepository.service.base.ExtensionInfoService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;

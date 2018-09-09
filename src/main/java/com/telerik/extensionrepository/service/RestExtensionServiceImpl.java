@@ -4,7 +4,7 @@ import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.dto.ExtensionDTO;
 import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.service.base.RestExtensionService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class RestExtensionServiceImpl implements RestExtensionService {
     }
 
     @Override
-    public List<ExtensionDTO> getAllApproved() {
+    public List<ExtensionDTO> getAllApproved() throws RepositoryException {
 
         return convertExtListToDto(extensionRepository.getAllApproved());
     }

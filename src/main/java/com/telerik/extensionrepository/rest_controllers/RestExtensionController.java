@@ -8,7 +8,7 @@ import com.telerik.extensionrepository.service.base.ExtensionInfoService;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.FileService;
 import com.telerik.extensionrepository.service.base.RestExtensionService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
@@ -38,7 +38,12 @@ public class RestExtensionController {
     @GetMapping("api/extensions/approved")
     public List<ExtensionDTO> getAllApproved(){
 
-        return restExtensionService.getAllApproved();
+        try {
+            return restExtensionService.getAllApproved();
+        }catch (RepositoryException rep){
+            System.out.println(rep.getMessage());
+            return null;
+        }
 
     }
 

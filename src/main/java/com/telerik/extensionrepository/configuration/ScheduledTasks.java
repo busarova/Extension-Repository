@@ -1,7 +1,7 @@
 package com.telerik.extensionrepository.configuration;
 
 import com.telerik.extensionrepository.service.base.AdminService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

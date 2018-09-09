@@ -2,7 +2,7 @@ package com.telerik.extensionrepository.data;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.OptimisticLockException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +43,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
 
     @Override
-    public List<Extension> getAllApproved() {
+    public List<Extension> getAllApproved() throws RepositoryException {
         List<Extension> theList = new ArrayList<>();
 
         try (Session session = factory.openSession()) {
@@ -55,6 +54,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.getTransaction().commit();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw new RepositoryException("There was a problem with the database.");
         }
 
         return theList;

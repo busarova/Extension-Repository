@@ -1,8 +1,8 @@
 package com.telerik.extensionrepository.controllers;
 
+import com.telerik.extensionrepository.exceptions.GithubSyncException;
 import com.telerik.extensionrepository.service.base.AdminService;
-import com.telerik.extensionrepository.service.base.ExtensionInfoService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,9 +43,12 @@ public class AdminController {
 
         }catch(RepositoryException rep){
             modelAndView.setViewName("error");
-            modelAndView.addObject("error", rep);
+            modelAndView.addObject("error", rep.getMessage());
 
             return modelAndView;
+        }catch (GithubSyncException git){
+            modelAndView.setViewName("error");
+            modelAndView.addObject("error", git.getMessage());
         }
 
         modelAndView.addObject("extensions", adminService.getNotApprovedExt());

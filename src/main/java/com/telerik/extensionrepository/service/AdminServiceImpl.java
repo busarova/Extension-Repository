@@ -2,15 +2,15 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.data.base.AdminRepository;
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
+import com.telerik.extensionrepository.exceptions.GithubSyncException;
 import com.telerik.extensionrepository.model.*;
 import com.telerik.extensionrepository.service.base.AdminService;
 import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;
-import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
+import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public int refreshAllGitHubInfo() throws RepositoryException {
+    public int refreshAllGitHubInfo() throws RepositoryException, GithubSyncException {
 
 
         List<Extension> allExtensions = extensionRepository.getAllExtensions();
