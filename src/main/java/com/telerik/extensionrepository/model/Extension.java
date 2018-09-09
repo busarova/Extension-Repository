@@ -49,6 +49,7 @@ public class Extension {
     private UploadFile uploadFile;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+    @JsonManagedReference
     @JoinTable(
             name = "extension_tags",
             joinColumns = @JoinColumn(name = "extension_id"),

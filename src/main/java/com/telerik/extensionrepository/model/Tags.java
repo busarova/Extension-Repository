@@ -1,5 +1,7 @@
 package com.telerik.extensionrepository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Tags {
     private String name;
 
     @ManyToMany(mappedBy = "tags", fetch = FetchType.EAGER)
+    @JsonBackReference
     private List<Extension> extensions = new ArrayList<>();
 
     public List<Extension> getExtensions() {
