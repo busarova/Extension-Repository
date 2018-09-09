@@ -9,6 +9,7 @@ import com.telerik.extensionrepository.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -156,7 +157,9 @@ public class ExtensionController {
 
         Extension extension = extensionInfoService.getById(Integer.parseInt(id));
 
-        if(!extension.getOwner().equals(user.getUsername())){                         // checks if the logged user is the owner of the extension
+        // checks if the logged user is the owner of the extension or if he is Admin
+
+        if(!extension.getOwner().equals(user.getUsername()) && !user.getAuthorities().toString().contains("ROLE_ADMIN")){
             return "redirect:access-denied";
         }
 
