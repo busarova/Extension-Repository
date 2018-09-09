@@ -69,15 +69,19 @@ input:-webkit-autofill:focus {
 .icon {
     padding:5px;
     text-align: center;
+
 }
 .icon img{
     max-height: 100px;
     min-height: 100px;
     max-width: 100px;
     min-width: 100px;
+    border-radius: 20%;
+
 }
 
 .feature-box {
+    background: whitesmoke;
     padding: 10px;
     transition: .5s;
     margin-bottom: 30px;
