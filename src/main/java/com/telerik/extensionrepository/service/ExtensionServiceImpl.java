@@ -39,11 +39,6 @@ public class ExtensionServiceImpl implements ExtensionService {
 
         newExtension.setTags(tagService.loadNewTags(extensionForm));
 
-        for (Tags tag:
-            newExtension.getTags() ) {
-            System.out.println(tag.getName());
-        }
-
         extensionRepository.createExtension(newExtension);
 
         return newExtension;
@@ -52,6 +47,27 @@ public class ExtensionServiceImpl implements ExtensionService {
     public Extension updateExtension(Extension extension) {
 
         return extensionRepository.updateExtension(extension);
+    }
+
+    @Override
+    public Extension createExtensionFromForm(ExtensionForm extensionForm, User user) {
+
+        Extension newExtension = new Extension(
+                extensionForm.getName(),
+                extensionForm.getDescription(),
+                extensionForm.getVersion(),
+                user.getUsername());
+
+        newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
+
+        newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
+        newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
+
+        if(extensionForm.getLogoMultipartFile() != null && extensionForm.getLogoMultipartFile().getSize() > 1) {
+            newExtension.getUploadFile().setLogoData(extensionForm.getLogoMultipartFile().getBytes());
+        }
+
+        return newExtension;
     }
 
     @Override
@@ -107,27 +123,5 @@ public class ExtensionServiceImpl implements ExtensionService {
        return extensionRepository.updateExtension(extension);
 
     }
-
-    @Override
-    public Extension createExtensionFromForm(ExtensionForm extensionForm, User user) {
-
-        Extension newExtension = new Extension(
-                extensionForm.getName(),
-                extensionForm.getDescription(),
-                extensionForm.getVersion(),
-                user.getUsername());
-
-        newExtension.getGitExtensionInfo().setGitRepoLink(extensionForm.getGithubLink());
-
-        newExtension.getUploadFile().setFileName(extensionForm.getCommonsMultipartFile().getOriginalFilename());
-        newExtension.getUploadFile().setData(extensionForm.getCommonsMultipartFile().getBytes());
-
-        if(extensionForm.getLogoMultipartFile() != null && extensionForm.getLogoMultipartFile().getSize() > 1) {
-            newExtension.getUploadFile().setLogoData(extensionForm.getLogoMultipartFile().getBytes());
-        }
-
-        return newExtension;
-    }
-
 
 }

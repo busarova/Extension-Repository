@@ -2,19 +2,6 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
 
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100);
-@import url(https://fonts.googleapis.com/css?family=Raleway:400,500);
-@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
-
-
-/* ==========================================================================
-   Author's custom styles
-   ========================================================================== */
-
 html, body {
     height: 100%;
     width: 100%;
@@ -62,10 +49,7 @@ a:hover, a:focus {
 }
 
 .login-screen {
-    background-image: url(../pics/colors.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url(../pics/colors.jpg) no-repeat fixed center;
     background-size: cover;
     -moz-background-size: cover;
     -webkit-background-size: cover;
@@ -78,7 +62,6 @@ a:hover, a:focus {
 
 .login-screen:before {
     content: "";
-    background: rgba(0,0,0, 0);
     position: absolute;
     width: 100%;
     height: 100%;
@@ -119,7 +102,7 @@ a:hover, a:focus {
 
 .login-form .input-group .form-control::-moz-placeholder {
     color: #fff;
-    opacity: 0.3;
+    opacity: 0.2;
 }
 
 .login .sign-btn input.btn {

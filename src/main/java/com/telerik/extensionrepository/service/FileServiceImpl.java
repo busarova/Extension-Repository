@@ -33,15 +33,15 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public void storeFile(Extension extension, MultipartFile aFile) throws Exception {
+    public Extension storeFile(Extension extension, MultipartFile aFile) throws Exception {
 
         extension.getUploadFile().setFileName(aFile.getOriginalFilename());
         extension.getUploadFile().setData(aFile.getBytes());
 
         extensionService.updateExtension(extension);
-
         adminService.removeApproval(extension.getId());
 
+        return extension;
     }
 
     @Override

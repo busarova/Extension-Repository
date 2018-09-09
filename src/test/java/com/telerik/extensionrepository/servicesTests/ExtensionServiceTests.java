@@ -22,9 +22,6 @@ public class ExtensionServiceTests {
     private GitService gitService;
 
 
-//    void createExtension(ExtensionForm extensionForm);
-
-
     //    void changeExtensionName(Extension extension, String newName);
     @Test
     public void changeExtensionName_whenChanged_returnsExtensionWithNewName() {
