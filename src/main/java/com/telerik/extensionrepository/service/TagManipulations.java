@@ -40,22 +40,4 @@ import java.util.List;
 
     }
 
-    //Extracts all tags which are separated by " " in an extension
-    //And puts them into a List
-
-    List<TagForm> extractTagsFromExtension(Extension extension){
-
-        List<TagForm> tags = new ArrayList<>();
-
-        String[] parsedTags = null;//extension.getTags().split(" ");
-
-        for (String tag:
-            parsedTags ) {
-            tags.add(new TagForm(tag));
-        }
-
-        return tags;
-
-        }
-
 }

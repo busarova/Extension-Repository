@@ -16,6 +16,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
@@ -32,9 +33,6 @@ public class TagServiceTests {
     @Mock
     private TagRepository tagRepository = mock(TagRepository.class);
 
-    @Mock
-    private ExtensionInfoService extensionInfoService = mock(ExtensionInfoService.class);
-
     @Test
     public void loadNewTags_when_given_string_from_extensionForm_separates_tags_by_space_and_puts_them_in_arraylist() {
 
@@ -46,7 +44,7 @@ public class TagServiceTests {
         when(tagRepository.getByName("test3")).thenReturn(new Tags("test3"));
 
 
-        TagService tagService = new TagServiceImpl(tagRepository, extensionInfoService);
+        TagService tagService = new TagServiceImpl(tagRepository);
 
         List<Tags> resultList = tagService.loadNewTags(extensionForm);
 
@@ -78,6 +76,42 @@ public class TagServiceTests {
         Assert.assertEquals("#iamreallyanotherteststring", outcomeString2);
         Assert.assertEquals("#ohthirdteststringontheway", outcomeString3);
         Assert.assertEquals("#weareanarmyofteststringforreal", outcomeString4);
+
+    }
+
+    @Test
+    public void getAllTagsByName_Checks_If_Returns_Tags_By_This_Name(){
+
+        List<Tags> tagList = new ArrayList<>();
+        tagList.add(new Tags("test1"));
+        tagList.add(new Tags("test2"));
+        tagList.add(new Tags("test3"));
+
+        when(tagRepository.getAllByName("test")).thenReturn(tagList);
+
+        TagService tagService = new TagServiceImpl(tagRepository);
+
+        List<Tags> result = tagService.getAllTagsByName("test");
+
+        Assert.assertEquals("test1", result.get(0).getName());
+        Assert.assertEquals(3, result.size());
+
+    }
+
+    @Test
+    public void getTagById_Returns_Single_Tag(){
+
+        Tags tag = new Tags("test");
+        tag.setId(1);
+
+        when(tagRepository.getById(1)).thenReturn(tag);
+
+        TagService tagService = new TagServiceImpl(tagRepository);
+
+        Tags result = tagService.getTagById(1);
+
+        Assert.assertEquals("test", result.getName());
+        Assert.assertEquals(1, result.getId());
 
     }
 }
