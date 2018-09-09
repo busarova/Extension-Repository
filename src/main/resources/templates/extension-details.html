@@ -27,8 +27,14 @@
 
               <div style="margin-top: 150px">
                <a th:href="'/download/' + ${extension.getId()}"><img src="/pics/icons/downloads.png" class="enlarge_on_hover" style='width:60px;height:60px;margin-right: 15px'></a><span th:text="${extension.getNumberOfDownloads()}" id="description-extension-details"></span>
-               <a href="/featured"><img src="/pics/icons/star.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 15px'></a><a href="/featured"><span id="description-extension-details">Featured</span></a>
-               <a th:href="'/edit-extension/'+${extension.getId()}"><img src="/pics/icons/repair.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 15px'></a><a th:href="'/edit-extension/'+${extension.getId()}"><span id="description-extension-details">Edit</span></a>
+               <span th:if="${extension.getFeatured() == 1}"><a th:if="${extension.getFeatured() == 1}" href="/featured"><img src="/pics/icons/star.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 15px'></a><a href="/featured"><span id="description-extension-details">Featured</span></a></span>
+               <span sec:authorize="isAuthenticated()">
+
+               <span th:if="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><a th:href="'/edit-extension/'+${extension.getId()}"><img src="/pics/icons/repair.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 15px'></a><a th:href="'/edit-extension/'+${extension.getId()}"><span id="description-extension-details">Edit</span></a></span>
+               <span th:unless="${#authentication.getPrincipal().getUsername()} == ${extension.getOwner()}"><span sec:authorize="hasRole('ROLE_ADMIN')">   <a th:href="'/edit-extension/'+${extension.getId()}"><img src="/pics/icons/repair.png" class="enlarge_on_hover" style='width:60px;height:60px; margin-left:150px; margin-right: 15px'></a><a th:href="'/edit-extension/'+${extension.getId()}"><span id="description-extension-details">Edit</span></a>   </span></span>
+
+               </span>
+
                </div>
         </div>
      </div>

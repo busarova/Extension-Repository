@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.User;
 
 public interface ExtensionService {
 
-    Extension createExtension(ExtensionForm extensionForm, User user);
+    Extension createExtension(ExtensionForm extensionForm, User user) throws Exception;
 
     Extension updateExtension(Extension extension);
 

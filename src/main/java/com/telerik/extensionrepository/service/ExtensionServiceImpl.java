@@ -31,7 +31,7 @@ public class ExtensionServiceImpl implements ExtensionService {
     // Creates extension from the dto information given at input
 
     @Override
-    public Extension createExtension(ExtensionForm extensionForm, User user) {
+    public Extension createExtension(ExtensionForm extensionForm, User user) throws Exception{
 
         Extension newExtension = createExtensionFromForm(extensionForm, user);
 

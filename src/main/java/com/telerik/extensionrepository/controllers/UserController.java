@@ -84,7 +84,13 @@ public class UserController {
                 .getPrincipal();
 
 
-        extensionService.createExtension(extension, user);
+        try {
+            extensionService.createExtension(extension, user);
+        }catch (Exception e){
+            ModelAndView modelAndView = new ModelAndView("error");
+            modelAndView.addObject("errorMessage", e.getMessage());
+            return modelAndView;
+        }
 
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("image", getProfilePicAsString());

@@ -1,5 +1,6 @@
 package com.telerik.extensionrepository.service;
 
+import com.telerik.extensionrepository.exceptions.GithubNameException;
 import com.telerik.extensionrepository.exceptions.GithubSyncException;
 import com.telerik.extensionrepository.exceptions.OAuthTokenException;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
@@ -23,7 +24,7 @@ public class GitServiceImpl implements GitService {
     //Otherwise return empty
 
     @Override
-    public GitExtensionInfo getGitDetails(String gitLink) throws GithubSyncException {
+    public GitExtensionInfo getGitDetails(String gitLink) throws GithubSyncException, GithubNameException {
 
         final String token = "6bd730709f26540abf3e15e3a6dcbf1bd4a6693c";
 
@@ -39,9 +40,16 @@ public class GitServiceImpl implements GitService {
             throw new GithubSyncException("There was a problem with the OAuth token for github");
         }
 
+        String gitUserRepo = "";
 
-        String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
-        String gitUserRepo = link[0] + "/" + link[1];
+        try {
+
+            String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
+            gitUserRepo = link[0] + "/" + link[1];
+
+        }catch (Exception e){
+            throw new GithubNameException("The Github name you have entered is invalid.Cannot make a connection.No extension created.");
+        }
 
         System.out.println("Now connecting with Github with link: " + gitLink);
 
