@@ -19,11 +19,9 @@ public class TagServiceImpl implements TagService {
 
     private TagManipulations tagManipulations = new TagManipulations();
     private TagRepository tagRepository;
-    private ExtensionInfoService extensionInfoService;
 
-    public TagServiceImpl(TagRepository tagRepository, ExtensionInfoService extensionInfoService){
+    public TagServiceImpl(TagRepository tagRepository){
         this.tagRepository = tagRepository;
-        this.extensionInfoService = extensionInfoService;
     }
 
     //Loads the new tags into an arraylist

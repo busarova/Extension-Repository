@@ -69,7 +69,7 @@
         <a href="#" class="buttons-edit-extension" id="showExtensionsLogoForm">Change Logo</a>
 
                       <form id="extensionLogoForm" th:action="@{/user/changeExtensionLogo/{path}(path=${extension.getId()})}" enctype="multipart/form-data" method="post">
-                          <p >Attach File: <input type="file" name="fileUpload" size="50" /></p>
+                          <p >Attach File: <input type="file" style="margin-left: 42%" name="fileUpload" size="50" /></p>
                           <input type="submit" value="Submit" />
                       </form>
 
