@@ -69,27 +69,6 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     }
 
-//    @Override
-//    public List<Extension> returnOrderedBy(String parameter) {                       // sorts the list by the parameter
-//
-//        String[] commands = parameter.split(" ");
-//
-//        switch (commands[0]){
-//
-//            case "popular":
-//                return sortListBy(getPopular(), commands[1]);
-//
-//            case "featured":
-//                return sortListBy(getFeatured(), commands[1]);
-//
-//            case "new":
-//                return sortListBy(getNew(), commands[1]);
-//
-//        }
-//
-//        return null;
-//    }
-
     // to fix the last commit date order when real extensions are placed
 
     @Override

@@ -118,6 +118,21 @@ public class AdminRepositorySql implements AdminRepository {
     }
 
     @Override
+    public void updateAdminInfo(Admin admin) {
+
+        try(Session session = factory.openSession()){
+            session.beginTransaction();
+
+            session.update(admin);
+
+            session.getTransaction().commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
     public void updateLastSuccessfulTagClean(Date date) {
 
         try(Session session = factory.openSession()){
@@ -136,6 +151,7 @@ public class AdminRepositorySql implements AdminRepository {
         }
 
     }
+
 
 
 }

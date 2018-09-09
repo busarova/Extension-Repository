@@ -1,6 +1,7 @@
 package com.telerik.extensionrepository.configuration;
 
 import com.telerik.extensionrepository.service.base.AdminService;
+import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -13,11 +14,13 @@ public class ScheduledTasks {
         this.adminService = adminService;
     }
 
-    /*@Scheduled(fixedRate = 5000)
-    public void reportCurrentTime() {
+    //configured for 1 week refresh with 1 week initial delay
+
+    @Scheduled(initialDelay=604800000, fixedRate = 604800000)
+    public void reportCurrentTime() throws RepositoryException {
 
         adminService.refreshAllGitHubInfo();
 
-    }*/
+    }
 
 }

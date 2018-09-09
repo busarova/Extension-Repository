@@ -40,6 +40,8 @@ public class GitServiceImpl implements GitService {
         String[] link = gitLink.replaceAll("https://github.com/", "").split("/");
         String gitUserRepo = link[0] + "/" + link[1];
 
+        System.out.println("Now connecting with Github with link: " + gitLink);
+
         try {
 
             GHRepository repo = gitHub.getRepository(gitUserRepo);

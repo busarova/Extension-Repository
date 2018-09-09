@@ -10,6 +10,7 @@ import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
@@ -161,5 +162,10 @@ public class AdminServiceImpl implements AdminService {
         adminRepository.updateLastSuccessfulTagClean(new Date());
 
         return count;
+    }
+
+    @Override
+    public String getScheduledTaskTime() {
+        return adminRepository.getAdminInfo().getScheduled_time();
     }
 }

@@ -5,6 +5,7 @@ import com.telerik.extensionrepository.model.Extension;
 import com.telerik.extensionrepository.model.User;
 import com.telerik.extensionrepository.utils.exceptions.RepositoryException;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface AdminService {
@@ -36,5 +37,7 @@ public interface AdminService {
     void refreshExtensionGitInfo(int id);
 
     int emptyTagCheck();
+
+    String getScheduledTaskTime();
 
 }
