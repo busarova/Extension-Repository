@@ -1,5 +1,7 @@
 # extension-repository
 
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic2.png)
+
 Final Project Assignment in Telerik Academy by Tick42.
 
 Installation instructions at the bottom.
@@ -63,4 +65,8 @@ The program runs on port 8080.  So run it and open http://localhost:8080/ in you
 Enjoy!
 
 
-![alt text](https://github.com/busarova/extension-repository/src/main/resources/static/pics/presentation_pic1.png)
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic1.png)
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic2.png)
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic3.png)
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic4.png)
+![alt text](https://github.com/busarova/extension-repository/blob/master/src/main/resources/static/pics/presentation_pic5.png)
