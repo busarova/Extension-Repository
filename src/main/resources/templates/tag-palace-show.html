@@ -46,7 +46,7 @@
                             </div>
                             <h4 th:text="${Extension.getName()}"></h4>
                             <div class="row">
-                                <div class="col-sm-6" th:text="${Extension.getOwner()}">
+                                <div class="col-sm-6" th:text="${Extension.getOwner()}" style="text-align: left !important;">
                                 </div>
                                 <div class="glyphicon glyphicon-download-alt col-sm-6"
                                      th:text=" ' ' + ${Extension.getNumberOfDownloads()}">

@@ -10,65 +10,76 @@
 </div>
 
 <div class="alignTextCenter">
-<h1>ADMINISTRATION PAGE</h1>
+    <h1>ADMINISTRATION PAGE</h1>
+
+    <a th:href="@{/admin/refreshGit}">
+        <button>Refresh all Git Info</button>
+    </a>
+
+    <p th:text="'Last successful sync: '+${adminInfo.getLastSuccessfulSync()}"></p>
+    <p th:text="'Last Failed Sync: ' + ${adminInfo.getLastFailedSync()}"></p>
+    <p th:text="'Last Failed Sync Info: ' + ${adminInfo.getLastFailedReason()}"></p>
+
+    <a th:href="@{/admin/cleanEmptyTags}">
+        <button>Clean Database of Empty Tags</button>
+    </a>
+    <p th:if="${tagsCleaned != null}" th:text="${tagsCleaned} + ' empty tags have been cleaned.'"></p>
+    <p th:unless="${tagsCleaned != null}"
+       th:text="'Last successful cleaning: '+${adminInfo.getLastSuccessfulTagClean()}"></p>
 </div>
 
-<a th:href="@{/admin/refreshGit}"><button>Refresh all Git Info</button></a>
-
-<p th:text="'Last successful sync: '+${adminInfo.getLastSuccessfulSync()}"></p>
-<p th:text="'Last Failed Sync: ' + ${adminInfo.getLastFailedSync()}"></p>
-<p th:text="'Last Failed Sync Info: ' + ${adminInfo.getLastFailedReason()}"></p>
-
-<a th:href="@{/admin/cleanEmptyTags}"><button>Clean Database of Empty Tags</button></a>
-<p th:if="${tagsCleaned != null}" th:text="${tagsCleaned} + ' empty tags have been cleaned.'"></p>
-<p th:unless="${tagsCleaned != null}" th:text="'Last successful cleaning: '+${adminInfo.getLastSuccessfulTagClean()}"></p>
 <div class="container">
-  <h2>For Approval</h2>
-  <!--<p>this is responsive table :P</p>-->
-  <div class="table-responsive">
-  <table class="table table-hover" border="1">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Extension Name</th>
-        <th>Upload Date</th>
-        <th>Owner</th>
-        <th>Github</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody th:each="Extension : ${extensions}">
-      <tr>
-        <td th:text="${Extension.getId()}"></td>
-        <td><a th:href="'/extension-details/'+${Extension.getId()}" th:text="${Extension.getName()}"></a></td>
-        <td th:text="${Extension.getUploadDate()}"></td>
-        <td th:text="${Extension.getOwner()}"></td>
-        <td><a th:href="${Extension.getGitExtensionInfo().getGitRepoLink()}" th:text="${Extension.getGitExtensionInfo().getGitRepoLink()}"></a> </td>
-        <td><a class="approve-button" th:href="'/admin/approve/'+${Extension.getId()}">Approve</a> </td>
-      </tr>
-    </tbody>
-  </table>
-  </div>
- <h2>Users</h2>
-  <!--<p>this is responsive table :P</p>-->
-  <div class="table-responsive">
-  <table class="table table-hover" border="1">
-    <thead>
-      <tr>
-        <th>User Name</th>
-        <th>Status</th>
-        <th>Action</th>
-       </tr>
-    </thead>
-    <tbody th:each="User : ${users}">
-      <tr>
-        <td ><a href="" th:text="${User.getName()}"></a> </td>
-        <td th:text="${User.getStatus()}"></td>
-        <td><a th:if="${User.getStatus() == 'Enabled'}" class="error" th:href="'/admin/disable-user/' + ${User.getName()}">Disable</a> <a th:unless="${User.getStatus() == 'Enabled'}" class="approve-button" th:href="'/admin/enable-user/' + ${User.getName()}">Enable</a></td>
-       </tr>
-    </tbody>
-  </table>
- </div>
+
+    <h2>For Approval</h2>
+    <!--<p>this is responsive table :P</p>-->
+    <div class="table-responsive">
+        <table class="table table-hover" border="1">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Extension Name</th>
+                <th>Upload Date</th>
+                <th>Owner</th>
+                <th>Github</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody th:each="Extension : ${extensions}">
+            <tr>
+                <td th:text="${Extension.getId()}"></td>
+                <td><a th:href="'/extension-details/'+${Extension.getId()}" th:text="${Extension.getName()}"></a></td>
+                <td th:text="${Extension.getUploadDate()}"></td>
+                <td th:text="${Extension.getOwner()}"></td>
+                <td><a th:href="${Extension.getGitExtensionInfo().getGitRepoLink()}"
+                       th:text="${Extension.getGitExtensionInfo().getGitRepoLink()}"></a></td>
+                <td><a class="approve-button" th:href="'/admin/approve/'+${Extension.getId()}">Approve</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>Users</h2>
+    <!--<p>this is responsive table :P</p>-->
+    <div class="table-responsive">
+        <table class="table table-hover" border="1">
+            <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody th:each="User : ${users}">
+            <tr>
+                <td><a href="" th:text="${User.getName()}"></a></td>
+                <td th:text="${User.getStatus()}"></td>
+                <td><a th:if="${User.getStatus() == 'Enabled'}" class="error"
+                       th:href="'/admin/disable-user/' + ${User.getName()}">Disable</a> <a
+                        th:unless="${User.getStatus() == 'Enabled'}" class="approve-button"
+                        th:href="'/admin/enable-user/' + ${User.getName()}">Enable</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 
 </body>
