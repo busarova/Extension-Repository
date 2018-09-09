@@ -36,21 +36,32 @@ public class AdminServiceImpl implements AdminService {
 
         List<Extension> allExtensions = extensionRepository.getAllExtensions();
 
+        boolean syncFailed = false;
         int errors = 0;
-// new log
-        // set start date
+
         for (Extension extension :
                 allExtensions) {
-//try
-            refreshExtensionGitInfo(extension.getId());
-//catch
-            // set end date, save exception
-            //break
+
+            try {
+                refreshExtensionGitInfo(extension.getId());
+            }catch (Exception e){
+                System.out.println("Problem with: " + extension.getName() + " extension.Stopping refresh.");
+                System.out.println("Problem message is: " + e.getMessage());
+                Admin admin = adminRepository.getAdminInfo();
+                admin.setLastFailedSync(new Date());
+                admin.setLastFailedReason("Failed extension: " + extension.getName() + "  message: " + e.getMessage());
+                adminRepository.updateAdminInfo(admin);
+                syncFailed = true;
+                break;
+            }
+
         }
 
-        // finally always close the end date
 
-        adminRepository.updateLastSuccessfulSync(new Date());
+
+        if(!syncFailed) {
+            adminRepository.updateLastSuccessfulSync(new Date());
+        }
 
         return errors;
     }

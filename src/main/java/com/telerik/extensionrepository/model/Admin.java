@@ -18,6 +18,11 @@ public class Admin {
     @Column(name = "last_successful_tag_clean")
     private Date lastSuccessfulTagClean;
 
+    @Column(name = "last_failed_sync")
+    private Date lastFailedSync;
+
+    @Column(name = "last_failed_reason")
+    private String lastFailedReason;
 
     public Admin(){}
 
@@ -45,4 +50,19 @@ public class Admin {
         this.lastSuccessfulTagClean = lastSuccessfulTagClean;
     }
 
+    public Date getLastFailedSync() {
+        return lastFailedSync;
+    }
+
+    public void setLastFailedSync(Date lastFailedSync) {
+        this.lastFailedSync = lastFailedSync;
+    }
+
+    public String getLastFailedReason() {
+        return lastFailedReason;
+    }
+
+    public void setLastFailedReason(String lastFailedReason) {
+        this.lastFailedReason = lastFailedReason;
+    }
 }
