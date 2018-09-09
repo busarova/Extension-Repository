@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-    class TagManipulations {
+    public class TagManipulations {
 
     //Splits the input string tags by " "
     //Checks for every String (tag) of them if first character is #
     //If not puts # at char(0)
 
-    String checkForHashTag(String tags){
+    public String checkForHashTag(String tags){
 
         if(tags == null || tags.equals("")){
             return "";
