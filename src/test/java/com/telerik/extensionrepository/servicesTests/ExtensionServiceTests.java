@@ -2,13 +2,18 @@ package com.telerik.extensionrepository.servicesTests;
 
 import com.telerik.extensionrepository.data.base.ExtensionRepository;
 import com.telerik.extensionrepository.model.Extension;
+import com.telerik.extensionrepository.model.Tags;
 import com.telerik.extensionrepository.service.ExtensionServiceImpl;
+import com.telerik.extensionrepository.service.TagManipulations;
 import com.telerik.extensionrepository.service.base.ExtensionService;
 import com.telerik.extensionrepository.service.base.GitService;
 import com.telerik.extensionrepository.service.base.TagService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mock;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -18,6 +23,8 @@ public class ExtensionServiceTests {
 
     @Mock
     private ExtensionRepository extensionRepository = mock(ExtensionRepository.class);
+    @Mock
+    private TagManipulations tagManipulations = mock(TagManipulations.class);
     private TagService tagService;
     private GitService gitService;
 
@@ -75,4 +82,26 @@ public class ExtensionServiceTests {
     }
 
 //    void addExtensionTag(Extension extension, String newTags);
+
+    @Test
+    public void addNewTagsToExtension_whenAdded_returnsExtensionWithAllTags(){
+
+        Tags tag = new Tags();
+        tag.setName("#test_tag_1");
+        List<Tags> tags = new ArrayList<>();
+        tags.add(tag);
+
+        Extension extension = new Extension();
+        extension.setTags(tags);
+
+        when(tagManipulations.checkForHashTag("")).thenReturn("#test_tag_2");
+        when(extensionRepository.updateExtension(extension)).thenReturn(extension);
+
+        ExtensionService service = new ExtensionServiceImpl(extensionRepository, tagService, gitService);
+        Extension resultExtension = service.addExtensionTag(extension, "#test_tag_2");
+
+        Assert.assertEquals("#test_tag_1", resultExtension.getTags().get(0).getName());
+        Assert.assertEquals("#test_tag_2", resultExtension.getTags().get(1).getName());
+    }
+
 }
