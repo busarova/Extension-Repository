@@ -100,25 +100,6 @@ public class UserController {
 
     }
 
-//    @RequestMapping("/user/sortby/{sortType}")
-//    public ModelAndView sortByParam(@PathVariable("sortType") String sortType){
-//
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication()
-//                .getPrincipal();
-//
-//        ModelAndView modelAndView = new ModelAndView("/profile");
-//
-//        List<Extension> list = extensionInfoService.getByUserName(user.getUsername());
-//
-//        extensionInfoService.sortListBy(list, sortType);
-//
-//        modelAndView.addObject("extensions", list);
-//
-//        modelAndView.addObject("image", getProfilePicAsString());
-//
-//        return modelAndView;
-//    }
-
     //Gets to users pic and if it is null returns null
     //If not it returns the pic as String so it can be passed to modelandview
 

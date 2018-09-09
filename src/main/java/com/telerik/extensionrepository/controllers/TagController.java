@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TagController {
@@ -43,7 +44,7 @@ public class TagController {
 
         Tags tag = tagService.getTagById(Integer.parseInt(id));
 
-        modelAndView.addObject("allApproved", tag.getExtensions());
+        modelAndView.addObject("allApproved", tag.getExtensions().stream().filter(x -> x.getApproved() == 1).collect(Collectors.toList()));
         modelAndView.addObject("Tag", tag);
 
         return modelAndView;
