@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @Repository
 public class ExtensionRepositorySql implements ExtensionRepository {
 
+    private static final Logger logger = LoggerFactory.getLogger(ExtensionRepositorySql.class);
     private SessionFactory factory;
 
     @Autowired
@@ -71,6 +74,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -91,6 +95,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
         } catch (HibernateException | OptimisticLockException e) {
 
+            logger.error(e.getMessage());
             e.printStackTrace();
             if (transaction != null) {
                 transaction.rollback();
@@ -115,6 +120,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -133,6 +139,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -151,6 +158,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -168,6 +176,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -187,6 +196,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -208,6 +218,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -227,6 +238,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -246,6 +258,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
         return extension;
@@ -265,6 +278,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -284,6 +298,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -302,6 +317,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -321,6 +337,7 @@ public class ExtensionRepositorySql implements ExtensionRepository {
 
             session.getTransaction().commit();
         } catch (HibernateException e) {
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 

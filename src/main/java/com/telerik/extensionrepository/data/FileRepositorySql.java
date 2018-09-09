@@ -5,6 +5,8 @@ import com.telerik.extensionrepository.model.UploadFile;
 import com.telerik.extensionrepository.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Repository;
 public class FileRepositorySql implements FileRepository {
 
     private SessionFactory factory;
+    private static final Logger logger = LoggerFactory.getLogger(FileRepositorySql.class);
 
     @Autowired
     public FileRepositorySql(SessionFactory factory){
@@ -28,6 +31,7 @@ public class FileRepositorySql implements FileRepository {
 
             session.getTransaction().commit();
         }catch (Exception e){
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
@@ -43,6 +47,7 @@ public class FileRepositorySql implements FileRepository {
 
             session.getTransaction().commit();
         }catch (Exception e){
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
     }
@@ -57,6 +62,7 @@ public class FileRepositorySql implements FileRepository {
 
             session.getTransaction().commit();
         }catch (Exception e){
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
     }
@@ -73,6 +79,7 @@ public class FileRepositorySql implements FileRepository {
 
             session.getTransaction().commit();
         }catch (Exception e){
+            logger.error(e.getMessage());
             System.out.println(e.getMessage());
         }
 
