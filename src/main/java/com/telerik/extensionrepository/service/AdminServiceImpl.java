@@ -124,7 +124,20 @@ public class AdminServiceImpl implements AdminService {
     public Extension deleteExtension(int id) {
 
         Extension extension = extensionRepository.getExtById(id);
-        return extensionRepository.deleteExtension(extension);
+
+        List<Tags> tags = extension.getTags();
+
+        extensionRepository.deleteExtension(extension);
+
+        for (Tags tag:
+            tags ) {
+
+            if(tag.getExtensions().size() == 0){
+                tagService.deleteTag(tag);
+            }
+        }
+
+        return extension;
     }
 
     @Override
