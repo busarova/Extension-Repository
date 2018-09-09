@@ -61,3 +61,6 @@ Make user: dev_user with password dev_user  or change it from application.proper
 The program runs on port 8080.  So run it and open http://localhost:8080/ in your browser. 
 
 Enjoy!
+
+
+![alt text](https://github.com/busarova/extension-repository/src/main/resources/static/pics/presentation_pic1.png)
