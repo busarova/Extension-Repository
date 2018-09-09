@@ -16,7 +16,7 @@ public class ScheduledTasks {
 
     //configured for 1 week refresh with 1 week initial delay
 
-    @Scheduled(initialDelay=604800000, fixedRate = 604800000)
+    @Scheduled(initialDelayString = "${schedule.initialDelayTime}", fixedRateString = "${schedule.fixedRateTime}")
     public void reportCurrentTime() throws RepositoryException {
 
         adminService.refreshAllGitHubInfo();

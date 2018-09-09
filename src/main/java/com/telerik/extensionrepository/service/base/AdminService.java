@@ -38,6 +38,4 @@ public interface AdminService {
 
     int emptyTagCheck();
 
-    String getScheduledTaskTime();
-
 }

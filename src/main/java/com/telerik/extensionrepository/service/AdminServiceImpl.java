@@ -177,8 +177,4 @@ public class AdminServiceImpl implements AdminService {
         return count;
     }
 
-    @Override
-    public String getScheduledTaskTime() {
-        return adminRepository.getAdminInfo().getScheduled_time();
-    }
 }

@@ -18,8 +18,6 @@ public class Admin {
     @Column(name = "last_successful_tag_clean")
     private Date lastSuccessfulTagClean;
 
-    @Column(name = "scheduled_refresh")
-    private String scheduled_time;
 
     public Admin(){}
 
@@ -47,11 +45,4 @@ public class Admin {
         this.lastSuccessfulTagClean = lastSuccessfulTagClean;
     }
 
-    public String getScheduled_time() {
-        return scheduled_time;
-    }
-
-    public void setScheduled_time(String scheduled_time) {
-        this.scheduled_time = scheduled_time;
-    }
 }
