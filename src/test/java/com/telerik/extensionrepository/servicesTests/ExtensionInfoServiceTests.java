@@ -52,7 +52,7 @@ public class ExtensionInfoServiceTests {
 
 //    List<Extension> getAllApproved();
     @Test
-    public void getApprovedExtensions_whenMatch_returnListOfApprovedExtensions() {
+    public void getApprovedExtensions_whenMatch_returnListOfApprovedExtensions() throws RepositoryException{
 
         List<Extension> extensions = new ArrayList<>();
 
