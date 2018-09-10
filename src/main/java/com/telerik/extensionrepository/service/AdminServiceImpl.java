@@ -57,8 +57,6 @@ public class AdminServiceImpl implements AdminService {
 
         }
 
-
-
         if(!syncFailed) {
             adminRepository.updateLastSuccessfulSync(new Date());
         }

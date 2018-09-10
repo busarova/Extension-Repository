@@ -99,39 +99,4 @@ public class ExtensionInfoServiceImpl implements ExtensionInfoService {
 
     }
 
-//    // To be decided if to stay by the rest functions
-//
-//    @Override
-//    public List<Extension> sortListBy(List<Extension> list, String parameter) {
-//
-//        switch (parameter){
-//
-//            case "name":
-//                list.sort(Comparator.comparing(Extension::getName));
-//                return list;
-//
-//            case "downloads":
-//                list.sort(Comparator.comparing(Extension::getNumberOfDownloads));
-//                 return list;
-//
-//            case "uploadDate":
-//
-//                list.sort(Comparator.comparing(Extension::getUploadDate).reversed());
-//                return list;
-//
-//            case "lastCommitDate":
-//
-//                list.sort(Comparator.comparing(Extension::getUploadDate));
-//                return list;
-//
-//            case "featured":
-//
-//               return list.stream()
-//                        .filter(x -> x.getFeatured() == 0)
-//                        .collect(Collectors.toList());
-//        }
-//
-//        return null;
-//    }
-
 }

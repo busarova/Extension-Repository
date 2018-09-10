@@ -21,6 +21,7 @@ Installation instructions at the bottom.
 - Validations
 - Optimistic Locking
 - Connects with GitHub API and takes data (last commit date, pull requests, open issues)
+- Scheduled and configurable Github data reload on certain time for all Extensions
 - Integration with continuous integration server (CircleCi)
 - RestApi (public part)
 
@@ -61,6 +62,14 @@ Clone the project and build it as a Gradle project.In the main directory you wil
 Make user: dev_user with password dev_user  or change it from application.properties.
 
 The program runs on port 8080.  So run it and open http://localhost:8080/ in your browser. 
+
+### Console
+
+You will need JDK 1.8 and MariaDb Database.
+
+Execute the database: $ mysql -u root -p < extension_repository.sql
+
+And then run it with: $ ./gradlew bootRun
 
 Enjoy!
 

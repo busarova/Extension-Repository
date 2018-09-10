@@ -2,14 +2,12 @@ package com.telerik.extensionrepository.service;
 
 import com.telerik.extensionrepository.exceptions.GithubNameException;
 import com.telerik.extensionrepository.exceptions.GithubSyncException;
-import com.telerik.extensionrepository.exceptions.OAuthTokenException;
 import com.telerik.extensionrepository.model.GitExtensionInfo;
 import com.telerik.extensionrepository.service.base.GitService;
 import org.kohsuke.github.GHCommit;
 import org.kohsuke.github.GHIssueState;
 import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GitHub;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -50,8 +48,6 @@ public class GitServiceImpl implements GitService {
         }catch (Exception e){
             throw new GithubNameException("The Github name you have entered is invalid.Cannot make a connection.No extension created.");
         }
-
-        System.out.println("Now connecting with Github with link: " + gitLink);
 
         try {
 

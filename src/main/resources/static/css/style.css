@@ -1,3 +1,4 @@
+
 .paddingTB60{
     padding-bottom: 60px;
 }
@@ -172,6 +173,7 @@ img{
     min-width: 100px;
 }
 .feature-box {
+    background: whitesmoke;
     padding: 10px;
     transition: .5s;
     margin-bottom: 30px;
@@ -185,7 +187,6 @@ img{
 
     font-family: "Gill Sans", sans-serif;
     color: black;
-    text-align: center;
     font-size: 13px;
     font-weight: 600;
     margin: 15px 0 5px;

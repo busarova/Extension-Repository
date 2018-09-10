@@ -11,6 +11,8 @@
     min-height: 100px;
     max-width: 100px;
     min-width: 100px;
+    border-radius: 20%;
+
 }
 .profilePic img {
 
@@ -18,9 +20,11 @@
     min-height: 220px;
     max-width: 220px;
     min-width: 220px;
+
 }
 
 .feature-box {
+    background: whitesmoke;
     padding: 10px;
     transition: .5s;
     margin-bottom: 30px;
